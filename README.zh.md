@@ -144,16 +144,16 @@ git clone https://github.com/LigphiDonk/Oh-my--paper.git /tmp/oh-my-paper
 | `/omp:survey` | AI 辅助文献调研——搜索论文，整理 `literature_bank.md` |
 | `/omp:ideate` | 基于调研结果生成并评估创新点 |
 | `/omp:experiment` | 设计实验、编写评估代码、在远程节点上运行 |
+| `/omp:mega` | 25 阶段科研流水线，支持自动驾驶模式——从创意到发表全流程 |
 | `/omp:write` | 撰写论文章节、生成图表和标题、管理 LaTeX 文件 |
 | `/omp:review` | 同行评审——提交前对论文或实验结果做质量把关 |
+| `/omp:debate` | 多智能体辩论（正方/反方/综合者）——验证研究假设 |
 | `/omp:progress` | 可视化研究进度——ASCII 进度条（支持 Legacy + Mega 双模式） |
 | `/omp:plan` | 查看全局进展，确认下一步方向，更新研究计划 |
+| `/omp:export` | 导出最终论文 PDF，适配投稿格式 |
 | `/omp:update` | 一键更新插件——检查并安装 GitHub 上的最新版本 |
 | `/omp:recover` | 从快照恢复项目状态（关键操作前自动打快照） |
-| `/omp:switch` | 在多项目间切换（需要 `.omp.yml` 配置） |
-| `/omp:new-project` | 创建新的子项目，包含独立的 `.pipeline/` 目录 |
 | `/omp:tutorial` | 交互式教程——用模拟项目引导新用户体验完整流程 |
-| `/omp:delegate` | 生成 Codex prompt 委派代码/实验任务；等待结果后自动更新项目状态 |
 
 ### 典型用法
 
@@ -308,25 +308,6 @@ my-research/
 记忆文件跨会话保留。`SessionStart` hook 读取这些文件并注入相关上下文——你从上次的断点继续。
 
 **自动同步规则：** Conductor 在每个子任务完成后（delegate / experiment / survey / write / review 任一）自动更新 `tasks.json`（标记任务为 done）并往 `project_truth.md` 追加进展记录，不需要你提醒。
-
----
-
-## Codex 任务委派
-
-Conductor 可以把代码和实验任务交给 Codex 执行：
-
-```bash
-/omp:delegate
-```
-
-流程：
-1. Conductor 读取项目上下文和当前任务
-2. 展示任务摘要——你确认
-3. 生成预注入上下文的完整 Codex prompt
-4. 你复制到新终端：`codex "..."`
-5. Conductor 轮询等待完成信号（`agent_handoff.md` 里的 `CODEX_DONE`）
-6. 读取结果，让你接受/修改/放弃
-7. 接受后：自动更新 `tasks.json` 和 `project_truth.md`
 
 ---
 

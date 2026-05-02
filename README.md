@@ -144,16 +144,16 @@ All commands are prefixed with `/omp:`.
 | `/omp:survey` | AI-assisted literature survey — search papers, build `literature_bank.md` |
 | `/omp:ideate` | Generate and evaluate research ideas based on survey findings |
 | `/omp:experiment` | Design experiments, write evaluation code, run on remote compute nodes |
+| `/omp:mega` | 25-stage research pipeline with auto-pilot mode — full workflow from ideation to publication |
 | `/omp:write` | Draft paper sections, generate figures and captions, manage LaTeX files |
 | `/omp:review` | Peer-review your paper or experiment results before submission |
+| `/omp:debate` | Multi-agent debate (Proponent/Opponent/Synthesizer) to validate research hypotheses |
 | `/omp:progress` | Visualize research progress with ASCII progress bars (Legacy + Mega modes) |
 | `/omp:plan` | Review global progress, confirm next steps, update research plan |
+| `/omp:export` | Export final paper to PDF with proper formatting for submission |
 | `/omp:update` | One-click plugin update — check for and install the latest version from GitHub |
 | `/omp:recover` | Recover project state from a snapshot (auto-saved before key operations) |
-| `/omp:switch` | Switch between multiple research projects (requires `.omp.yml`) |
-| `/omp:new-project` | Create a new sub-project with an isolated `.pipeline/` directory |
 | `/omp:tutorial` | Interactive tutorial — walk through the full OMP workflow with a simulated project |
-| `/omp:delegate` | Generate a Codex prompt for a coding/experiment task; wait for result and update project state |
 
 ### Quick Start
 
@@ -307,25 +307,6 @@ Each agent role reads and writes specific memory files. The Conductor is respons
 Memory survives across sessions. The `SessionStart` hook reads these files and injects the relevant context — you pick up right where you left off.
 
 **Auto-sync rule:** The Conductor updates `tasks.json` and `project_truth.md` automatically after every subtask completes (delegate / experiment / survey / write / review). You never need to ask it to sync.
-
----
-
-## Codex Delegation
-
-The Conductor can hand off coding and experiment tasks to Codex:
-
-```bash
-/omp:delegate
-```
-
-The flow:
-1. Conductor reads project context and the current task
-2. Presents task summary — you confirm
-3. Generates a complete Codex prompt with context pre-injected
-4. You copy it to a new terminal: `codex "..."`
-5. Conductor polls for completion (`CODEX_DONE` signal in `agent_handoff.md`)
-6. Reads result, asks you to accept/revise/reject
-7. On accept: updates `tasks.json` and `project_truth.md` automatically
 
 ---
 
