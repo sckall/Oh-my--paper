@@ -1,0 +1,37 @@
+stage_id: A4
+stage_name: LITERATURE_COLLECT
+group: A
+order: 4
+is_gate: false
+
+objectives:
+  - Execute literature search using designed strategy
+  - Collect minimum 30 papers
+  - Verify papers are real with DOI/URL
+
+inputs:
+  - .pipeline/mega/plans/plan_A3_search.md
+
+outputs:
+  - .pipeline/memory/literature_bank.md
+
+literature_bank_format: |
+  | DOI/URL | Title | Year | Venue | Relevance | Status | Date |
+
+literature_requirements:
+  min_papers: 30
+  year_range: ">= {指定年份}"
+  priority: top_conference_papers
+
+collection_process:
+  - Execute search queries against OpenAlex API
+  - Execute search queries against Semantic Scholar API
+  - Fallback to arXiv if APIs rate-limited
+  - Verify each paper has DOI or verifiable URL
+  - Record paper metadata in literature_bank.md
+
+constraints:
+ 真实性: "Must be real papers, DO NOT fabricate"
+  no_fabrication: "Every paper must have verifiable source"
+
+next_stage: A5

@@ -1,0 +1,106 @@
+stage_id: C16
+stage_name: PAPER_OUTLINE
+group: C
+order: 16
+is_gate: false
+
+objectives:
+  - Create detailed paper outline
+  - Map evidence to sections
+  - Design Figure 1
+
+inputs:
+  - .pipeline/docs/result_summary.md
+  - .pipeline/docs/experiment_plan.md
+  - .pipeline/memory/literature_bank.md
+
+outputs:
+  - paper/sections/outline.md
+
+outline_structure:
+  sections:
+    - id: abstract
+      min_words: 150
+      max_words: 250
+      evidence_links: ["result_summary"]
+
+    - id: introduction
+      min_words: 800
+      max_words: 1000
+      evidence_links: ["gap_matrix", "hypothesis"]
+      requirements:
+        - "Real-world motivation"
+        - "Research gap"
+        - "Contribution list (3-4 bullets)"
+        - "Paper organization"
+
+    - id: related_work
+      min_words: 600
+      max_words: 800
+      evidence_links: ["literature_bank"]
+      requirements:
+        - "Group by theme (3-4 groups)"
+        - "4-5 citations per group"
+        - "Compare and contrast explicitly"
+
+    - id: methodology
+      min_words: 1000
+      max_words: 1500
+      evidence_links: ["experiment_plan", "hypothesis"]
+      requirements:
+        - "Formal problem definition"
+        - "Mathematical notation"
+        - "Algorithm description"
+        - "Complexity analysis"
+
+    - id: experiments
+      min_words: 800
+      max_words: 1200
+      evidence_links: ["experiment_ledger", "result_summary"]
+      requirements:
+        - "Setup details"
+        - "Hyperparameter table"
+        - "All metrics reported"
+        - "Ablation results"
+
+    - id: results
+      min_words: 600
+      max_words: 800
+      evidence_links: ["result_summary"]
+      requirements:
+        - "Main results table"
+        - "Per-condition analysis"
+        - "Statistical significance"
+
+    - id: discussion
+      min_words: 400
+      max_words: 600
+      evidence_links: ["result_summary"]
+      requirements:
+        - "Key findings interpretation"
+        - "Unexpected results"
+        - "Practical implications"
+
+    - id: limitations
+      min_words: 200
+      max_words: 300
+      evidence_links: []
+      requirements:
+        - "Scope limitations"
+        - "Dataset limitations"
+        - "Methodology limitations"
+
+    - id: conclusion
+      min_words: 200
+      max_words: 300
+      evidence_links: []
+      requirements:
+        - "Summary of contributions"
+        - "Future work directions"
+
+figure_1_requirements:
+  - "Must convey core contribution independently"
+  - "Architecture diagram or overview"
+  - "Detailed visual element description for nano banana 2"
+
+next_stage: C17

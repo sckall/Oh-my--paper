@@ -1,0 +1,50 @@
+stage_id: C22
+stage_name: EXPORT_PUBLISH
+group: C
+order: 22
+is_gate: false
+
+objectives:
+  - Export paper to target conference LaTeX format
+  - Verify template compliance
+  - Prepare camera-ready package
+
+inputs:
+  - paper/sections/*.tex
+  - paper/main.tex
+  - references.bib
+  - {conference_template}/ (template files)
+
+outputs:
+  - paper/{conference}/main.tex (final)
+  - paper/{conference}/*.tex (all sections)
+
+export_checklist:
+  - "使用目标会议的 LaTeX 模板"
+  - "遵循模板的页面格式"
+  - "图表位置正确"
+  - "引用格式正确"
+  - "作者信息完整"
+
+conference_template_files:
+  - "{conference}.bib"
+  - "{conference}.bst"
+  - "{conference}.sty"
+  - "{conference}.tex"
+  - "fancyhdr.sty"
+  - "math_commands.tex"
+  - "natbib.sty"
+
+latex_compliance:
+  - "字体：使用模板指定字体"
+  - "页边距：符合模板要求"
+  - "图表caption：符合模板格式"
+  - "参考文献：符合模板格式"
+
+final_checks:
+  - "编译无错误"
+  - "所有图表可见"
+  - "引用完整"
+  - "页数符合要求"
+
+next_stage: C23

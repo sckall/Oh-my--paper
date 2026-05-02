@@ -1,0 +1,36 @@
+{
+  "origin/查重.txt": {
+    "origin_path": "origin/查重.txt",
+    "rounds": [
+      {
+        "chunk_limit": 850,
+        "input_path": "origin/查重.txt",
+        "input_segment_count": 26,
+        "manifest_path": "finish/intermediate/查重_round1_manifest.json",
+        "output_path": "finish/intermediate/查重_round1.txt",
+        "output_segment_count": 26,
+        "prompt": "prompts/baibaiAIGC1.md",
+        "prompt_profile": "cn",
+        "round": 1,
+        "timestamp": "2026-04-03T15:00:17.260786Z"
+      }
+    ]
+  },
+  "查重.txt": {
+    "origin_path": "查重.txt",
+    "rounds": [
+      {
+        "chunk_limit": 200,
+        "input_path": "finish/intermediate/查重_round1.txt",
+        "input_segment_count": 116,
+        "manifest_path": "finish/intermediate/查重_round2_manifest.json",
+        "output_path": "finish/intermediate/查重_round2.txt",
+        "output_segment_count": 116,
+        "prompt": "prompts/baibaiAIGC2.md",
+        "prompt_profile": "cn",
+        "round": 2,
+        "timestamp": "2026-04-03T17:02:06.115249Z"
+      }
+    ]
+  }
+}

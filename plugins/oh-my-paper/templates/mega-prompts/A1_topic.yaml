@@ -1,0 +1,30 @@
+stage_id: A1
+stage_name: TOPIC_INIT
+group: A
+order: 1
+is_gate: false
+
+objectives:
+  - Define clear research topic from user input
+  - Create SMART research goal
+  - Identify target conference and deadline
+
+inputs:
+  - user_research_topic
+
+outputs:
+  - .pipeline/docs/research_brief.json (updated topic)
+  - .pipeline/mega/PROGRESS.md (A1: done)
+
+process:
+  - Ask user for research topic description
+  - Clarify scope, domains, constraints
+  - Generate SMART research goal
+  - Identify target conference and submission deadline
+  - Calculate time budget from deadline
+
+constraints:
+  - topic_constraint: Must be specific, not generic
+  - deadline_constraint: Must have clear deadline
+
+next_stage: A2

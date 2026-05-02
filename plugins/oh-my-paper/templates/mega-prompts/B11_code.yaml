@@ -1,0 +1,49 @@
+stage_id: B11
+stage_name: CODE_GENERATION
+group: B
+order: 11
+is_gate: false
+
+objectives:
+  - Generate hardware-aware Python code
+  - Implement real algorithms with proper mathematical logic
+  - Include convergence criteria and time_guard
+
+inputs:
+  - .pipeline/docs/experiment_plan.md
+  - .pipeline/mega/hardware_status.md
+  - .pipeline/mega/logs/pilot_result.md
+
+outputs:
+  - experiments/ directory with code
+  - requirements.txt
+
+code_requirements:
+  language: Python
+  framework: "NumPy preferred, PyTorch only if needed"
+
+  must_include:
+    - convergence_criteria: "连续 N 次 objective 变化 < 1e-8"
+    - time_guard: "定期检查时间，80% 资源时警告"
+    - checkpoint_save: "定期保存模型状态"
+    - random_seed: "所有随机操作使用固定 seed"
+
+  numpy_2x_compatibility:
+    - "使用 np.trapezoid 而非 np.trapz"
+    - "使用 scipy.special.erfinv 而非 np.erfinv"
+    - "使用 Python 原生类型 bool/int/float"
+
+anti_patterns_forbidden:
+  - "禁止 random.uniform() 伪造数据"
+  - "禁止固定 for 循环而不做收敛检查"
+  - "禁止 try-except 掩盖 NaN/Inf"
+
+file_structure:
+  experiments/
+    main.py
+    model.py
+    utils.py
+    requirements.txt
+    README.md
+
+next_stage: B12

@@ -1,0 +1,34 @@
+stage_id: A2
+stage_name: HARDWARE_DETECTION
+group: A
+order: 2
+is_gate: false
+
+objectives:
+  - Detect available compute hardware
+  - Adjust code generation strategy based on GPU type
+  - Warn if performance insufficient
+
+inputs:
+  - system_info
+
+outputs:
+  - .pipeline/mega/hardware_status.md
+
+process:
+  - Run hardware detection commands
+  - Priority: NVIDIA CUDA > Apple MPS > CPU
+  - Document GPU model, memory, compute capability
+  - Adjust code generation strategy accordingly
+
+hardware_detection:
+  cuda_check: "nvidia-smi --query-gpu=name,memory.total --format=csv"
+  mps_check: "system_profiler SPDisplaysDataType"
+  cpu_check: "sysctl -n machdep.cpu.brand_string"
+
+adjustments:
+  cuda: "Full PyTorch/TensorFlow with GPU acceleration"
+  mps: "PyTorch with MPS backend, reduced precision"
+  cpu: "NumPy only, no deep learning frameworks"
+
+next_stage: A3

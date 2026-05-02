@@ -1,0 +1,34 @@
+id: computers-and-education-2023-002
+title: What makes a good online teacher? Student perceptions and expectations in post-pandemic
+  education
+authors:
+- name: Johnson, M.
+  affiliation: Harvard University
+  email: mjohnson@harvard.edu
+year: 2023
+volume: 198
+issue: null
+pages: '104845'
+doi: 10.1016/j.compedu.2023.104845
+keywords:
+- online teaching
+- student perceptions
+- teacher quality
+- post-pandemic
+section_structure:
+- Abstract
+- Introduction
+- Literature Review
+- Methodology
+- Results
+- Discussion
+- Conclusions
+empirical: true
+citation_count: 32
+url: https://doi.org/10.1016/j.compedu.2023.104845
+pdf_path: null
+markdown_path: papers/computers-and-education-2023-002.md
+abstract: This qualitative study explores student perceptions of effective online
+  teaching practices in the post-pandemic era. Through semi-structured interviews
+  with 40 students...
+created_at: '2026-05-02T09:05:00+08:00'

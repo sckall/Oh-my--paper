@@ -1,0 +1,62 @@
+stage_id: C20
+stage_name: QUALITY_GATE
+group: C
+order: 20
+is_gate: true
+gate_type: QUALITY_GATE
+
+objectives:
+  - Final quality evaluation
+  - Verify all requirements met
+  - Score paper 1-10
+
+gate_criteria:
+  word_count达标: true
+  figure_1_exists: true
+  ablations_complete: true
+  baselines_complete: true
+  citations_min: 30
+  score_threshold: 6
+
+checklist:
+  - item: "字数达标（Introduction ≥ 800, Method ≥ 1000, Experiments ≥ 800）"
+    check: "wc -w paper/sections/*.tex"
+  - item: "Figure 1 存在（架构图）"
+    check: "ls paper/assets/figures/"
+  - item: "消融实验完成"
+    check: "grep -c 'ablation' paper/sections/experiments.tex"
+  - item: "基线 ≥ 3 个"
+    check: "grep -c 'baseline' paper/sections/experiments.tex"
+  - item: "引用 ≥ 30 篇"
+    check: "grep -c '@' references.bib"
+
+pass_conditions:
+  - "评分 ≥ 6"
+  - "字数达标"
+  - "Figure 1 存在"
+  - "消融实验完成"
+  - "基线完整"
+  - "引用充足"
+
+quality_gate_output:
+  score: 1-10
+  verdict: "accept/weak_accept/borderline/reject"
+  strengths: ["list"]
+  weaknesses: ["list"]
+  required_actions: ["list"]
+
+ask_user_on_gate: true
+
+gate_pass_options:
+  - label: "通过"
+    description: "论文质量达标，进入导出发布"
+    next_stage: C21
+  - label: "修改初稿"
+    description: "返回论文撰写，修改问题"
+    next_stage: C17
+  - label: "补充实验"
+    description: "返回实验，补充不足的消融/基线"
+    next_stage: B11
+
+refine_on_fail: C17
+pivot_on_fail: B11

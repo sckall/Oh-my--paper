@@ -1,0 +1,35 @@
+id: computers-and-education-2023-003
+title: 'Learning analytics in higher education: A systematic review of empirical research'
+authors:
+- name: Brown, A.
+  affiliation: University of Edinburgh
+  email: a.brown@ed.ac.uk
+- name: Davis, C.
+  affiliation: University of Melbourne
+  email: cdavis@unimelb.edu.au
+year: 2023
+volume: 201
+issue: null
+pages: '104921'
+doi: 10.1016/j.compedu.2023.104921
+keywords:
+- learning analytics
+- systematic review
+- higher education
+- empirical research
+section_structure:
+- Abstract
+- Introduction
+- Methodology
+- Results
+- Discussion
+- Conclusions
+empirical: true
+citation_count: 28
+url: https://doi.org/10.1016/j.compedu.2023.104921
+pdf_path: null
+markdown_path: papers/computers-and-education-2023-003.md
+abstract: This systematic review examines empirical research on learning analytics
+  in higher education published between 2018 and 2022. Following PRISMA guidelines,
+  we analyzed 85 studies...
+created_at: '2026-05-02T09:10:00+08:00'

@@ -1,0 +1,61 @@
+stage_id: A3
+stage_name: SEARCH_STRATEGY
+group: A
+order: 3
+is_gate: false
+
+objectives:
+  - Design comprehensive literature search strategy
+  - Create 8+ keyword queries across 3+ strategies
+  - Plan multi-source search (OpenAlex, Semantic Scholar, arXiv)
+
+inputs:
+  - .pipeline/docs/research_brief.json
+  - .pipeline/mega/PROGRESS.md
+
+outputs:
+  - .pipeline/mega/plans/plan_A3_search.md
+
+search_strategy_yaml:
+  search_strategies:
+    - name: core_topic
+      keywords:
+        - "[core technique 1]"
+        - "[core technique 2]"
+        - "[research gap keywords]"
+    - name: related_methods
+      keywords:
+        - "[related method 1]"
+        - "[related method 2]"
+        - "[benchmark method]"
+    - name: benchmarks
+      keywords:
+        - "[dataset name]"
+        - "[evaluation metric]"
+        - "[standard benchmark]"
+    - name: theoretical
+      keywords:
+        - "[theory keywords]"
+        - "[foundational paper]"
+        - "[foundational concept]"
+
+sources:
+  - id: openalex
+    name: OpenAlex
+    type: API
+    status: primary
+  - id: semantic_scholar
+    name: Semantic Scholar
+    type: API
+    status: secondary
+  - id: arxiv
+    name: arXiv
+    type: scraper
+    status: fallback
+
+query_requirements:
+  min_total_queries: 8
+  min_keywords_per_query: 3
+  query_length: 3-6 words each
+
+next_stage: A4

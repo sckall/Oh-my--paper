@@ -1,0 +1,61 @@
+stage_id: C17
+stage_name: PAPER_DRAFT
+group: C
+order: 17
+is_gate: false
+
+objectives:
+  - Write full paper draft (5000-6500 words)
+  - Follow academic writing standards
+  - Use real experimental data only
+
+inputs:
+  - paper/sections/outline.md
+  - .pipeline/docs/result_summary.md
+  - .pipeline/memory/literature_bank.md
+
+outputs:
+  - paper/sections/*.tex
+
+writing_order:
+  1: methodology  # Core contribution first
+  2: experiments  # Then evidence
+  3: introduction  # Now that contribution is clear
+  4: related_work  # To position
+  5: results  # Analyze findings
+  6: discussion  # Interpret
+  7: limitations  # Honest assessment
+  8: conclusion  # Summary
+  9: abstract  # Summary of complete paper
+
+section_requirements:
+  methodology:
+    - "Formal problem definition"
+    - "Mathematical notation with LaTeX"
+    - "Algorithm pseudocode"
+    - "Design rationale"
+
+  experiments:
+    - "Datasets: name, size, splits"
+    - "Preprocessing details"
+    - "Hyperparameter table"
+    - "Hardware and runtime"
+    - "All results with exact numbers"
+
+  introduction:
+    - "Start with real-world motivation"
+    - "Build to specific problem"
+    - "End with contribution list"
+    - "10-15 word title"
+
+sushi_not_curry:
+  - "1-2 core novelty points"
+  - "Rest must be minimal and rigorous"
+  - "Do not pad with unrelated content"
+
+no_fabrication:
+  - "Every metric must match experiment output exactly"
+  - "Do not approximate or round differently"
+  - "All citations must exist in references.bib"
+
+next_stage: C18

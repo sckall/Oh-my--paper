@@ -1,0 +1,36 @@
+id: computers-and-education-2023-001
+title: 'Enhancing student engagement through AI-based chatbots: A mixed-methods study'
+authors:
+- name: Smith, J.
+  affiliation: Stanford University
+  email: jsmith@stanford.edu
+- name: Wang, L.
+  affiliation: MIT
+  email: lwang@mit.edu
+year: 2023
+volume: 195
+issue: null
+pages: '104712'
+doi: 10.1016/j.compedu.2023.104712
+keywords:
+- AI
+- chatbot
+- student engagement
+- mixed-methods
+section_structure:
+- Abstract
+- Introduction
+- Literature Review
+- Methodology
+- Results
+- Discussion
+- Conclusions
+empirical: true
+citation_count: 45
+url: https://doi.org/10.1016/j.compedu.2023.104712
+pdf_path: null
+markdown_path: papers/computers-and-education-2023-001.md
+abstract: This study investigates the impact of AI-based chatbots on student engagement
+  in online learning environments. Using a mixed-methods approach, we collected data
+  from 150 undergraduate students...
+created_at: '2026-05-02T09:00:00+08:00'

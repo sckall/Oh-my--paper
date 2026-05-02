@@ -1,0 +1,33 @@
+id: computers-and-education-2024-002
+title: 'The role of self-regulated learning in online STEM education: The impact of
+  learning analytics dashboards'
+authors:
+- name: Garcia, P.
+  affiliation: University of California, Berkeley
+  email: pgarcia@berkeley.edu
+year: 2024
+volume: 215
+issue: null
+pages: '105156'
+doi: 10.1016/j.compedu.2024.105156
+keywords:
+- self-regulated learning
+- STEM education
+- learning analytics
+- dashboard
+section_structure:
+- Abstract
+- Introduction
+- Theoretical Framework
+- Methodology
+- Results
+- Discussion
+- Conclusions
+empirical: true
+citation_count: 8
+url: https://doi.org/10.1016/j.compedu.2024.105156
+pdf_path: null
+markdown_path: papers/computers-and-education-2024-002.md
+abstract: This study examines the role of self-regulated learning (SRL) in online
+  STEM education and the impact of learning analytics dashboards on SRL behaviors...
+created_at: '2026-05-02T09:20:00+08:00'

@@ -1,0 +1,56 @@
+stage_id: B13
+stage_name: ITERATIVE_REFINE
+group: B
+order: 13
+is_gate: false
+is_loop: true
+
+objectives:
+  - Self-healing code repair
+  - Trace NaN/Inf to root cause
+  - Improve results through iteration
+
+inputs:
+  - .pipeline/memory/experiment_ledger.md
+  - .pipeline/mega/logs/ (error logs)
+
+outputs:
+  - Updated experiments/ code
+  - Updated experiment_ledger.md
+
+iterative_refine_triggers:
+  - "实验结果未达标"
+  - "检测到 NaN/Inf"
+  - "收敛失败"
+  - "用户选择 REFINE"
+
+root_cause_analysis:
+  检查项:
+    - "学习率是否过高？"
+    - "是否存在除零错误？"
+    - "数据是否已归一化？"
+    - "初始化是否合理？"
+    - "是否存在数值溢出？"
+
+  forbidden:
+    - "try-except 掩盖错误"
+    - "np.nan_to_num() 屏蔽 NaN"
+    - "random.uniform() 伪造数据"
+
+repair_output_format: |
+  ## Iterative Refine {n}
+
+  **Issue**: [description]
+
+  **Root Cause**: [identified cause]
+
+  **Fix Applied**: [description]
+
+  **Code Changes**: [files modified]
+
+  **Validation**: [how fix was verified]
+
+iteration_limit: 5
+max_iterations_without_improvement: 3
+
+next_stage: B14

@@ -1,0 +1,103 @@
+journal:
+  id: computers-and-education
+  name: Computers & Education
+  full_name: Computers & Education
+  publisher: Elsevier
+  issn: 0360-1315
+  eissn: 1873-782X
+  url: https://www.sciencedirect.com/journal/computers-and-education
+  impact_factor: 11.9
+  h_index: 185
+  subject_categories:
+  - Education & Educational Research
+  - Computer Science Applications
+  scope: "Computers & Education aims to establish and maintain a balanced understanding\
+    \ \nof the interactions of technology and education. The journal publishes research\
+    \ \nthat directly applies to educational provision and practice, and is of general\
+    \ \nsignificance.\n"
+  focus_areas:
+  - AI in education (AIED)
+  - Intelligent tutoring systems
+  - Learning analytics
+  - Educational technology design
+  - Online and blended learning
+  - Technology-enhanced language learning
+  - STEM education technology
+  data_sources:
+  - name: Semantic Scholar
+    method: API
+    enabled: true
+    rate_limit: 100 requests/5min
+    notes: 支持 Elsevier 期刊论文检索
+  - name: arXiv
+    method: API
+    enabled: false
+    notes: 该期刊论文通常不在 arXiv 上
+  - name: PubMed
+    method: API
+    enabled: false
+    notes: 非生物医学领域
+  - name: Manual Upload
+    method: PDF Upload
+    enabled: true
+    notes: 用户手动上传 PDF
+  crawl_config:
+    default_source: semantic-scholar
+    query_template: '("Computers & Education" OR "Comput. Educ.") AND {query}
+
+      '
+    filters:
+      year_from: 2020
+      year_to: 2026
+      open_access_only: false
+  analysis_config:
+    aspects:
+    - topic
+    - title
+    - style
+    - empirical
+    - innovation
+    title_features:
+      avg_length_words: 12
+      common_structures:
+      - colon_separated
+      - question
+      - descriptive
+      example_titles:
+      - 'Enhancing student engagement through AI: A case study'
+      - What makes a good online teacher? Student perceptions
+      - 'Learning analytics in higher education: A systematic review'
+    writing_features:
+      common_sections:
+      - Abstract
+      - Introduction
+      - Literature Review
+      - Methodology
+      - Results
+      - Discussion
+      - Conclusions
+      empirical_focus: true
+      methodology_required: true
+      datasets_common:
+      - K-12 students
+      - University students
+      - Online learning platforms
+      analysis_methods:
+      - Quantitative (regression, ANOVA)
+      - Qualitative (interviews, observations)
+      - Mixed methods
+    empirical_tendency:
+      empirical_ratio: 0.85
+      theoretical_ratio: 0.15
+      required_elements:
+      - Research questions/hypotheses
+      - Methodology section
+      - Data collection description
+      - Results with statistical analysis
+      - Discussion of implications
+  stats:
+    paper_count: 5
+    last_updated: '2026-05-02'
+    year_distribution: {}
+    topic_distribution: {}
+created_at: '2026-05-02T09:00:00+08:00'

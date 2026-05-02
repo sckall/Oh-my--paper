@@ -1,0 +1,49 @@
+stage_id: C19
+stage_name: PAPER_REVISION
+group: C
+order: 19
+is_gate: false
+
+objectives:
+  - Revise paper to address review comments
+  - Maintain or increase paper length
+  - Ensure all issues are addressed
+
+inputs:
+  - paper/sections/*.tex
+  - .pipeline/memory/review_log.md
+
+outputs:
+  - Updated paper/sections/*.tex
+
+revision_rules:
+  - "NEVER shorten existing sections"
+  - "Only expand and improve"
+  - "Each section must meet minimum word count"
+  - "Address all major issues"
+
+word_count_defense:
+  abstract: "150-250"
+  introduction: "800-1000"
+  related_work: "600-800"
+  methodology: "1000-1500"
+  experiments: "800-1200"
+  results: "600-800"
+  discussion: "400-600"
+  limitations: "200-300"
+  conclusion: "200-300"
+
+revision_process:
+  1: "逐条处理 review_log.md 中的 major issues"
+  2: "确认每个问题已在论文中修复或回应"
+  3: "检查修复后是否引入新问题"
+  4: "验证字数是否达标"
+  5: "更新 result_summary.md 如有重大变更"
+
+page_limit_handling:
+  - "正文上限：{limit} 页"
+  - "References 不计入页数"
+  - "Appendix 不计入页数（审稿人不需要读）"
+  - "可选 reproducibility statement ≤ 1 页（我们不写）"
+
+next_stage: C20

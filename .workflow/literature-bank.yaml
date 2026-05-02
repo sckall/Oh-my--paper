@@ -1,0 +1,5 @@
+# Literature Bank — 唯一真相源
+# 由 research-literature-trace skill 写入，其他 agent 只读不写
+# 旧格式（paper_bank.json / literature_bank.md）为衍生品，可从本文件导出
+
+papers: []

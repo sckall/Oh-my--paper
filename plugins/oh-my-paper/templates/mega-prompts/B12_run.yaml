@@ -1,0 +1,46 @@
+stage_id: B12
+stage_name: EXPERIMENT_RUN
+group: B
+order: 12
+is_gate: false
+
+objectives:
+  - Execute experiments according to plan
+  - Monitor for NaN/Inf and runtime bugs
+  - Record all metrics to experiment_ledger
+
+inputs:
+  - experiments/ directory
+  - .pipeline/docs/experiment_plan.md
+
+outputs:
+  - .pipeline/memory/experiment_ledger.md
+  - results/ directory with JSON logs
+
+execution_process:
+  - Run experiments according to experiment_plan.yaml
+  - Use Codex delegation for background execution
+  - Monitor for numerical issues (NaN/Inf)
+  - Log all metrics per run
+
+experiment_ledger_format: |
+  | run-id | date | config | metric | value | notes |
+
+run_config_format:
+  dataset: "[dataset]"
+  baseline: "[baseline]"
+  seed: "[seed]"
+  hyperparameters: "[lr, batch, epochs]"
+
+result_format:
+  metric_name: value
+  convergence_reached: true/false
+  iterations_to_converge: number
+  runtime_seconds: number
+
+nan_inf_handling:
+  - 检测到 NaN/Inf：停止当前 run，记录为 FAILED
+  - 不使用 np.nan_to_num() 掩盖
+  - 分析原因（学习率？初始化？数据？）
+
+next_stage: B13

@@ -1,0 +1,14 @@
+# 实验执行记录
+# 每次实验写一条，包含 hypothesis_id, result, evidence, decision
+runs: []
+
+# 字段说明：
+#   - id:              实验唯一标识（如 EXP-001）
+#   - hypothesis_id:   对应的假设编号（如 H-001）
+#   - title:           实验简述
+#   - config:          实验配置/超参数
+#   - result:          实验结果（数值、通过/失败、收敛与否等）
+#   - evidence:        证据（文件路径、日志摘要、截图等）
+#   - decision:        实验后决策（见 decision-log.yaml 的 decision 说明）
+#   - notes:           额外说明、异常情况、改进思路
+#   - created_at:      实验执行时间

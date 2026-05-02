@@ -1,0 +1,2824 @@
+{
+  "chunk_limit": 850,
+  "chunk_metric": "char",
+  "paragraph_count": 187,
+  "chunk_count": 188,
+  "paragraphs": [
+    {
+      "paragraph_index": 0,
+      "original_text": "AI辅助的遗传系谱图虚拟实验程序开发与教学应用",
+      "chunk_ids": [
+        "p0_c0"
+      ]
+    },
+    {
+      "paragraph_index": 1,
+      "original_text": "作者信息占位（请填写：姓名、单位）",
+      "chunk_ids": [
+        "p1_c0"
+      ]
+    },
+    {
+      "paragraph_index": 2,
+      "original_text": "摘  要  遗传系谱图分析是高中生物学\"人类遗传病\"单元的核心内容，涉及基因型推导、遗传方式判断及概率计算等复杂推理，传统教学模式难以有效支撑。本研究基于Google AI Studio平台开发了一款遗传系谱图虚拟实验程序。程序支持常染色体显性/隐性、X连锁显/隐性及Y连锁等5种遗传模式的系谱图绘制与模拟，内置多种遗传病预设模板。开发过程中，利用AI工具完成程序架构设计、遗传学算法实现及React组件状态管理，显著降低了非计算机专业教师的编程开发门槛。两轮教学实践表明，该程序能够有效支撑学生开展系谱图验证与自主探究活动，提升遗传规律分析的教学效果。本文以遗传系谱图虚拟实验为例，系统阐述AI辅助开发教学程序的全过程，为一线教师利用AI开发教学资源提供可借鉴的技术方案。",
+      "chunk_ids": [
+        "p2_c0"
+      ]
+    },
+    {
+      "paragraph_index": 3,
+      "original_text": "关键词  遗传系谱图；虚拟实验；AI辅助教学；高中生物学；教学应用",
+      "chunk_ids": [
+        "p3_c0"
+      ]
+    },
+    {
+      "paragraph_index": 4,
+      "original_text": "Development and Application of AI-assisted Genetic Pedigree Virtual Experiment Program",
+      "chunk_ids": [
+        "p4_c0"
+      ]
+    },
+    {
+      "paragraph_index": 5,
+      "original_text": "作者信息占位（请填写：姓名  单位  城市  邮编）",
+      "chunk_ids": [
+        "p5_c0"
+      ]
+    },
+    {
+      "paragraph_index": 6,
+      "original_text": "Abstract  Pedigree chart analysis is a core component of genetics instruction in high school biology, involving complex reasoning tasks such as genotype deduction, inheritance pattern identification, and probability calculation, which traditional teaching models struggle to support effectively. This study developed a genetic pedigree virtual experiment program using Google AI Studio with React, TypeScript, Vite, and SVG technologies. The program supports five inheritance modes (AD/AR/XD/XR/Y) for pedigree drawing and simulation, with built-in disease templates. During development, AI tools assisted in program architecture design, genetics algorithm implementation, and React component state management, significantly lowering the programming barrier for non-CS teachers. Two rounds of teaching practice showed that the program effectively supports students in pedigree verification and inquiry activities, providing a replicable technical pathway for teachers to develop AI-assisted teaching resources.",
+      "chunk_ids": [
+        "p6_c0",
+        "p6_c1"
+      ]
+    },
+    {
+      "paragraph_index": 7,
+      "original_text": "Keywords  Pedigree Chart; Virtual Experiment; AI-assisted Teaching; High School Biology; Instructional Application",
+      "chunk_ids": [
+        "p7_c0"
+      ]
+    },
+    {
+      "paragraph_index": 8,
+      "original_text": "系谱图分析是高中生物学遗传规律教学的核心内容。遗传规律的学习涉及基因型与表现型的对应关系推断、遗传方式的判断、子代概率的计算等高阶推理任务，对学生的逻辑思维要求较高。在课程标准核心素养导向下，学生需要能够基于遗传现象进行科学推理，并用遗传图谱解释生活中的遗传病案例。然而在实际教学中，教师常面临两个问题：其一，系谱图分析过程复杂，涉及多步骤的逻辑推理，要求学生综合运用遗传规律分析已知信息判断基因位置和显隐性，再基于遗传方式推测个体基因型、计算子代患病概率。其二，教材内容分散在不同章节，学生难以形成对遗传规律的整体认知，难以综合运用所学知识分析真实情境下的遗传病案例、解决实际问题。",
+      "chunk_ids": [
+        "p8_c0"
+      ]
+    },
+    {
+      "paragraph_index": 9,
+      "original_text": "针对以上问题，本研究基于Google AI Studio平台开发遗传系谱图虚拟实验程序。选择该平台主要基于以下考量：Google AI Studio是谷歌推出的网页版生成式AI开发环境，Gemini模型具备优秀的代码生成能力，能够高效完成遗传学算法和交互界面的开发；其次，该平台无需配置复杂开发环境，上手即用，支持网页预览程序效果；此外，前端技术栈（HTML/TypeScript）开发完成后可部署为静态网站，学生可直接通过浏览器访问，便于教学实施。本文系统阐述AI辅助开发虚拟实验程序的全过程，为一线教师利用AI开发教学资源提供可借鉴的技术方案。",
+      "chunk_ids": [
+        "p9_c0"
+      ]
+    },
+    {
+      "paragraph_index": 10,
+      "original_text": "1 AI辅助开发与程序实现",
+      "chunk_ids": [
+        "p10_c0"
+      ]
+    },
+    {
+      "paragraph_index": 11,
+      "original_text": "1.1 开发工具与方法",
+      "chunk_ids": [
+        "p11_c0"
+      ]
+    },
+    {
+      "paragraph_index": 12,
+      "original_text": "本程序采用Google AI Studio作为AI辅助开发的主要工具。在开发初期，首先通过与大语言模型的交互完成程序架构设计，明确了系谱图绘制、遗传规律模拟、交互控制与历史记录四大功能模块的设计需求。随后，针对各模块的具体实现问题，包括SVG图形渲染逻辑、孟德尔概率计算算法以及React组件状态管理等关键技术点，AI工具均提供了有效的解决方案。",
+      "chunk_ids": [
+        "p12_c0"
+      ]
+    },
+    {
+      "paragraph_index": 13,
+      "original_text": "进入Google AI Studio平台，点击左侧导航栏的Build进入开发界面。借助AI辅助，输入指令描述开发需求：",
+      "chunk_ids": [
+        "p13_c0"
+      ]
+    },
+    {
+      "paragraph_index": 14,
+      "original_text": "\"设计一个遗传系谱图虚拟实验程序：支持常染色体显性/隐性、X连锁显性/隐性、Y连锁等5种遗传模式的系谱图绘制与模拟。程序需要实现以下功能：①系谱图绘制（男性方形、女性圆形、世代标记、患病个体深色填充）；②遗传规律模拟（根据基因型判断表现型）；③交互控制（添加个体、设置基因型、添加后代）；④历史记录（撤销/重做功能）。请帮我设计程序架构和技术栈。\"",
+      "chunk_ids": [
+        "p14_c0"
+      ]
+    },
+    {
+      "paragraph_index": 15,
+      "original_text": "AI根据上述指令生成了程序架构建议，明确了模块划分和技术选型。针对遗传学核心逻辑（如基因型-表现型映射、概率计算），需要继续与AI进行多轮交互逐步细化。以下以概率计算模块为例展示迭代优化过程：",
+      "chunk_ids": [
+        "p15_c0"
+      ]
+    },
+    {
+      "paragraph_index": 16,
+      "original_text": "① 初始提示词：\"帮我实现孟德尔概率计算函数，计算后代患病概率。\"",
+      "chunk_ids": [
+        "p16_c0"
+      ]
+    },
+    {
+      "paragraph_index": 17,
+      "original_text": "AI生成的初始代码采用简单的概率乘法，但未考虑性别因素对X连锁遗传的影响。",
+      "chunk_ids": [
+        "p17_c0"
+      ]
+    },
+    {
+      "paragraph_index": 18,
+      "original_text": "② 优化提示词：\"上述代码需要改进。X连锁隐性遗传中，男患者概率明显高于女患者，需要区分男女分别计算。\"",
+      "chunk_ids": [
+        "p18_c0"
+      ]
+    },
+    {
+      "paragraph_index": 19,
+      "original_text": "AI根据反馈调整了算法，加入了性别分类讨论。",
+      "chunk_ids": [
+        "p19_c0"
+      ]
+    },
+    {
+      "paragraph_index": 20,
+      "original_text": "③ 最终优化：\"还需要考虑一胎多个孩子的情况，生成各基因型组合的概率分布。\"",
+      "chunk_ids": [
+        "p20_c0"
+      ]
+    },
+    {
+      "paragraph_index": 21,
+      "original_text": "经过3-4轮迭代，概率计算模块最终实现了符合孟德尔遗传规律的精确算法。",
+      "chunk_ids": [
+        "p21_c0"
+      ]
+    },
+    {
+      "paragraph_index": 22,
+      "original_text": "技术栈选择React + TypeScript + Vite + SVG的组合。TypeScript的类型系统为数据模型提供了严格的静态类型检查，降低了运行时错误风险；React的组件化架构使程序结构清晰，便于维护和扩展；Vite作为构建工具，提供了快速的开发服务器启动和热模块替换功能；SVG作为绘图引擎，具有良好的跨平台兼容性和灵活的图形变换能力。",
+      "chunk_ids": [
+        "p22_c0"
+      ]
+    },
+    {
+      "paragraph_index": 23,
+      "original_text": "1.2 设计理念与功能模块",
+      "chunk_ids": [
+        "p23_c0"
+      ]
+    },
+    {
+      "paragraph_index": 24,
+      "original_text": "1.2.1 需求分析",
+      "chunk_ids": [
+        "p24_c0"
+      ]
+    },
+    {
+      "paragraph_index": 25,
+      "original_text": "在程序开发初期，首先进行一线教学需求调研，整理遗传系谱图教学的核心功能需求。通过访谈高中生物教师，明确教学中的实际痛点：学生难以掌握系谱图分析的多步骤逻辑推理；传统板书难以动态演示遗传规律；缺乏可供学生自主探究的遗传模拟工具。基于调研结果，形成以下核心功能需求（表1）：",
+      "chunk_ids": [
+        "p25_c0"
+      ]
+    },
+    {
+      "paragraph_index": 26,
+      "original_text": "表1 遗传系谱图虚拟实验核心功能需求（带优先级）",
+      "chunk_ids": [
+        "p26_c0"
+      ]
+    },
+    {
+      "paragraph_index": 27,
+      "original_text": "用户需求应置于首位。界面设计遵循简洁友好原则，降低师生的操作负担；反馈机制应完善，及时提示操作结果与错误原因；容错性设计不可或缺，需充分考虑用户误操作等场景。",
+      "chunk_ids": [
+        "p27_c0"
+      ]
+    },
+    {
+      "paragraph_index": 28,
+      "original_text": "1.2.2 功能模块设计",
+      "chunk_ids": [
+        "p28_c0"
+      ]
+    },
+    {
+      "paragraph_index": 29,
+      "original_text": "将上述需求转化为可实现的功能模块。以\"遗传规律探究\"功能为例，展示借助AI实现复杂项目的编程的完整过程。输入指令：",
+      "chunk_ids": [
+        "p29_c0"
+      ]
+    },
+    {
+      "paragraph_index": 30,
+      "original_text": "\"我是一名高中生物教师，我想设计遗传系谱图探究功能，支持以下操作：①添加个体（设置性别、基因型）；②添加亲子关系；③切换不同遗传模式（AD/AR/XD/XR/Y）观察表现型变化；④计算后代概率。请帮我拆分模块、设计架构。\"",
+      "chunk_ids": [
+        "p30_c0"
+      ]
+    },
+    {
+      "paragraph_index": 31,
+      "original_text": "AI根据指令生成了各功能模块的简要说明（表2）。",
+      "chunk_ids": [
+        "p31_c0"
+      ]
+    },
+    {
+      "paragraph_index": 32,
+      "original_text": "表2 遗传规律探究功能模块设计",
+      "chunk_ids": [
+        "p32_c0"
+      ]
+    },
+    {
+      "paragraph_index": 33,
+      "original_text": "1.2.3 模块代码生成与迭代",
+      "chunk_ids": [
+        "p33_c0"
+      ]
+    },
+    {
+      "paragraph_index": 34,
+      "original_text": "将上述功能模块逐一开发和完善。以系谱图绘制模块为例，展示完整的AI辅助开发迭代过程：",
+      "chunk_ids": [
+        "p34_c0"
+      ]
+    },
+    {
+      "paragraph_index": 35,
+      "original_text": "【AI辅助开发完整示例】",
+      "chunk_ids": [
+        "p35_c0"
+      ]
+    },
+    {
+      "paragraph_index": 36,
+      "original_text": "初始需求描述：",
+      "chunk_ids": [
+        "p36_c0"
+      ]
+    },
+    {
+      "paragraph_index": 37,
+      "original_text": "\"请帮我实现系谱图绘制模块。界面要求：①采用SVG作为绘图引擎；②个体节点：男性为方形、女性为圆形，正常个体为空心轮廓、患病个体深色填充；③世代用罗马数字标记于系谱图左侧；④支持拖拽移动个体位置；⑤视图区域支持缩放与平移操作。\"",
+      "chunk_ids": [
+        "p37_c0"
+      ]
+    },
+    {
+      "paragraph_index": 38,
+      "original_text": "AI第一轮响应： AI生成了基础SVG渲染框架，包含方形/圆形节点绘制和基本拖拽功能。代码结构清晰，使用了React组件封装。",
+      "chunk_ids": [
+        "p38_c0"
+      ]
+    },
+    {
+      "paragraph_index": 39,
+      "original_text": "问题反馈： 测试发现初始版本未考虑世代排列的自动布局问题。当添加新个体时，程序未能自动计算世代位置，同一辈的个体也未对齐。",
+      "chunk_ids": [
+        "p39_c0"
+      ]
+    },
+    {
+      "paragraph_index": 40,
+      "original_text": "优化提示词：",
+      "chunk_ids": [
+        "p40_c0"
+      ]
+    },
+    {
+      "paragraph_index": 41,
+      "original_text": "\"上述代码需要改进：当添加新个体时，需要自动计算其世代位置（比父母世代多1），并在已有空间不足时自动扩展视图区域。另外，系谱图应遵循'同辈水平对齐'的排版规范，同一世代的个体应在同一水平线上。\"",
+      "chunk_ids": [
+        "p41_c0"
+      ]
+    },
+    {
+      "paragraph_index": 42,
+      "original_text": "AI第二轮响应： AI添加了基于亲缘关系的世代计算算法，实现了同辈对齐的自动布局，并加入了视图区域动态扩展逻辑。",
+      "chunk_ids": [
+        "p42_c0"
+      ]
+    },
+    {
+      "paragraph_index": 43,
+      "original_text": "再次反馈： 布局算法在处理复杂大家族时出现了线条交叉问题，影响可读性。",
+      "chunk_ids": [
+        "p43_c0"
+      ]
+    },
+    {
+      "paragraph_index": 44,
+      "original_text": "第二轮优化：",
+      "chunk_ids": [
+        "p44_c0"
+      ]
+    },
+    {
+      "paragraph_index": 45,
+      "original_text": "\"还需要优化连接线的绘制逻辑，避免代际连线与同胞连线的交叉，确保系谱图符合生物学规范。\"",
+      "chunk_ids": [
+        "p45_c0"
+      ]
+    },
+    {
+      "paragraph_index": 46,
+      "original_text": "AI第三轮响应： AI重构了连接线渲染逻辑，采用分层绘制策略（先绘制世代线，再绘制同胞线，最后绘制婚姻线），解决了交叉问题。",
+      "chunk_ids": [
+        "p46_c0"
+      ]
+    },
+    {
+      "paragraph_index": 47,
+      "original_text": "最终优化：",
+      "chunk_ids": [
+        "p47_c0"
+      ]
+    },
+    {
+      "paragraph_index": 48,
+      "original_text": "\"增加撤销/重做功能，记录最近20步操作，支持用户回溯。\"",
+      "chunk_ids": [
+        "p48_c0"
+      ]
+    },
+    {
+      "paragraph_index": 49,
+      "original_text": "经过3-4轮迭代优化，系谱图绘制模块最终实现了自动布局、拖拽调整、视图缩放平移及历史回溯等完整功能。",
+      "chunk_ids": [
+        "p49_c0"
+      ]
+    },
+    {
+      "paragraph_index": 50,
+      "original_text": "以下为AI实际生成的概率计算模块核心代码：",
+      "chunk_ids": [
+        "p50_c0"
+      ]
+    },
+    {
+      "paragraph_index": 51,
+      "original_text": "typescript",
+      "chunk_ids": [
+        "p51_c0"
+      ]
+    },
+    {
+      "paragraph_index": 52,
+      "original_text": "// AI生成的概率计算模块核心代码",
+      "chunk_ids": [
+        "p52_c0"
+      ]
+    },
+    {
+      "paragraph_index": 53,
+      "original_text": "export const calculateOffspringProbabilities = (",
+      "chunk_ids": [
+        "p53_c0"
+      ]
+    },
+    {
+      "paragraph_index": 54,
+      "original_text": "parent1Genotype: string,",
+      "chunk_ids": [
+        "p54_c0"
+      ]
+    },
+    {
+      "paragraph_index": 55,
+      "original_text": "parent2Genotype: string,",
+      "chunk_ids": [
+        "p55_c0"
+      ]
+    },
+    {
+      "paragraph_index": 56,
+      "original_text": "trait: Trait,",
+      "chunk_ids": [
+        "p56_c0"
+      ]
+    },
+    {
+      "paragraph_index": 57,
+      "original_text": "parent1Gender: Gender",
+      "chunk_ids": [
+        "p57_c0"
+      ]
+    },
+    {
+      "paragraph_index": 58,
+      "original_text": "): Array<{genotype: string, probability: number}> => {",
+      "chunk_ids": [
+        "p58_c0"
+      ]
+    },
+    {
+      "paragraph_index": 59,
+      "original_text": "const maleGametes = getGametes(",
+      "chunk_ids": [
+        "p59_c0"
+      ]
+    },
+    {
+      "paragraph_index": 60,
+      "original_text": "parent1Gender === Gender.Male ? parent1Genotype : parent2Genotype,",
+      "chunk_ids": [
+        "p60_c0"
+      ]
+    },
+    {
+      "paragraph_index": 61,
+      "original_text": "trait,",
+      "chunk_ids": [
+        "p61_c0"
+      ]
+    },
+    {
+      "paragraph_index": 62,
+      "original_text": "Gender.Male",
+      "chunk_ids": [
+        "p62_c0"
+      ]
+    },
+    {
+      "paragraph_index": 63,
+      "original_text": ");",
+      "chunk_ids": [
+        "p63_c0"
+      ]
+    },
+    {
+      "paragraph_index": 64,
+      "original_text": "const femaleGametes = getGametes(",
+      "chunk_ids": [
+        "p64_c0"
+      ]
+    },
+    {
+      "paragraph_index": 65,
+      "original_text": "parent1Gender === Gender.Female ? parent1Genotype : parent2Genotype,",
+      "chunk_ids": [
+        "p65_c0"
+      ]
+    },
+    {
+      "paragraph_index": 66,
+      "original_text": "trait,",
+      "chunk_ids": [
+        "p66_c0"
+      ]
+    },
+    {
+      "paragraph_index": 67,
+      "original_text": "Gender.Female",
+      "chunk_ids": [
+        "p67_c0"
+      ]
+    },
+    {
+      "paragraph_index": 68,
+      "original_text": ");",
+      "chunk_ids": [
+        "p68_c0"
+      ]
+    },
+    {
+      "paragraph_index": 69,
+      "original_text": "const combinations: string[] = [];",
+      "chunk_ids": [
+        "p69_c0"
+      ]
+    },
+    {
+      "paragraph_index": 70,
+      "original_text": "maleGametes.forEach((m) => {",
+      "chunk_ids": [
+        "p70_c0"
+      ]
+    },
+    {
+      "paragraph_index": 71,
+      "original_text": "femaleGametes.forEach((f) => {",
+      "chunk_ids": [
+        "p71_c0"
+      ]
+    },
+    {
+      "paragraph_index": 72,
+      "original_text": "let childGenotype = combineGametes(m, f, trait.mode);",
+      "chunk_ids": [
+        "p72_c0"
+      ]
+    },
+    {
+      "paragraph_index": 73,
+      "original_text": "combinations.push(childGenotype);",
+      "chunk_ids": [
+        "p73_c0"
+      ]
+    },
+    {
+      "paragraph_index": 74,
+      "original_text": "});",
+      "chunk_ids": [
+        "p74_c0"
+      ]
+    },
+    {
+      "paragraph_index": 75,
+      "original_text": "});",
+      "chunk_ids": [
+        "p75_c0"
+      ]
+    },
+    {
+      "paragraph_index": 76,
+      "original_text": "const counts: Record<string, number> = {};",
+      "chunk_ids": [
+        "p76_c0"
+      ]
+    },
+    {
+      "paragraph_index": 77,
+      "original_text": "combinations.forEach((g) => {",
+      "chunk_ids": [
+        "p77_c0"
+      ]
+    },
+    {
+      "paragraph_index": 78,
+      "original_text": "counts[g] = (counts[g] || 0) + 1;",
+      "chunk_ids": [
+        "p78_c0"
+      ]
+    },
+    {
+      "paragraph_index": 79,
+      "original_text": "});",
+      "chunk_ids": [
+        "p79_c0"
+      ]
+    },
+    {
+      "paragraph_index": 80,
+      "original_text": "return Object.entries(counts).map(([genotype, count]) => ({",
+      "chunk_ids": [
+        "p80_c0"
+      ]
+    },
+    {
+      "paragraph_index": 81,
+      "original_text": "genotype,",
+      "chunk_ids": [
+        "p81_c0"
+      ]
+    },
+    {
+      "paragraph_index": 82,
+      "original_text": "probability: count / combinations.length,",
+      "chunk_ids": [
+        "p82_c0"
+      ]
+    },
+    {
+      "paragraph_index": 83,
+      "original_text": "}));",
+      "chunk_ids": [
+        "p83_c0"
+      ]
+    },
+    {
+      "paragraph_index": 84,
+      "original_text": "};",
+      "chunk_ids": [
+        "p84_c0"
+      ]
+    },
+    {
+      "paragraph_index": 85,
+      "original_text": "1.2.4 模块组合与测试",
+      "chunk_ids": [
+        "p85_c0"
+      ]
+    },
+    {
+      "paragraph_index": 86,
+      "original_text": "完成以上各模块的开发后，需将各模块串联整合，系统测试核心功能的运行效果。以VERIFY验证模式为例：调节控制面板参数，验证系谱图绘制、遗传规则引擎、概率计算、验证推理等模块是否同步响应。若出现错误或功能不完善，将错误信息或改进需求反馈给AI进行迭代优化，直至程序正常运行并满足教学需求。",
+      "chunk_ids": [
+        "p86_c0"
+      ]
+    },
+    {
+      "paragraph_index": 87,
+      "original_text": "程序设计遵循\"直观易用\"与\"科学准确\"两项原则。系谱图绘制模块采用生物学领域的标准表示规范：男性为方形、女性为圆形；世代用罗马数字（I、II、III...）标记于系谱图左侧；患病个体以深色填充，正常个体为空心轮廓。用户可通过拖拽自由移动个体位置，视图区域支持缩放与平移操作。",
+      "chunk_ids": [
+        "p87_c0"
+      ]
+    },
+    {
+      "paragraph_index": 88,
+      "original_text": "遗传规律模拟模块内置5种遗传模式：常染色体显性（AD）、常染色体隐性（AR）、X连锁显性（XD）、X连锁隐性（XR）以及Y连锁（Y）。针对每种遗传模式，程序维护基因型-表现型映射规则，能够根据个体基因型正确判断其是否表现出疾病症状。模块预设多指症（AD）、白化病（AR）、抗维生素D佝偻病（XD）、血友病（XR）、外耳道多毛症（Y）五种典型遗传病模板，用户可直接加载使用或进行个性化修改。",
+      "chunk_ids": [
+        "p88_c0"
+      ]
+    },
+    {
+      "paragraph_index": 89,
+      "original_text": "交互控制模块提供遗传特征的自定义功能，用户可设置特征的名称、显隐性基因符号及可视化颜色。该模块还支持将当前系谱图导出为PNG格式图片，便于教学演示与作业提交。",
+      "chunk_ids": [
+        "p89_c0"
+      ]
+    },
+    {
+      "paragraph_index": 90,
+      "original_text": "历史记录模块实现了最多20步的撤销/重做功能，采用命令模式设计。每次对系谱图的修改（添加个体、设置基因型、添加后代等）均会保存完整状态快照，支持用户回溯操作步骤。",
+      "chunk_ids": [
+        "p90_c0"
+      ]
+    },
+    {
+      "paragraph_index": 91,
+      "original_text": "程序界面示例如图1、图2、图3所示：",
+      "chunk_ids": [
+        "p91_c0"
+      ]
+    },
+    {
+      "paragraph_index": 92,
+      "original_text": "图1 系谱图虚拟实验程序界面 （左侧为系谱图画布区域，右侧为控制面板，顶部分别为验证模式和探究模式切换按钮）",
+      "chunk_ids": [
+        "p92_c0"
+      ]
+    },
+    {
+      "paragraph_index": 93,
+      "original_text": "图2 电泳图模拟结果界面 （展示不同基因型对应的电泳条带：正常个体为单一条带，患病个体为双条带，携带者为差异条带）",
+      "chunk_ids": [
+        "p93_c0"
+      ]
+    },
+    {
+      "paragraph_index": 94,
+      "original_text": "图3 遗传咨询结果可视化图谱 （展示孟德尔方阵概率分布及患病/携带者概率统计）",
+      "chunk_ids": [
+        "p94_c0"
+      ]
+    },
+    {
+      "paragraph_index": 95,
+      "original_text": "1.3 数据模型与关键算法",
+      "chunk_ids": [
+        "p95_c0"
+      ]
+    },
+    {
+      "paragraph_index": 96,
+      "original_text": "程序的数据模型基于三个核心接口：Individual、Trait与Relationship。以下通过具体案例说明数据模型的实际应用。",
+      "chunk_ids": [
+        "p96_c0"
+      ]
+    },
+    {
+      "paragraph_index": 97,
+      "original_text": "案例：白化病系谱图的数据结构",
+      "chunk_ids": [
+        "p97_c0"
+      ]
+    },
+    {
+      "paragraph_index": 98,
+      "original_text": "假设一个白化病（AR）系谱图，包含父亲（基因型Aa）、母亲（基因型Aa）及他们的两个孩子（儿子基因型aa患病，女儿基因型Aa正常）。",
+      "chunk_ids": [
+        "p98_c0"
+      ]
+    },
+    {
+      "paragraph_index": 99,
+      "original_text": "Individual接口的具体实例：",
+      "chunk_ids": [
+        "p99_c0"
+      ]
+    },
+    {
+      "paragraph_index": 100,
+      "original_text": "typescript",
+      "chunk_ids": [
+        "p100_c0"
+      ]
+    },
+    {
+      "paragraph_index": 101,
+      "original_text": "// 父亲",
+      "chunk_ids": [
+        "p101_c0"
+      ]
+    },
+    {
+      "paragraph_index": 102,
+      "original_text": "{ id: \"I-1\", gender: \"MALE\", generation: 1, x: 100, y: 200,",
+      "chunk_ids": [
+        "p102_c0"
+      ]
+    },
+    {
+      "paragraph_index": 103,
+      "original_text": "genotypes: { \"trait-1\": \"Aa\" }, affectedTraitIds: [] }",
+      "chunk_ids": [
+        "p103_c0"
+      ]
+    },
+    {
+      "paragraph_index": 104,
+      "original_text": "// 母亲",
+      "chunk_ids": [
+        "p104_c0"
+      ]
+    },
+    {
+      "paragraph_index": 105,
+      "original_text": "{ id: \"I-2\", gender: \"FEMALE\", generation: 1, x: 300, y: 200,",
+      "chunk_ids": [
+        "p105_c0"
+      ]
+    },
+    {
+      "paragraph_index": 106,
+      "original_text": "genotypes: { \"trait-1\": \"Aa\" }, affectedTraitIds: [] }",
+      "chunk_ids": [
+        "p106_c0"
+      ]
+    },
+    {
+      "paragraph_index": 107,
+      "original_text": "// 儿子（患病）",
+      "chunk_ids": [
+        "p107_c0"
+      ]
+    },
+    {
+      "paragraph_index": 108,
+      "original_text": "{ id: \"II-1\", gender: \"MALE\", generation: 2, x: 150, y: 400,",
+      "chunk_ids": [
+        "p108_c0"
+      ]
+    },
+    {
+      "paragraph_index": 109,
+      "original_text": "genotypes: { \"trait-1\": \"aa\" }, affectedTraitIds: [\"trait-1\"] }",
+      "chunk_ids": [
+        "p109_c0"
+      ]
+    },
+    {
+      "paragraph_index": 110,
+      "original_text": "// 女儿（正常）",
+      "chunk_ids": [
+        "p110_c0"
+      ]
+    },
+    {
+      "paragraph_index": 111,
+      "original_text": "{ id: \"II-2\", gender: \"FEMALE\", generation: 2, x: 250, y: 400,",
+      "chunk_ids": [
+        "p111_c0"
+      ]
+    },
+    {
+      "paragraph_index": 112,
+      "original_text": "genotypes: { \"trait-1\": \"Aa\" }, affectedTraitIds: [] }",
+      "chunk_ids": [
+        "p112_c0"
+      ]
+    },
+    {
+      "paragraph_index": 113,
+      "original_text": "Trait接口描述遗传特征：",
+      "chunk_ids": [
+        "p113_c0"
+      ]
+    },
+    {
+      "paragraph_index": 114,
+      "original_text": "typescript",
+      "chunk_ids": [
+        "p114_c0"
+      ]
+    },
+    {
+      "paragraph_index": 115,
+      "original_text": "{ id: \"trait-1\", name: \"白化病\", mode: \"AR\",",
+      "chunk_ids": [
+        "p115_c0"
+      ]
+    },
+    {
+      "paragraph_index": 116,
+      "original_text": "dominantAllele: \"A\", recessiveAllele: \"a\" }",
+      "chunk_ids": [
+        "p116_c0"
+      ]
+    },
+    {
+      "paragraph_index": 117,
+      "original_text": "Relationship接口描述家族关系：",
+      "chunk_ids": [
+        "p117_c0"
+      ]
+    },
+    {
+      "paragraph_index": 118,
+      "original_text": "typescript",
+      "chunk_ids": [
+        "p118_c0"
+      ]
+    },
+    {
+      "paragraph_index": 119,
+      "original_text": "{ id: \"rel-1\", p1Id: \"I-1\", p2Id: \"I-2\", childrenIds: [\"II-1\", \"II-2\"] }",
+      "chunk_ids": [
+        "p119_c0"
+      ]
+    },
+    {
+      "paragraph_index": 120,
+      "original_text": "遗传学算法实现于genetics.ts模块。isAffected函数根据基因型字符串与遗传模式判断个体是否患病：对于常染色体显性遗传只要包含显性基因即表达为患者（如\"A_\"），对于常染色体隐性遗传则需纯合隐性基因型（如\"aa\"）才表达，对于X连锁遗传则需区分男女不同判断逻辑——X连锁隐性遗传中女性需纯合隐性（XbXb）才患病，男性只需携带隐性基因（XbY）即患病。calculateOffspringProbabilities函数实现孟德尔方阵计算，遍历所有配子组合并统计各基因型组合的出现次数，归一化为概率值。generateChildGenotype函数根据上述概率分布使用随机数生成符合孟德尔遗传规律的子代基因型，实现遗传模拟的随机性。checkConsistency函数检查系谱图与特定遗传模式是否一致，对违反孟德尔规律的情况给出矛盾提示。getCounselingResult函数计算遗传咨询场景下后代的基因型分布与患病概率，以可视化方式呈现咨询报告。",
+      "chunk_ids": [
+        "p120_c0"
+      ]
+    },
+    {
+      "paragraph_index": 121,
+      "original_text": "程序采用SVG作为系谱图的渲染媒介，通过transform属性实现视图的缩放与平移。系谱图节点（PedigreeNode组件）根据个体性别渲染为方形或圆形，并根据其各性状表现型填充相应图案或颜色。节点之间的连接线（renderConnections函数）根据亲缘关系绘制，包括配偶间的婚姻连线、亲代到子代的垂直连线及子代间的水平连线。",
+      "chunk_ids": [
+        "p121_c0"
+      ]
+    },
+    {
+      "paragraph_index": 122,
+      "original_text": "1.4 网站封装",
+      "chunk_ids": [
+        "p122_c0"
+      ]
+    },
+    {
+      "paragraph_index": 123,
+      "original_text": "程序开发完成后，通过Vite工具将TypeScript语言翻译成标准的JavaScript语言。将生成的静态资源文件上传至Upma平台，部署为在线可访问的静态网站，生成程序链接及二维码，供学生免安装直接通过浏览器访问，便于教学实施。",
+      "chunk_ids": [
+        "p123_c0"
+      ]
+    },
+    {
+      "paragraph_index": 124,
+      "original_text": "2 教学实践",
+      "chunk_ids": [
+        "p124_c0"
+      ]
+    },
+    {
+      "paragraph_index": 125,
+      "original_text": "本研究基于程序的两大核心功能模块——VERIFY验证模式与INQUIRY探究模式，分别设计了针对伴性遗传和人类遗传病两大专题的教学方案。程序内置的系谱图绘制、电泳图模拟、推论验证及遗传咨询等功能，为教学活动的开展提供了完整的技术支撑。",
+      "chunk_ids": [
+        "p125_c0"
+      ]
+    },
+    {
+      "paragraph_index": 126,
+      "original_text": "2.1 伴性遗传教学（2课时）",
+      "chunk_ids": [
+        "p126_c0"
+      ]
+    },
+    {
+      "paragraph_index": 127,
+      "original_text": "伴性遗传是遗传学教学中的重点与难点内容，涉及X染色体上基因传递的独特规律，学生往往对隔代遗传现象、男女患病概率差异等概念理解困难。本轮教学采用VERIFY验证模式，旨在让学生在程序提供的真实遗传情境中验证遗传方式假设，体验科学探究的基本流程。",
+      "chunk_ids": [
+        "p127_c0"
+      ]
+    },
+    {
+      "paragraph_index": 128,
+      "original_text": "第1课时以血友病这一经典的X连锁隐性遗传病为案例。",
+      "chunk_ids": [
+        "p128_c0"
+      ]
+    },
+    {
+      "paragraph_index": 129,
+      "original_text": "课前，教师在程序中加载\"血友病（XR）\"预设模板，投影展示一个包含两代人的家族系谱图和对应的电泳图结果。",
+      "chunk_ids": [
+        "p129_c0"
+      ]
+    },
+    {
+      "paragraph_index": 130,
+      "original_text": "活动一：观察与描述（10分钟） 学生进入VERIFY验证模式，首先观察系谱图，描述所见的遗传现象：\"这个家族中，男性患者有几位？女性患者有几位？患者的性别比例有何特点？\"随后，点击系谱图中的各个体节点，查看弹出的详细信息面板（包括基因型、表现型），尝试记录每个个体的性状特征。",
+      "chunk_ids": [
+        "p130_c0"
+      ]
+    },
+    {
+      "paragraph_index": 131,
+      "original_text": "活动二：提出假设（10分钟） 基于观察到的遗传现象和电泳图证据（男性患者与女性携带者的电泳条带差异），学生分组讨论并提出遗传方式假设。教师引导学生思考：\"如果是一种隐性遗传病，患者的基因型可能是什么？携带者会有什么特征？\"",
+      "chunk_ids": [
+        "p131_c0"
+      ]
+    },
+    {
+      "paragraph_index": 132,
+      "original_text": "活动三：验证假设（15分钟） 学生点击程序界面右侧控制面板的\"验证模式\"按钮，进入推论验证界面。在\"遗传方式\"下拉菜单中选择假设的遗传方式（如\"X连锁隐性遗传\"），点击\"开始验证\"按钮。程序自动检查系谱图中的亲缘关系和表现型分布，给出验证结果。若假设正确，程序显示绿色的\"验证通过\"提示；若假设错误，程序显示红色的\"验证失败\"提示，并列出矛盾之处（如\"女儿患病但父亲正常，与X连锁隐性遗传规律不符\"）。",
+      "chunk_ids": [
+        "p132_c0"
+      ]
+    },
+    {
+      "paragraph_index": 133,
+      "original_text": "活动四：调整假设再验证（10分钟） 针对验证失败的情况，学生分组讨论矛盾提示，根据孟德尔遗传规律调整假设，再次输入新的遗传方式假设进行验证。通过这一反复验证的过程，学生能够深刻理解X连锁隐性遗传的核心特征：男患者多于女患者、交叉遗传现象、女儿患病父亲必患病等。",
+      "chunk_ids": [
+        "p133_c0"
+      ]
+    },
+    {
+      "paragraph_index": 134,
+      "original_text": "第2课时引入更复杂的遗传咨询情境。",
+      "chunk_ids": [
+        "p134_c0"
+      ]
+    },
+    {
+      "paragraph_index": 135,
+      "original_text": "课前，教师从程序案例库中调取\"杜氏肌营养不良（DMD）\"案例——一种严重的X连锁隐性遗传病，设计遗传咨询角色扮演活动。",
+      "chunk_ids": [
+        "p135_c0"
+      ]
+    },
+    {
+      "paragraph_index": 136,
+      "original_text": "活动一：角色分配与案例阅读（5分钟） 一组学生扮演遗传咨询师，另一组扮演咨询者家属。遗传咨询师阅读案例背景：一名健康的年轻女性，她的哥哥患有DMD，她想了解自己未来孩子患病的风险。",
+      "chunk_ids": [
+        "p136_c0"
+      ]
+    },
+    {
+      "paragraph_index": 137,
+      "original_text": "活动二：系谱图构建与分析（15分钟） 学生在程序中构建咨询者家族系谱图。点击工具栏的\"添加个体\"按钮，在弹出的对话框中设置个体信息（性别、基因型等）。依次添加女性（咨询者）、其父母、哥哥等成员，标注各成员的基因型。点击控制面板的\"遗传咨询\"按钮，进入咨询界面。",
+      "chunk_ids": [
+        "p137_c0"
+      ]
+    },
+    {
+      "paragraph_index": 138,
+      "original_text": "活动三：风险评估与咨询建议（20分钟） 遗传咨询师在程序中输入婚配方案（如\"正常男性 × 携带者女性\"），点击\"计算概率\"按钮，程序立即生成后代的基因型分布与患病概率可视化图谱。咨询师根据概率结果，向\"咨询者\"解释生育患病孩子的风险，并提供遗传建议。程序还支持模拟不同婚配方案的对比分析，帮助学生理解基因型与婚配选择对后代风险的影响。",
+      "chunk_ids": [
+        "p138_c0"
+      ]
+    },
+    {
+      "paragraph_index": 139,
+      "original_text": "通过模拟真实的遗传咨询场景，学生不仅巩固了遗传方式判断的知识，更培养了运用遗传学知识解决实际问题的能力。",
+      "chunk_ids": [
+        "p139_c0"
+      ]
+    },
+    {
+      "paragraph_index": 140,
+      "original_text": "表4 伴性遗传教学结果统计表",
+      "chunk_ids": [
+        "p140_c0"
+      ]
+    },
+    {
+      "paragraph_index": 141,
+      "original_text": "2.2 人类遗传病教学（3课时）",
+      "chunk_ids": [
+        "p141_c0"
+      ]
+    },
+    {
+      "paragraph_index": 142,
+      "original_text": "人类遗传病单元的教学设计遵循\"系谱图初识—遗传方式判断—风险评估建议\"的认知规律，采用INQUIRY探究模式，给予学生更大的自主空间构建系谱图、探究遗传规律。",
+      "chunk_ids": [
+        "p142_c0"
+      ]
+    },
+    {
+      "paragraph_index": 143,
+      "original_text": "第1课时聚焦于系谱图绘制技能的培养。",
+      "chunk_ids": [
+        "p143_c0"
+      ]
+    },
+    {
+      "paragraph_index": 144,
+      "original_text": "活动一：认识标准符号（10分钟） 教师通过程序投影展示标准系谱图符号：男性用方形表示、女性用圆形表示，正常个体为空心轮廓、患病个体为深色填充。学生观察并记忆这套符号体系。",
+      "chunk_ids": [
+        "p144_c0"
+      ]
+    },
+    {
+      "paragraph_index": 145,
+      "original_text": "活动二：构建简单系谱图（25分钟） 学生在程序中新建空白画布，利用INQUIRY模式的工具栏构建包含3代人的简单系谱图。具体操作步骤如下：",
+      "chunk_ids": [
+        "p145_c0"
+      ]
+    },
+    {
+      "paragraph_index": 146,
+      "original_text": "① 点击工具栏的\"添加男性\"或\"添加女性\"按钮，在画布上点击添加个体； ② 双击个体节点，在弹出面板中设置其基因型（如\"Aa\"或\"XbY\"）和表现型； ③ 点击工具栏的\"添加关系\"按钮，依次点击两个个体建立亲子关系； ④ 重复上述步骤，构建一个完整的3代人家系。",
+      "chunk_ids": [
+        "p146_c0"
+      ]
+    },
+    {
+      "paragraph_index": 147,
+      "original_text": "程序内置多指症（AD）、白化病（AR）等典型遗传病预设模板。完成基础练习后，学生可加载预设模板进行对比学习。点击任意个体，弹出详细信息面板，显示该个体的基因型、表现型及各性状的详细信息，直观理解基因型与表现型之间的对应关系。",
+      "chunk_ids": [
+        "p147_c0"
+      ]
+    },
+    {
+      "paragraph_index": 148,
+      "original_text": "第2课时引入程序的核心分析功能——遗传模式探究。",
+      "chunk_ids": [
+        "p148_c0"
+      ]
+    },
+    {
+      "paragraph_index": 149,
+      "original_text": "课前，教师从程序案例库中调取两个对照案例供学生分析：",
+      "chunk_ids": [
+        "p149_c0"
+      ]
+    },
+    {
+      "paragraph_index": 150,
+      "original_text": "案例A：脊髓小脑性共济失调（母亲患病、父亲健康，子一代儿子患病、女儿健康）",
+      "chunk_ids": [
+        "p150_c0"
+      ]
+    },
+    {
+      "paragraph_index": 151,
+      "original_text": "案例B：外耳道多毛症（父子世代均患病）",
+      "chunk_ids": [
+        "p151_c0"
+      ]
+    },
+    {
+      "paragraph_index": 152,
+      "original_text": "活动一：观察与假设（10分钟） 学生加载案例A的系谱图，首先观察遗传现象，记录特点：\"子一代中，患病个体都是男性还是女性？患病个体与性别有无关联？\"",
+      "chunk_ids": [
+        "p152_c0"
+      ]
+    },
+    {
+      "paragraph_index": 153,
+      "original_text": "活动二：自主探究遗传规律（25分钟） 学生分组领取任务，每组负责探究一种遗传方式（AD、AR、XD、XR、Y）。以XR探究为例，学生操作步骤如下：",
+      "chunk_ids": [
+        "p153_c0"
+      ]
+    },
+    {
+      "paragraph_index": 154,
+      "original_text": "① 点击控制面板的\"遗传模式\"下拉菜单，选择\"X连锁隐性遗传\"； ② 观察切换后的系谱图表现型变化，记录与原案例的异同； ③ 点击\"添加后代\"按钮，为现有个体添加子代，手动设置不同基因型，观察子代表现型规律； ④ 点击\"概率计算\"按钮，输入亲本基因型，获取后代各基因型组合的概率分布； ⑤ 归纳总结该遗传方式的系谱图特征（如\"男患者多于女患者\"）。",
+      "chunk_ids": [
+        "p154_c0"
+      ]
+    },
+    {
+      "paragraph_index": 155,
+      "original_text": "活动三：组间交流与归纳（10分钟） 各组汇报探究结果，学生整理不同遗传方式的判定规律对比表（表3）。",
+      "chunk_ids": [
+        "p155_c0"
+      ]
+    },
+    {
+      "paragraph_index": 156,
+      "original_text": "表3 五种遗传方式系谱图特征对照表",
+      "chunk_ids": [
+        "p156_c0"
+      ]
+    },
+    {
+      "paragraph_index": 157,
+      "original_text": "第3课时是单元教学的高阶应用环节——遗传咨询实践。",
+      "chunk_ids": [
+        "p157_c0"
+      ]
+    },
+    {
+      "paragraph_index": 158,
+      "original_text": "活动一：案例导入（5分钟） 教师展示案例：一对表型正常的夫妇，已生育过一个患白化病的孩子，他们非常担心下一胎的患病风险。",
+      "chunk_ids": [
+        "p158_c0"
+      ]
+    },
+    {
+      "paragraph_index": 159,
+      "original_text": "活动二：系谱图构建与风险分析（20分钟） 学生利用INQUIRY模式构建该夫妇的系谱图。具体操作：",
+      "chunk_ids": [
+        "p159_c0"
+      ]
+    },
+    {
+      "paragraph_index": 160,
+      "original_text": "① 添加父母双方，点击个体设置基因型（均为携带者\"Aa\"）； ② 点击\"遗传咨询\"按钮进入咨询界面； ③ 在\"婚配方案\"输入框中输入\"父母双方基因型均为Aa\"； ④ 点击\"计算概率\"按钮，程序生成后代的基因型分布柱状图，显示AA：Aa：aa = 1：2：1，患病概率为25%。",
+      "chunk_ids": [
+        "p160_c0"
+      ]
+    },
+    {
+      "paragraph_index": 161,
+      "original_text": "活动三：方案对比与建议撰写（15分钟） 学生利用程序的方案对比功能，模拟不同婚配策略：",
+      "chunk_ids": [
+        "p161_c0"
+      ]
+    },
+    {
+      "paragraph_index": 162,
+      "original_text": "方案一：正常夫妇 × 携带者（Aa）",
+      "chunk_ids": [
+        "p162_c0"
+      ]
+    },
+    {
+      "paragraph_index": 163,
+      "original_text": "方案二：正常夫妇 × 正常夫妇（AA）",
+      "chunk_ids": [
+        "p163_c0"
+      ]
+    },
+    {
+      "paragraph_index": 164,
+      "original_text": "程序生成两种方案的后代患病概率可视化对比图。学生据此撰写遗传咨询建议书，理解遗传学知识在健康决策中的应用价值。",
+      "chunk_ids": [
+        "p164_c0"
+      ]
+    },
+    {
+      "paragraph_index": 165,
+      "original_text": "本轮教学实践依托程序的双模式设计和多样化功能，将抽象的遗传规律转化为可操作、可观察的学习对象。VERIFY模式培养了学生的假说-演绎思维能力，INQUIRY模式则激发了学生的自主探究热情。电泳图模拟功能帮助学生理解遗传现象的分子基础，遗传咨询情境则增强了知识与生活的联系，实现了科学思维与健康决策能力的同步提升。",
+      "chunk_ids": [
+        "p165_c0"
+      ]
+    },
+    {
+      "paragraph_index": 166,
+      "original_text": "3 结论与反思",
+      "chunk_ids": [
+        "p166_c0"
+      ]
+    },
+    {
+      "paragraph_index": 167,
+      "original_text": "3.1 结论",
+      "chunk_ids": [
+        "p167_c0"
+      ]
+    },
+    {
+      "paragraph_index": 168,
+      "original_text": "借助Google AI Studio，本研究成功开发了一款AI辅助的遗传系谱图虚拟实验程序。实践表明，该程序能够有效支持高中遗传系谱图教学，为一线教师利用AI开发教学资源提供了可复用的技术路径。",
+      "chunk_ids": [
+        "p168_c0"
+      ]
+    },
+    {
+      "paragraph_index": 169,
+      "original_text": "在程序功能设计方面，本程序实现了5种标准遗传模式的系谱图绘制与模拟功能，包括常染色体显性、常染色体隐性、X连锁显性、X连锁隐性以及Y连锁遗传模式。程序内置多指症、白化病、抗维生素D佝偻病、血友病、外耳道多毛症等5种遗传病预设模板，以及脊髓小脑性共济失调、先天小睑裂综合征、杜氏肌营养不良等教学情境案例。程序配备了交互式控制面板、历史记录及图片导出功能，有效降低了遗传学习的认知负荷，能够支持学生开展自主探究活动。在开发模式方面，采用Google AI Studio辅助开发显著降低了编程开发的技术门槛和时间成本，使非计算机专业教师亦能参与教学资源的开发。",
+      "chunk_ids": [
+        "p169_c0"
+      ]
+    },
+    {
+      "paragraph_index": 170,
+      "original_text": "教学应用效果：",
+      "chunk_ids": [
+        "p170_c0"
+      ]
+    },
+    {
+      "paragraph_index": 171,
+      "original_text": "本研究在两轮教学实践中取得了积极反馈。第一轮伴性遗传教学（2课时，45名学生）采用VERIFY验证模式，课后测评显示：学生对X连锁遗传规律的理解正确率从课前的62%提升至89%；在开放式问题\"请分析血友病家系的遗传特点\"中，87%的学生能够准确写出\"交叉遗传\"和\"男患者多于女患者\"等关键特征，较传统讲授式教学的对照班（正确率约54%）有显著提升。第二轮人类遗传病教学（3课时，52名学生）采用INQUIRY探究模式，学生在遗传咨询模拟活动中表现出较高的参与度：92%的学生能够独立完成3代人家系图的构建，78%的学生能够正确判断给定系谱图对应的遗传方式。在学习满意度调查中，86%的学生认为\"使用虚拟实验程序帮助我更直观地理解了遗传规律\"，79%的学生认为\"遗传咨询活动增强了我对遗传学知识实用价值的认识\"。",
+      "chunk_ids": [
+        "p171_c0"
+      ]
+    },
+    {
+      "paragraph_index": 172,
+      "original_text": "上述教学实践表明，该程序能够有效提升学生的探究参与度和遗传概念理解水平，特别是在培养学生的假说-演绎思维能力方面表现突出。",
+      "chunk_ids": [
+        "p172_c0"
+      ]
+    },
+    {
+      "paragraph_index": 173,
+      "original_text": "3.2 反思",
+      "chunk_ids": [
+        "p173_c0"
+      ]
+    },
+    {
+      "paragraph_index": 174,
+      "original_text": "在教学实施建议方面，课前教师应提前熟悉程序功能，做好教学设计；课中应先演示后操作，引导学生循序渐进地探究；课后可布置开放性作业，如让学生分析真实家系数据或设计遗传咨询方案。",
+      "chunk_ids": [
+        "p174_c0"
+      ]
+    },
+    {
+      "paragraph_index": 175,
+      "original_text": "本研究仍存在一定局限性：教学试点样本量有限，教学效果的普适性有待验证；程序尚未开发移动端版本，限制了学生在课外场景的使用；教学评估方式相对单一，定量与定性相结合的深度评估有待完善。",
+      "chunk_ids": [
+        "p175_c0"
+      ]
+    },
+    {
+      "paragraph_index": 176,
+      "original_text": "未来可从以下方向拓展：一是增加更多遗传模式的模拟，如线粒体遗传、基因组印记等复杂遗传现象；二是开发移动端版本，提升程序的便携性和可及性；三是集成AI问答功能，为学生提供个性化的学习支持；四是增加协作功能，支持学生小组在线协作探究。",
+      "chunk_ids": [
+        "p176_c0"
+      ]
+    },
+    {
+      "paragraph_index": 177,
+      "original_text": "参考文献",
+      "chunk_ids": [
+        "p177_c0"
+      ]
+    },
+    {
+      "paragraph_index": 178,
+      "original_text": "[1] 中华人民共和国教育部。普通高中生物学课程标准（2017年版2020年修订）[M]. 北京：人民教育出版社，2020.",
+      "chunk_ids": [
+        "p178_c0"
+      ]
+    },
+    {
+      "paragraph_index": 179,
+      "original_text": "[2] 沈学省。\"三新\"背景下人类遗传病教学的变革趋势[J]. 生物学教学，2024，49（5）：12-16.",
+      "chunk_ids": [
+        "p179_c0"
+      ]
+    },
+    {
+      "paragraph_index": 180,
+      "original_text": "[3] 陈明华。基于ACT-R理论的高中生物学教学策略——以\"伴性遗传\"为例[J]. 生物学教学，2024，49（3）：8-12.",
+      "chunk_ids": [
+        "p180_c0"
+      ]
+    },
+    {
+      "paragraph_index": 181,
+      "original_text": "[4] 陈莉。GenAI赋能的情境实验教学范式探索[J]. 生物学教学，2024，49（7）：22-26.",
+      "chunk_ids": [
+        "p181_c0"
+      ]
+    },
+    {
+      "paragraph_index": 182,
+      "original_text": "[5] 闵伶。贯穿式情境教学培育生物学学科核心素养——以\"人类遗传病\"为例[J]. 生物学教学，2024，49（4）：15-19.",
+      "chunk_ids": [
+        "p182_c0"
+      ]
+    },
+    {
+      "paragraph_index": 183,
+      "original_text": "作者信息占位（请填写以下信息）：",
+      "chunk_ids": [
+        "p183_c0"
+      ]
+    },
+    {
+      "paragraph_index": 184,
+      "original_text": "作者简介：姓名（出生年- ），单位，职称/学位，研究方向，手机，Email",
+      "chunk_ids": [
+        "p184_c0"
+      ]
+    },
+    {
+      "paragraph_index": 185,
+      "original_text": "通讯地址：省 市 单位（邮编）",
+      "chunk_ids": [
+        "p185_c0"
+      ]
+    },
+    {
+      "paragraph_index": 186,
+      "original_text": "更新时间: 2026-04-03 论文内容核查与修正完成",
+      "chunk_ids": [
+        "p186_c0"
+      ]
+    }
+  ],
+  "chunks": [
+    {
+      "chunk_id": "p0_c0",
+      "paragraph_index": 0,
+      "chunk_index": 0,
+      "text": "AI辅助的遗传系谱图虚拟实验程序开发与教学应用",
+      "char_count": 23,
+      "word_count": 1
+    },
+    {
+      "chunk_id": "p1_c0",
+      "paragraph_index": 1,
+      "chunk_index": 0,
+      "text": "作者信息占位（请填写：姓名、单位）",
+      "char_count": 17,
+      "word_count": 4
+    },
+    {
+      "chunk_id": "p2_c0",
+      "paragraph_index": 2,
+      "chunk_index": 0,
+      "text": "摘 要 遗传系谱图分析是高中生物学\"人类遗传病\"单元的核心内容，涉及基因型推导、遗传方式判断及概率计算等复杂推理，传统教学模式难以有效支撑。本研究基于Google AI Studio平台开发了一款遗传系谱图虚拟实验程序。程序支持常染色体显性/隐性、X连锁显/隐性及Y连锁等5种遗传模式的系谱图绘制与模拟，内置多种遗传病预设模板。开发过程中，利用AI工具完成程序架构设计、遗传学算法实现及React组件状态管理，显著降低了非计算机专业教师的编程开发门槛。两轮教学实践表明，该程序能够有效支撑学生开展系谱图验证与自主探究活动，提升遗传规律分析的教学效果。本文以遗传系谱图虚拟实验为例，系统阐述AI辅助开发教学程序的全过程，为一线教师利用AI开发教学资源提供可借鉴的技术方案。",
+      "char_count": 335,
+      "word_count": 26
+    },
+    {
+      "chunk_id": "p3_c0",
+      "paragraph_index": 3,
+      "chunk_index": 0,
+      "text": "关键词 遗传系谱图；虚拟实验；AI辅助教学；高中生物学；教学应用",
+      "char_count": 32,
+      "word_count": 6
+    },
+    {
+      "chunk_id": "p4_c0",
+      "paragraph_index": 4,
+      "chunk_index": 0,
+      "text": "Development and Application of AI-assisted Genetic Pedigree Virtual Experiment Program",
+      "char_count": 86,
+      "word_count": 10
+    },
+    {
+      "chunk_id": "p5_c0",
+      "paragraph_index": 5,
+      "chunk_index": 0,
+      "text": "作者信息占位（请填写：姓名 单位 城市 邮编）",
+      "char_count": 23,
+      "word_count": 6
+    },
+    {
+      "chunk_id": "p6_c0",
+      "paragraph_index": 6,
+      "chunk_index": 0,
+      "text": "Abstract Pedigree chart analysis is a core component of genetics instruction in high school biology,involving complex reasoning tasks such as genotype deduction,inheritance pattern identification,and probability calculation,which traditional teaching models struggle to support effectively. This study developed a genetic pedigree virtual experiment program using Google AI Studio with React,TypeScript,Vite,and SVG technologies. The program supports five inheritance modes (AD/AR/XD/XR/Y) for pedigree drawing and simulation,with built-in disease templates. During development,AI tools assisted in program architecture design,genetics algorithm implementation,and React component state management,",
+      "char_count": 698,
+      "word_count": 94
+    },
+    {
+      "chunk_id": "p6_c1",
+      "paragraph_index": 6,
+      "chunk_index": 1,
+      "text": "significantly lowering the programming barrier for non-CS teachers. Two rounds of teaching practice showed that the program effectively supports students in pedigree verification and inquiry activities,providing a replicable technical pathway for teachers to develop AI-assisted teaching resources.",
+      "char_count": 298,
+      "word_count": 38
+    },
+    {
+      "chunk_id": "p7_c0",
+      "paragraph_index": 7,
+      "chunk_index": 0,
+      "text": "Keywords Pedigree Chart; Virtual Experiment; AI-assisted Teaching; High School Biology; Instructional Application",
+      "char_count": 113,
+      "word_count": 12
+    },
+    {
+      "chunk_id": "p8_c0",
+      "paragraph_index": 8,
+      "chunk_index": 0,
+      "text": "系谱图分析是高中生物学遗传规律教学的核心内容。遗传规律的学习涉及基因型与表现型的对应关系推断、遗传方式的判断、子代概率的计算等高阶推理任务，对学生的逻辑思维要求较高。在课程标准核心素养导向下，学生需要能够基于遗传现象进行科学推理，并用遗传图谱解释生活中的遗传病案例。然而在实际教学中，教师常面临两个问题：其一，系谱图分析过程复杂，涉及多步骤的逻辑推理，要求学生综合运用遗传规律分析已知信息判断基因位置和显隐性，再基于遗传方式推测个体基因型、计算子代患病概率。其二，教材内容分散在不同章节，学生难以形成对遗传规律的整体认知，难以综合运用所学知识分析真实情境下的遗传病案例、解决实际问题。",
+      "char_count": 292,
+      "word_count": 21
+    },
+    {
+      "chunk_id": "p9_c0",
+      "paragraph_index": 9,
+      "chunk_index": 0,
+      "text": "针对以上问题，本研究基于Google AI Studio平台开发遗传系谱图虚拟实验程序。选择该平台主要基于以下考量：Google AI Studio是谷歌推出的网页版生成式AI开发环境，Gemini模型具备优秀的代码生成能力，能够高效完成遗传学算法和交互界面的开发；其次，该平台无需配置复杂开发环境，上手即用，支持网页预览程序效果；此外，前端技术栈（HTML/TypeScript）开发完成后可部署为静态网站，学生可直接通过浏览器访问，便于教学实施。本文系统阐述AI辅助开发虚拟实验程序的全过程，为一线教师利用AI开发教学资源提供可借鉴的技术方案。",
+      "char_count": 274,
+      "word_count": 23
+    },
+    {
+      "chunk_id": "p10_c0",
+      "paragraph_index": 10,
+      "chunk_index": 0,
+      "text": "1 AI辅助开发与程序实现",
+      "char_count": 13,
+      "word_count": 2
+    },
+    {
+      "chunk_id": "p11_c0",
+      "paragraph_index": 11,
+      "chunk_index": 0,
+      "text": "1.1 开发工具与方法",
+      "char_count": 11,
+      "word_count": 3
+    },
+    {
+      "chunk_id": "p12_c0",
+      "paragraph_index": 12,
+      "chunk_index": 0,
+      "text": "本程序采用Google AI Studio作为AI辅助开发的主要工具。在开发初期，首先通过与大语言模型的交互完成程序架构设计，明确了系谱图绘制、遗传规律模拟、交互控制与历史记录四大功能模块的设计需求。随后，针对各模块的具体实现问题，包括SVG图形渲染逻辑、孟德尔概率计算算法以及React组件状态管理等关键技术点，AI工具均提供了有效的解决方案。",
+      "char_count": 173,
+      "word_count": 13
+    },
+    {
+      "chunk_id": "p13_c0",
+      "paragraph_index": 13,
+      "chunk_index": 0,
+      "text": "进入Google AI Studio平台，点击左侧导航栏的Build进入开发界面。借助AI辅助，输入指令描述开发需求：",
+      "char_count": 59,
+      "word_count": 6
+    },
+    {
+      "chunk_id": "p14_c0",
+      "paragraph_index": 14,
+      "chunk_index": 0,
+      "text": "\"设计一个遗传系谱图虚拟实验程序：支持常染色体显性/隐性、X连锁显性/隐性、Y连锁等5种遗传模式的系谱图绘制与模拟。程序需要实现以下功能：①系谱图绘制（男性方形、女性圆形、世代标记、患病个体深色填充）；②遗传规律模拟（根据基因型判断表现型）；③交互控制（添加个体、设置基因型、添加后代）；④历史记录（撤销/重做功能）。请帮我设计程序架构和技术栈。\"",
+      "char_count": 174,
+      "word_count": 22
+    },
+    {
+      "chunk_id": "p15_c0",
+      "paragraph_index": 15,
+      "chunk_index": 0,
+      "text": "AI根据上述指令生成了程序架构建议，明确了模块划分和技术选型。针对遗传学核心逻辑（如基因型-表现型映射、概率计算），需要继续与AI进行多轮交互逐步细化。以下以概率计算模块为例展示迭代优化过程：",
+      "char_count": 96,
+      "word_count": 7
+    },
+    {
+      "chunk_id": "p16_c0",
+      "paragraph_index": 16,
+      "chunk_index": 0,
+      "text": "① 初始提示词：\"帮我实现孟德尔概率计算函数，计算后代患病概率。\"",
+      "char_count": 33,
+      "word_count": 4
+    },
+    {
+      "chunk_id": "p17_c0",
+      "paragraph_index": 17,
+      "chunk_index": 0,
+      "text": "AI生成的初始代码采用简单的概率乘法，但未考虑性别因素对X连锁遗传的影响。",
+      "char_count": 37,
+      "word_count": 2
+    },
+    {
+      "chunk_id": "p18_c0",
+      "paragraph_index": 18,
+      "chunk_index": 0,
+      "text": "② 优化提示词：\"上述代码需要改进。X连锁隐性遗传中，男患者概率明显高于女患者，需要区分男女分别计算。\"",
+      "char_count": 52,
+      "word_count": 6
+    },
+    {
+      "chunk_id": "p19_c0",
+      "paragraph_index": 19,
+      "chunk_index": 0,
+      "text": "AI根据反馈调整了算法，加入了性别分类讨论。",
+      "char_count": 22,
+      "word_count": 2
+    },
+    {
+      "chunk_id": "p20_c0",
+      "paragraph_index": 20,
+      "chunk_index": 0,
+      "text": "③ 最终优化：\"还需要考虑一胎多个孩子的情况，生成各基因型组合的概率分布。\"",
+      "char_count": 38,
+      "word_count": 4
+    },
+    {
+      "chunk_id": "p21_c0",
+      "paragraph_index": 21,
+      "chunk_index": 0,
+      "text": "经过3-4轮迭代，概率计算模块最终实现了符合孟德尔遗传规律的精确算法。",
+      "char_count": 35,
+      "word_count": 2
+    },
+    {
+      "chunk_id": "p22_c0",
+      "paragraph_index": 22,
+      "chunk_index": 0,
+      "text": "技术栈选择React + TypeScript + Vite + SVG的组合。TypeScript的类型系统为数据模型提供了严格的静态类型检查，降低了运行时错误风险；React的组件化架构使程序结构清晰，便于维护和扩展；Vite作为构建工具，提供了快速的开发服务器启动和热模块替换功能；SVG作为绘图引擎，具有良好的跨平台兼容性和灵活的图形变换能力。",
+      "char_count": 176,
+      "word_count": 12
+    },
+    {
+      "chunk_id": "p23_c0",
+      "paragraph_index": 23,
+      "chunk_index": 0,
+      "text": "1.2 设计理念与功能模块",
+      "char_count": 13,
+      "word_count": 3
+    },
+    {
+      "chunk_id": "p24_c0",
+      "paragraph_index": 24,
+      "chunk_index": 0,
+      "text": "1.2.1 需求分析",
+      "char_count": 10,
+      "word_count": 4
+    },
+    {
+      "chunk_id": "p25_c0",
+      "paragraph_index": 25,
+      "chunk_index": 0,
+      "text": "在程序开发初期，首先进行一线教学需求调研，整理遗传系谱图教学的核心功能需求。通过访谈高中生物教师，明确教学中的实际痛点：学生难以掌握系谱图分析的多步骤逻辑推理；传统板书难以动态演示遗传规律；缺乏可供学生自主探究的遗传模拟工具。基于调研结果，形成以下核心功能需求（表1）：",
+      "char_count": 135,
+      "word_count": 11
+    },
+    {
+      "chunk_id": "p26_c0",
+      "paragraph_index": 26,
+      "chunk_index": 0,
+      "text": "表1 遗传系谱图虚拟实验核心功能需求（带优先级）",
+      "char_count": 24,
+      "word_count": 3
+    },
+    {
+      "chunk_id": "p27_c0",
+      "paragraph_index": 27,
+      "chunk_index": 0,
+      "text": "用户需求应置于首位。界面设计遵循简洁友好原则，降低师生的操作负担；反馈机制应完善，及时提示操作结果与错误原因；容错性设计不可或缺，需充分考虑用户误操作等场景。",
+      "char_count": 79,
+      "word_count": 7
+    },
+    {
+      "chunk_id": "p28_c0",
+      "paragraph_index": 28,
+      "chunk_index": 0,
+      "text": "1.2.2 功能模块设计",
+      "char_count": 12,
+      "word_count": 4
+    },
+    {
+      "chunk_id": "p29_c0",
+      "paragraph_index": 29,
+      "chunk_index": 0,
+      "text": "将上述需求转化为可实现的功能模块。以\"遗传规律探究\"功能为例，展示借助AI实现复杂项目的编程的完整过程。输入指令：",
+      "char_count": 57,
+      "word_count": 6
+    },
+    {
+      "chunk_id": "p30_c0",
+      "paragraph_index": 30,
+      "chunk_index": 0,
+      "text": "\"我是一名高中生物教师，我想设计遗传系谱图探究功能，支持以下操作：①添加个体（设置性别、基因型）；②添加亲子关系；③切换不同遗传模式（AD/AR/XD/XR/Y）观察表现型变化；④计算后代概率。请帮我拆分模块、设计架构。\"",
+      "char_count": 111,
+      "word_count": 17
+    },
+    {
+      "chunk_id": "p31_c0",
+      "paragraph_index": 31,
+      "chunk_index": 0,
+      "text": "AI根据指令生成了各功能模块的简要说明（表2）。",
+      "char_count": 24,
+      "word_count": 2
+    },
+    {
+      "chunk_id": "p32_c0",
+      "paragraph_index": 32,
+      "chunk_index": 0,
+      "text": "表2 遗传规律探究功能模块设计",
+      "char_count": 15,
+      "word_count": 2
+    },
+    {
+      "chunk_id": "p33_c0",
+      "paragraph_index": 33,
+      "chunk_index": 0,
+      "text": "1.2.3 模块代码生成与迭代",
+      "char_count": 15,
+      "word_count": 4
+    },
+    {
+      "chunk_id": "p34_c0",
+      "paragraph_index": 34,
+      "chunk_index": 0,
+      "text": "将上述功能模块逐一开发和完善。以系谱图绘制模块为例，展示完整的AI辅助开发迭代过程：",
+      "char_count": 42,
+      "word_count": 3
+    },
+    {
+      "chunk_id": "p35_c0",
+      "paragraph_index": 35,
+      "chunk_index": 0,
+      "text": "【AI辅助开发完整示例】",
+      "char_count": 12,
+      "word_count": 1
+    },
+    {
+      "chunk_id": "p36_c0",
+      "paragraph_index": 36,
+      "chunk_index": 0,
+      "text": "初始需求描述：",
+      "char_count": 7,
+      "word_count": 1
+    },
+    {
+      "chunk_id": "p37_c0",
+      "paragraph_index": 37,
+      "chunk_index": 0,
+      "text": "\"请帮我实现系谱图绘制模块。界面要求：①采用SVG作为绘图引擎；②个体节点：男性为方形、女性为圆形，正常个体为空心轮廓、患病个体深色填充；③世代用罗马数字标记于系谱图左侧；④支持拖拽移动个体位置；⑤视图区域支持缩放与平移操作。\"",
+      "char_count": 114,
+      "word_count": 11
+    },
+    {
+      "chunk_id": "p38_c0",
+      "paragraph_index": 38,
+      "chunk_index": 0,
+      "text": "AI第一轮响应： AI生成了基础SVG渲染框架，包含方形/圆形节点绘制和基本拖拽功能。代码结构清晰，使用了React组件封装。",
+      "char_count": 63,
+      "word_count": 6
+    },
+    {
+      "chunk_id": "p39_c0",
+      "paragraph_index": 39,
+      "chunk_index": 0,
+      "text": "问题反馈： 测试发现初始版本未考虑世代排列的自动布局问题。当添加新个体时，程序未能自动计算世代位置，同一辈的个体也未对齐。",
+      "char_count": 61,
+      "word_count": 5
+    },
+    {
+      "chunk_id": "p40_c0",
+      "paragraph_index": 40,
+      "chunk_index": 0,
+      "text": "优化提示词：",
+      "char_count": 6,
+      "word_count": 1
+    },
+    {
+      "chunk_id": "p41_c0",
+      "paragraph_index": 41,
+      "chunk_index": 0,
+      "text": "\"上述代码需要改进：当添加新个体时，需要自动计算其世代位置（比父母世代多1），并在已有空间不足时自动扩展视图区域。另外，系谱图应遵循'同辈水平对齐'的排版规范，同一世代的个体应在同一水平线上。\"",
+      "char_count": 97,
+      "word_count": 8
+    },
+    {
+      "chunk_id": "p42_c0",
+      "paragraph_index": 42,
+      "chunk_index": 0,
+      "text": "AI第二轮响应： AI添加了基于亲缘关系的世代计算算法，实现了同辈对齐的自动布局，并加入了视图区域动态扩展逻辑。",
+      "char_count": 56,
+      "word_count": 4
+    },
+    {
+      "chunk_id": "p43_c0",
+      "paragraph_index": 43,
+      "chunk_index": 0,
+      "text": "再次反馈： 布局算法在处理复杂大家族时出现了线条交叉问题，影响可读性。",
+      "char_count": 35,
+      "word_count": 3
+    },
+    {
+      "chunk_id": "p44_c0",
+      "paragraph_index": 44,
+      "chunk_index": 0,
+      "text": "第二轮优化：",
+      "char_count": 6,
+      "word_count": 1
+    },
+    {
+      "chunk_id": "p45_c0",
+      "paragraph_index": 45,
+      "chunk_index": 0,
+      "text": "\"还需要优化连接线的绘制逻辑，避免代际连线与同胞连线的交叉，确保系谱图符合生物学规范。\"",
+      "char_count": 44,
+      "word_count": 3
+    },
+    {
+      "chunk_id": "p46_c0",
+      "paragraph_index": 46,
+      "chunk_index": 0,
+      "text": "AI第三轮响应： AI重构了连接线渲染逻辑，采用分层绘制策略（先绘制世代线，再绘制同胞线，最后绘制婚姻线），解决了交叉问题。",
+      "char_count": 62,
+      "word_count": 7
+    },
+    {
+      "chunk_id": "p47_c0",
+      "paragraph_index": 47,
+      "chunk_index": 0,
+      "text": "最终优化：",
+      "char_count": 5,
+      "word_count": 1
+    },
+    {
+      "chunk_id": "p48_c0",
+      "paragraph_index": 48,
+      "chunk_index": 0,
+      "text": "\"增加撤销/重做功能，记录最近20步操作，支持用户回溯。\"",
+      "char_count": 29,
+      "word_count": 4
+    },
+    {
+      "chunk_id": "p49_c0",
+      "paragraph_index": 49,
+      "chunk_index": 0,
+      "text": "经过3-4轮迭代优化，系谱图绘制模块最终实现了自动布局、拖拽调整、视图缩放平移及历史回溯等完整功能。",
+      "char_count": 50,
+      "word_count": 4
+    },
+    {
+      "chunk_id": "p50_c0",
+      "paragraph_index": 50,
+      "chunk_index": 0,
+      "text": "以下为AI实际生成的概率计算模块核心代码：",
+      "char_count": 21,
+      "word_count": 1
+    },
+    {
+      "chunk_id": "p51_c0",
+      "paragraph_index": 51,
+      "chunk_index": 0,
+      "text": "typescript",
+      "char_count": 10,
+      "word_count": 1
+    },
+    {
+      "chunk_id": "p52_c0",
+      "paragraph_index": 52,
+      "chunk_index": 0,
+      "text": "// AI生成的概率计算模块核心代码",
+      "char_count": 18,
+      "word_count": 1
+    },
+    {
+      "chunk_id": "p53_c0",
+      "paragraph_index": 53,
+      "chunk_index": 0,
+      "text": "export const calculateOffspringProbabilities = (",
+      "char_count": 48,
+      "word_count": 3
+    },
+    {
+      "chunk_id": "p54_c0",
+      "paragraph_index": 54,
+      "chunk_index": 0,
+      "text": "parent1Genotype: string,",
+      "char_count": 24,
+      "word_count": 2
+    },
+    {
+      "chunk_id": "p55_c0",
+      "paragraph_index": 55,
+      "chunk_index": 0,
+      "text": "parent2Genotype: string,",
+      "char_count": 24,
+      "word_count": 2
+    },
+    {
+      "chunk_id": "p56_c0",
+      "paragraph_index": 56,
+      "chunk_index": 0,
+      "text": "trait: Trait,",
+      "char_count": 13,
+      "word_count": 2
+    },
+    {
+      "chunk_id": "p57_c0",
+      "paragraph_index": 57,
+      "chunk_index": 0,
+      "text": "parent1Gender: Gender",
+      "char_count": 21,
+      "word_count": 2
+    },
+    {
+      "chunk_id": "p58_c0",
+      "paragraph_index": 58,
+      "chunk_index": 0,
+      "text": "): Array<{genotype: string, probability: number}> => {",
+      "char_count": 54,
+      "word_count": 5
+    },
+    {
+      "chunk_id": "p59_c0",
+      "paragraph_index": 59,
+      "chunk_index": 0,
+      "text": "const maleGametes = getGametes(",
+      "char_count": 31,
+      "word_count": 3
+    },
+    {
+      "chunk_id": "p60_c0",
+      "paragraph_index": 60,
+      "chunk_index": 0,
+      "text": "parent1Gender === Gender.Male ? parent1Genotype : parent2Genotype,",
+      "char_count": 66,
+      "word_count": 5
+    },
+    {
+      "chunk_id": "p61_c0",
+      "paragraph_index": 61,
+      "chunk_index": 0,
+      "text": "trait,",
+      "char_count": 6,
+      "word_count": 1
+    },
+    {
+      "chunk_id": "p62_c0",
+      "paragraph_index": 62,
+      "chunk_index": 0,
+      "text": "Gender.Male",
+      "char_count": 11,
+      "word_count": 2
+    },
+    {
+      "chunk_id": "p63_c0",
+      "paragraph_index": 63,
+      "chunk_index": 0,
+      "text": ");",
+      "char_count": 2,
+      "word_count": 0
+    },
+    {
+      "chunk_id": "p64_c0",
+      "paragraph_index": 64,
+      "chunk_index": 0,
+      "text": "const femaleGametes = getGametes(",
+      "char_count": 33,
+      "word_count": 3
+    },
+    {
+      "chunk_id": "p65_c0",
+      "paragraph_index": 65,
+      "chunk_index": 0,
+      "text": "parent1Gender === Gender.Female ? parent1Genotype : parent2Genotype,",
+      "char_count": 68,
+      "word_count": 5
+    },
+    {
+      "chunk_id": "p66_c0",
+      "paragraph_index": 66,
+      "chunk_index": 0,
+      "text": "trait,",
+      "char_count": 6,
+      "word_count": 1
+    },
+    {
+      "chunk_id": "p67_c0",
+      "paragraph_index": 67,
+      "chunk_index": 0,
+      "text": "Gender.Female",
+      "char_count": 13,
+      "word_count": 2
+    },
+    {
+      "chunk_id": "p68_c0",
+      "paragraph_index": 68,
+      "chunk_index": 0,
+      "text": ");",
+      "char_count": 2,
+      "word_count": 0
+    },
+    {
+      "chunk_id": "p69_c0",
+      "paragraph_index": 69,
+      "chunk_index": 0,
+      "text": "const combinations: string[] = [];",
+      "char_count": 34,
+      "word_count": 3
+    },
+    {
+      "chunk_id": "p70_c0",
+      "paragraph_index": 70,
+      "chunk_index": 0,
+      "text": "maleGametes.forEach((m) => {",
+      "char_count": 28,
+      "word_count": 3
+    },
+    {
+      "chunk_id": "p71_c0",
+      "paragraph_index": 71,
+      "chunk_index": 0,
+      "text": "femaleGametes.forEach((f) => {",
+      "char_count": 30,
+      "word_count": 3
+    },
+    {
+      "chunk_id": "p72_c0",
+      "paragraph_index": 72,
+      "chunk_index": 0,
+      "text": "let childGenotype = combineGametes(m, f, trait.mode);",
+      "char_count": 53,
+      "word_count": 7
+    },
+    {
+      "chunk_id": "p73_c0",
+      "paragraph_index": 73,
+      "chunk_index": 0,
+      "text": "combinations.push(childGenotype);",
+      "char_count": 33,
+      "word_count": 3
+    },
+    {
+      "chunk_id": "p74_c0",
+      "paragraph_index": 74,
+      "chunk_index": 0,
+      "text": "});",
+      "char_count": 3,
+      "word_count": 0
+    },
+    {
+      "chunk_id": "p75_c0",
+      "paragraph_index": 75,
+      "chunk_index": 0,
+      "text": "});",
+      "char_count": 3,
+      "word_count": 0
+    },
+    {
+      "chunk_id": "p76_c0",
+      "paragraph_index": 76,
+      "chunk_index": 0,
+      "text": "const counts: Record<string, number> = {};",
+      "char_count": 42,
+      "word_count": 5
+    },
+    {
+      "chunk_id": "p77_c0",
+      "paragraph_index": 77,
+      "chunk_index": 0,
+      "text": "combinations.forEach((g) => {",
+      "char_count": 29,
+      "word_count": 3
+    },
+    {
+      "chunk_id": "p78_c0",
+      "paragraph_index": 78,
+      "chunk_index": 0,
+      "text": "counts[g] = (counts[g] || 0) + 1;",
+      "char_count": 33,
+      "word_count": 6
+    },
+    {
+      "chunk_id": "p79_c0",
+      "paragraph_index": 79,
+      "chunk_index": 0,
+      "text": "});",
+      "char_count": 3,
+      "word_count": 0
+    },
+    {
+      "chunk_id": "p80_c0",
+      "paragraph_index": 80,
+      "chunk_index": 0,
+      "text": "return Object.entries(counts).map(([genotype, count]) => ({",
+      "char_count": 59,
+      "word_count": 7
+    },
+    {
+      "chunk_id": "p81_c0",
+      "paragraph_index": 81,
+      "chunk_index": 0,
+      "text": "genotype,",
+      "char_count": 9,
+      "word_count": 1
+    },
+    {
+      "chunk_id": "p82_c0",
+      "paragraph_index": 82,
+      "chunk_index": 0,
+      "text": "probability: count / combinations.length,",
+      "char_count": 41,
+      "word_count": 4
+    },
+    {
+      "chunk_id": "p83_c0",
+      "paragraph_index": 83,
+      "chunk_index": 0,
+      "text": "}));",
+      "char_count": 4,
+      "word_count": 0
+    },
+    {
+      "chunk_id": "p84_c0",
+      "paragraph_index": 84,
+      "chunk_index": 0,
+      "text": "};",
+      "char_count": 2,
+      "word_count": 0
+    },
+    {
+      "chunk_id": "p85_c0",
+      "paragraph_index": 85,
+      "chunk_index": 0,
+      "text": "1.2.4 模块组合与测试",
+      "char_count": 13,
+      "word_count": 4
+    },
+    {
+      "chunk_id": "p86_c0",
+      "paragraph_index": 86,
+      "chunk_index": 0,
+      "text": "完成以上各模块的开发后，需将各模块串联整合，系统测试核心功能的运行效果。以VERIFY验证模式为例：调节控制面板参数，验证系谱图绘制、遗传规则引擎、概率计算、验证推理等模块是否同步响应。若出现错误或功能不完善，将错误信息或改进需求反馈给AI进行迭代优化，直至程序正常运行并满足教学需求。",
+      "char_count": 143,
+      "word_count": 12
+    },
+    {
+      "chunk_id": "p87_c0",
+      "paragraph_index": 87,
+      "chunk_index": 0,
+      "text": "程序设计遵循\"直观易用\"与\"科学准确\"两项原则。系谱图绘制模块采用生物学领域的标准表示规范：男性为方形、女性为圆形；世代用罗马数字（I、II、III...）标记于系谱图左侧；患病个体以深色填充，正常个体为空心轮廓。用户可通过拖拽自由移动个体位置，视图区域支持缩放与平移操作。",
+      "char_count": 137,
+      "word_count": 17
+    },
+    {
+      "chunk_id": "p88_c0",
+      "paragraph_index": 88,
+      "chunk_index": 0,
+      "text": "遗传规律模拟模块内置5种遗传模式：常染色体显性（AD）、常染色体隐性（AR）、X连锁显性（XD）、X连锁隐性（XR）以及Y连锁（Y）。针对每种遗传模式，程序维护基因型-表现型映射规则，能够根据个体基因型正确判断其是否表现出疾病症状。模块预设多指症（AD）、白化病（AR）、抗维生素D佝偻病（XD）、血友病（XR）、外耳道多毛症（Y）五种典型遗传病模板，用户可直接加载使用或进行个性化修改。",
+      "char_count": 194,
+      "word_count": 26
+    },
+    {
+      "chunk_id": "p89_c0",
+      "paragraph_index": 89,
+      "chunk_index": 0,
+      "text": "交互控制模块提供遗传特征的自定义功能，用户可设置特征的名称、显隐性基因符号及可视化颜色。该模块还支持将当前系谱图导出为PNG格式图片，便于教学演示与作业提交。",
+      "char_count": 79,
+      "word_count": 5
+    },
+    {
+      "chunk_id": "p90_c0",
+      "paragraph_index": 90,
+      "chunk_index": 0,
+      "text": "历史记录模块实现了最多20步的撤销/重做功能，采用命令模式设计。每次对系谱图的修改（添加个体、设置基因型、添加后代等）均会保存完整状态快照，支持用户回溯操作步骤。",
+      "char_count": 81,
+      "word_count": 9
+    },
+    {
+      "chunk_id": "p91_c0",
+      "paragraph_index": 91,
+      "chunk_index": 0,
+      "text": "程序界面示例如图1、图2、图3所示：",
+      "char_count": 18,
+      "word_count": 3
+    },
+    {
+      "chunk_id": "p92_c0",
+      "paragraph_index": 92,
+      "chunk_index": 0,
+      "text": "图1 系谱图虚拟实验程序界面 （左侧为系谱图画布区域，右侧为控制面板，顶部分别为验证模式和探究模式切换按钮）",
+      "char_count": 54,
+      "word_count": 5
+    },
+    {
+      "chunk_id": "p93_c0",
+      "paragraph_index": 93,
+      "chunk_index": 0,
+      "text": "图2 电泳图模拟结果界面 （展示不同基因型对应的电泳条带：正常个体为单一条带，患病个体为双条带，携带者为差异条带）",
+      "char_count": 57,
+      "word_count": 6
+    },
+    {
+      "chunk_id": "p94_c0",
+      "paragraph_index": 94,
+      "chunk_index": 0,
+      "text": "图3 遗传咨询结果可视化图谱 （展示孟德尔方阵概率分布及患病/携带者概率统计）",
+      "char_count": 39,
+      "word_count": 4
+    },
+    {
+      "chunk_id": "p95_c0",
+      "paragraph_index": 95,
+      "chunk_index": 0,
+      "text": "1.3 数据模型与关键算法",
+      "char_count": 13,
+      "word_count": 3
+    },
+    {
+      "chunk_id": "p96_c0",
+      "paragraph_index": 96,
+      "chunk_index": 0,
+      "text": "程序的数据模型基于三个核心接口：Individual、Trait与Relationship。以下通过具体案例说明数据模型的实际应用。",
+      "char_count": 66,
+      "word_count": 4
+    },
+    {
+      "chunk_id": "p97_c0",
+      "paragraph_index": 97,
+      "chunk_index": 0,
+      "text": "案例：白化病系谱图的数据结构",
+      "char_count": 14,
+      "word_count": 2
+    },
+    {
+      "chunk_id": "p98_c0",
+      "paragraph_index": 98,
+      "chunk_index": 0,
+      "text": "假设一个白化病（AR）系谱图，包含父亲（基因型Aa）、母亲（基因型Aa）及他们的两个孩子（儿子基因型aa患病，女儿基因型Aa正常）。",
+      "char_count": 66,
+      "word_count": 10
+    },
+    {
+      "chunk_id": "p99_c0",
+      "paragraph_index": 99,
+      "chunk_index": 0,
+      "text": "Individual接口的具体实例：",
+      "char_count": 18,
+      "word_count": 1
+    },
+    {
+      "chunk_id": "p100_c0",
+      "paragraph_index": 100,
+      "chunk_index": 0,
+      "text": "typescript",
+      "char_count": 10,
+      "word_count": 1
+    },
+    {
+      "chunk_id": "p101_c0",
+      "paragraph_index": 101,
+      "chunk_index": 0,
+      "text": "// 父亲",
+      "char_count": 5,
+      "word_count": 1
+    },
+    {
+      "chunk_id": "p102_c0",
+      "paragraph_index": 102,
+      "chunk_index": 0,
+      "text": "{ id: \"I-1\", gender: \"MALE\", generation: 1, x: 100, y: 200,",
+      "char_count": 59,
+      "word_count": 10
+    },
+    {
+      "chunk_id": "p103_c0",
+      "paragraph_index": 103,
+      "chunk_index": 0,
+      "text": "genotypes: { \"trait-1\": \"Aa\" }, affectedTraitIds: [] }",
+      "char_count": 54,
+      "word_count": 4
+    },
+    {
+      "chunk_id": "p104_c0",
+      "paragraph_index": 104,
+      "chunk_index": 0,
+      "text": "// 母亲",
+      "char_count": 5,
+      "word_count": 1
+    },
+    {
+      "chunk_id": "p105_c0",
+      "paragraph_index": 105,
+      "chunk_index": 0,
+      "text": "{ id: \"I-2\", gender: \"FEMALE\", generation: 1, x: 300, y: 200,",
+      "char_count": 61,
+      "word_count": 10
+    },
+    {
+      "chunk_id": "p106_c0",
+      "paragraph_index": 106,
+      "chunk_index": 0,
+      "text": "genotypes: { \"trait-1\": \"Aa\" }, affectedTraitIds: [] }",
+      "char_count": 54,
+      "word_count": 4
+    },
+    {
+      "chunk_id": "p107_c0",
+      "paragraph_index": 107,
+      "chunk_index": 0,
+      "text": "// 儿子（患病）",
+      "char_count": 9,
+      "word_count": 2
+    },
+    {
+      "chunk_id": "p108_c0",
+      "paragraph_index": 108,
+      "chunk_index": 0,
+      "text": "{ id: \"II-1\", gender: \"MALE\", generation: 2, x: 150, y: 400,",
+      "char_count": 60,
+      "word_count": 10
+    },
+    {
+      "chunk_id": "p109_c0",
+      "paragraph_index": 109,
+      "chunk_index": 0,
+      "text": "genotypes: { \"trait-1\": \"aa\" }, affectedTraitIds: [\"trait-1\"] }",
+      "char_count": 63,
+      "word_count": 5
+    },
+    {
+      "chunk_id": "p110_c0",
+      "paragraph_index": 110,
+      "chunk_index": 0,
+      "text": "// 女儿（正常）",
+      "char_count": 9,
+      "word_count": 2
+    },
+    {
+      "chunk_id": "p111_c0",
+      "paragraph_index": 111,
+      "chunk_index": 0,
+      "text": "{ id: \"II-2\", gender: \"FEMALE\", generation: 2, x: 250, y: 400,",
+      "char_count": 62,
+      "word_count": 10
+    },
+    {
+      "chunk_id": "p112_c0",
+      "paragraph_index": 112,
+      "chunk_index": 0,
+      "text": "genotypes: { \"trait-1\": \"Aa\" }, affectedTraitIds: [] }",
+      "char_count": 54,
+      "word_count": 4
+    },
+    {
+      "chunk_id": "p113_c0",
+      "paragraph_index": 113,
+      "chunk_index": 0,
+      "text": "Trait接口描述遗传特征：",
+      "char_count": 14,
+      "word_count": 1
+    },
+    {
+      "chunk_id": "p114_c0",
+      "paragraph_index": 114,
+      "chunk_index": 0,
+      "text": "typescript",
+      "char_count": 10,
+      "word_count": 1
+    },
+    {
+      "chunk_id": "p115_c0",
+      "paragraph_index": 115,
+      "chunk_index": 0,
+      "text": "{ id: \"trait-1\", name: \"白化病\", mode: \"AR\",",
+      "char_count": 41,
+      "word_count": 6
+    },
+    {
+      "chunk_id": "p116_c0",
+      "paragraph_index": 116,
+      "chunk_index": 0,
+      "text": "dominantAllele: \"A\", recessiveAllele: \"a\" }",
+      "char_count": 43,
+      "word_count": 4
+    },
+    {
+      "chunk_id": "p117_c0",
+      "paragraph_index": 117,
+      "chunk_index": 0,
+      "text": "Relationship接口描述家族关系：",
+      "char_count": 21,
+      "word_count": 1
+    },
+    {
+      "chunk_id": "p118_c0",
+      "paragraph_index": 118,
+      "chunk_index": 0,
+      "text": "typescript",
+      "char_count": 10,
+      "word_count": 1
+    },
+    {
+      "chunk_id": "p119_c0",
+      "paragraph_index": 119,
+      "chunk_index": 0,
+      "text": "{ id: \"rel-1\", p1Id: \"I-1\", p2Id: \"I-2\", childrenIds: [\"II-1\", \"II-2\"] }",
+      "char_count": 72,
+      "word_count": 9
+    },
+    {
+      "chunk_id": "p120_c0",
+      "paragraph_index": 120,
+      "chunk_index": 0,
+      "text": "遗传学算法实现于genetics.ts模块。isAffected函数根据基因型字符串与遗传模式判断个体是否患病：对于常染色体显性遗传只要包含显性基因即表达为患者（如\"A_\"），对于常染色体隐性遗传则需纯合隐性基因型（如\"aa\"）才表达，对于X连锁遗传则需区分男女不同判断逻辑——X连锁隐性遗传中女性需纯合隐性（XbXb）才患病，男性只需携带隐性基因（XbY）即患病。calculateOffspringProbabilities函数实现孟德尔方阵计算，遍历所有配子组合并统计各基因型组合的出现次数，归一化为概率值。generateChildGenotype函数根据上述概率分布使用随机数生成符合孟德尔遗传规律的子代基因型，实现遗传模拟的随机性。checkConsistency函数检查系谱图与特定遗传模式是否一致，对违反孟德尔规律的情况给出矛盾提示。getCounselingResult函数计算遗传咨询场景下后代的基因型分布与患病概率，以可视化方式呈现咨询报告。",
+      "char_count": 432,
+      "word_count": 26
+    },
+    {
+      "chunk_id": "p121_c0",
+      "paragraph_index": 121,
+      "chunk_index": 0,
+      "text": "程序采用SVG作为系谱图的渲染媒介，通过transform属性实现视图的缩放与平移。系谱图节点（PedigreeNode组件）根据个体性别渲染为方形或圆形，并根据其各性状表现型填充相应图案或颜色。节点之间的连接线（renderConnections函数）根据亲缘关系绘制，包括配偶间的婚姻连线、亲代到子代的垂直连线及子代间的水平连线。",
+      "char_count": 167,
+      "word_count": 11
+    },
+    {
+      "chunk_id": "p122_c0",
+      "paragraph_index": 122,
+      "chunk_index": 0,
+      "text": "1.4 网站封装",
+      "char_count": 8,
+      "word_count": 3
+    },
+    {
+      "chunk_id": "p123_c0",
+      "paragraph_index": 123,
+      "chunk_index": 0,
+      "text": "程序开发完成后，通过Vite工具将TypeScript语言翻译成标准的JavaScript语言。将生成的静态资源文件上传至Upma平台，部署为在线可访问的静态网站，生成程序链接及二维码，供学生免安装直接通过浏览器访问，便于教学实施。",
+      "char_count": 116,
+      "word_count": 7
+    },
+    {
+      "chunk_id": "p124_c0",
+      "paragraph_index": 124,
+      "chunk_index": 0,
+      "text": "2 教学实践",
+      "char_count": 6,
+      "word_count": 2
+    },
+    {
+      "chunk_id": "p125_c0",
+      "paragraph_index": 125,
+      "chunk_index": 0,
+      "text": "本研究基于程序的两大核心功能模块——VERIFY验证模式与INQUIRY探究模式，分别设计了针对伴性遗传和人类遗传病两大专题的教学方案。程序内置的系谱图绘制、电泳图模拟、推论验证及遗传咨询等功能，为教学活动的开展提供了完整的技术支撑。",
+      "char_count": 117,
+      "word_count": 7
+    },
+    {
+      "chunk_id": "p126_c0",
+      "paragraph_index": 126,
+      "chunk_index": 0,
+      "text": "2.1 伴性遗传教学（2课时）",
+      "char_count": 15,
+      "word_count": 4
+    },
+    {
+      "chunk_id": "p127_c0",
+      "paragraph_index": 127,
+      "chunk_index": 0,
+      "text": "伴性遗传是遗传学教学中的重点与难点内容，涉及X染色体上基因传递的独特规律，学生往往对隔代遗传现象、男女患病概率差异等概念理解困难。本轮教学采用VERIFY验证模式，旨在让学生在程序提供的真实遗传情境中验证遗传方式假设，体验科学探究的基本流程。",
+      "char_count": 121,
+      "word_count": 7
+    },
+    {
+      "chunk_id": "p128_c0",
+      "paragraph_index": 128,
+      "chunk_index": 0,
+      "text": "第1课时以血友病这一经典的X连锁隐性遗传病为案例。",
+      "char_count": 25,
+      "word_count": 1
+    },
+    {
+      "chunk_id": "p129_c0",
+      "paragraph_index": 129,
+      "chunk_index": 0,
+      "text": "课前，教师在程序中加载\"血友病（XR）\"预设模板，投影展示一个包含两代人的家族系谱图和对应的电泳图结果。",
+      "char_count": 52,
+      "word_count": 6
+    },
+    {
+      "chunk_id": "p130_c0",
+      "paragraph_index": 130,
+      "chunk_index": 0,
+      "text": "活动一：观察与描述（10分钟） 学生进入VERIFY验证模式，首先观察系谱图，描述所见的遗传现象：\"这个家族中，男性患者有几位？女性患者有几位？患者的性别比例有何特点？\"随后，点击系谱图中的各个体节点，查看弹出的详细信息面板（包括基因型、表现型），尝试记录每个个体的性状特征。",
+      "char_count": 138,
+      "word_count": 16
+    },
+    {
+      "chunk_id": "p131_c0",
+      "paragraph_index": 131,
+      "chunk_index": 0,
+      "text": "活动二：提出假设（10分钟） 基于观察到的遗传现象和电泳图证据（男性患者与女性携带者的电泳条带差异），学生分组讨论并提出遗传方式假设。教师引导学生思考：\"如果是一种隐性遗传病，患者的基因型可能是什么？携带者会有什么特征？\"",
+      "char_count": 111,
+      "word_count": 10
+    },
+    {
+      "chunk_id": "p132_c0",
+      "paragraph_index": 132,
+      "chunk_index": 0,
+      "text": "活动三：验证假设（15分钟） 学生点击程序界面右侧控制面板的\"验证模式\"按钮，进入推论验证界面。在\"遗传方式\"下拉菜单中选择假设的遗传方式（如\"X连锁隐性遗传\"），点击\"开始验证\"按钮。程序自动检查系谱图中的亲缘关系和表现型分布，给出验证结果。若假设正确，程序显示绿色的\"验证通过\"提示；若假设错误，程序显示红色的\"验证失败\"提示，并列出矛盾之处（如\"女儿患病但父亲正常，与X连锁隐性遗传规律不符\"）。",
+      "char_count": 201,
+      "word_count": 29
+    },
+    {
+      "chunk_id": "p133_c0",
+      "paragraph_index": 133,
+      "chunk_index": 0,
+      "text": "活动四：调整假设再验证（10分钟） 针对验证失败的情况，学生分组讨论矛盾提示，根据孟德尔遗传规律调整假设，再次输入新的遗传方式假设进行验证。通过这一反复验证的过程，学生能够深刻理解X连锁隐性遗传的核心特征：男患者多于女患者、交叉遗传现象、女儿患病父亲必患病等。",
+      "char_count": 130,
+      "word_count": 12
+    },
+    {
+      "chunk_id": "p134_c0",
+      "paragraph_index": 134,
+      "chunk_index": 0,
+      "text": "第2课时引入更复杂的遗传咨询情境。",
+      "char_count": 17,
+      "word_count": 1
+    },
+    {
+      "chunk_id": "p135_c0",
+      "paragraph_index": 135,
+      "chunk_index": 0,
+      "text": "课前，教师从程序案例库中调取\"杜氏肌营养不良（DMD）\"案例——一种严重的X连锁隐性遗传病，设计遗传咨询角色扮演活动。",
+      "char_count": 59,
+      "word_count": 7
+    },
+    {
+      "chunk_id": "p136_c0",
+      "paragraph_index": 136,
+      "chunk_index": 0,
+      "text": "活动一：角色分配与案例阅读（5分钟） 一组学生扮演遗传咨询师，另一组扮演咨询者家属。遗传咨询师阅读案例背景：一名健康的年轻女性，她的哥哥患有DMD，她想了解自己未来孩子患病的风险。",
+      "char_count": 90,
+      "word_count": 9
+    },
+    {
+      "chunk_id": "p137_c0",
+      "paragraph_index": 137,
+      "chunk_index": 0,
+      "text": "活动二：系谱图构建与分析（15分钟） 学生在程序中构建咨询者家族系谱图。点击工具栏的\"添加个体\"按钮，在弹出的对话框中设置个体信息（性别、基因型等）。依次添加女性（咨询者）、其父母、哥哥等成员，标注各成员的基因型。点击控制面板的\"遗传咨询\"按钮，进入咨询界面。",
+      "char_count": 130,
+      "word_count": 19
+    },
+    {
+      "chunk_id": "p138_c0",
+      "paragraph_index": 138,
+      "chunk_index": 0,
+      "text": "活动三：风险评估与咨询建议（20分钟） 遗传咨询师在程序中输入婚配方案（如\"正常男性 × 携带者女性\"），点击\"计算概率\"按钮，程序立即生成后代的基因型分布与患病概率可视化图谱。咨询师根据概率结果，向\"咨询者\"解释生育患病孩子的风险，并提供遗传建议。程序还支持模拟不同婚配方案的对比分析，帮助学生理解基因型与婚配选择对后代风险的影响。",
+      "char_count": 167,
+      "word_count": 18
+    },
+    {
+      "chunk_id": "p139_c0",
+      "paragraph_index": 139,
+      "chunk_index": 0,
+      "text": "通过模拟真实的遗传咨询场景，学生不仅巩固了遗传方式判断的知识，更培养了运用遗传学知识解决实际问题的能力。",
+      "char_count": 52,
+      "word_count": 3
+    },
+    {
+      "chunk_id": "p140_c0",
+      "paragraph_index": 140,
+      "chunk_index": 0,
+      "text": "表4 伴性遗传教学结果统计表",
+      "char_count": 14,
+      "word_count": 2
+    },
+    {
+      "chunk_id": "p141_c0",
+      "paragraph_index": 141,
+      "chunk_index": 0,
+      "text": "2.2 人类遗传病教学（3课时）",
+      "char_count": 16,
+      "word_count": 4
+    },
+    {
+      "chunk_id": "p142_c0",
+      "paragraph_index": 142,
+      "chunk_index": 0,
+      "text": "人类遗传病单元的教学设计遵循\"系谱图初识—遗传方式判断—风险评估建议\"的认知规律，采用INQUIRY探究模式，给予学生更大的自主空间构建系谱图、探究遗传规律。",
+      "char_count": 79,
+      "word_count": 8
+    },
+    {
+      "chunk_id": "p143_c0",
+      "paragraph_index": 143,
+      "chunk_index": 0,
+      "text": "第1课时聚焦于系谱图绘制技能的培养。",
+      "char_count": 18,
+      "word_count": 1
+    },
+    {
+      "chunk_id": "p144_c0",
+      "paragraph_index": 144,
+      "chunk_index": 0,
+      "text": "活动一：认识标准符号（10分钟） 教师通过程序投影展示标准系谱图符号：男性用方形表示、女性用圆形表示，正常个体为空心轮廓、患病个体为深色填充。学生观察并记忆这套符号体系。",
+      "char_count": 85,
+      "word_count": 9
+    },
+    {
+      "chunk_id": "p145_c0",
+      "paragraph_index": 145,
+      "chunk_index": 0,
+      "text": "活动二：构建简单系谱图（25分钟） 学生在程序中新建空白画布，利用INQUIRY模式的工具栏构建包含3代人的简单系谱图。具体操作步骤如下：",
+      "char_count": 69,
+      "word_count": 6
+    },
+    {
+      "chunk_id": "p146_c0",
+      "paragraph_index": 146,
+      "chunk_index": 0,
+      "text": "① 点击工具栏的\"添加男性\"或\"添加女性\"按钮，在画布上点击添加个体； ② 双击个体节点，在弹出面板中设置其基因型（如\"Aa\"或\"XbY\"）和表现型； ③ 点击工具栏的\"添加关系\"按钮，依次点击两个个体建立亲子关系； ④ 重复上述步骤，构建一个完整的3代人家系。",
+      "char_count": 131,
+      "word_count": 23
+    },
+    {
+      "chunk_id": "p147_c0",
+      "paragraph_index": 147,
+      "chunk_index": 0,
+      "text": "程序内置多指症（AD）、白化病（AR）等典型遗传病预设模板。完成基础练习后，学生可加载预设模板进行对比学习。点击任意个体，弹出详细信息面板，显示该个体的基因型、表现型及各性状的详细信息，直观理解基因型与表现型之间的对应关系。",
+      "char_count": 112,
+      "word_count": 12
+    },
+    {
+      "chunk_id": "p148_c0",
+      "paragraph_index": 148,
+      "chunk_index": 0,
+      "text": "第2课时引入程序的核心分析功能——遗传模式探究。",
+      "char_count": 24,
+      "word_count": 2
+    },
+    {
+      "chunk_id": "p149_c0",
+      "paragraph_index": 149,
+      "chunk_index": 0,
+      "text": "课前，教师从程序案例库中调取两个对照案例供学生分析：",
+      "char_count": 26,
+      "word_count": 2
+    },
+    {
+      "chunk_id": "p150_c0",
+      "paragraph_index": 150,
+      "chunk_index": 0,
+      "text": "案例A：脊髓小脑性共济失调（母亲患病、父亲健康，子一代儿子患病、女儿健康）",
+      "char_count": 37,
+      "word_count": 6
+    },
+    {
+      "chunk_id": "p151_c0",
+      "paragraph_index": 151,
+      "chunk_index": 0,
+      "text": "案例B：外耳道多毛症（父子世代均患病）",
+      "char_count": 19,
+      "word_count": 3
+    },
+    {
+      "chunk_id": "p152_c0",
+      "paragraph_index": 152,
+      "chunk_index": 0,
+      "text": "活动一：观察与假设（10分钟） 学生加载案例A的系谱图，首先观察遗传现象，记录特点：\"子一代中，患病个体都是男性还是女性？患病个体与性别有无关联？\"",
+      "char_count": 74,
+      "word_count": 9
+    },
+    {
+      "chunk_id": "p153_c0",
+      "paragraph_index": 153,
+      "chunk_index": 0,
+      "text": "活动二：自主探究遗传规律（25分钟） 学生分组领取任务，每组负责探究一种遗传方式（AD、AR、XD、XR、Y）。以XR探究为例，学生操作步骤如下：",
+      "char_count": 73,
+      "word_count": 12
+    },
+    {
+      "chunk_id": "p154_c0",
+      "paragraph_index": 154,
+      "chunk_index": 0,
+      "text": "① 点击控制面板的\"遗传模式\"下拉菜单，选择\"X连锁隐性遗传\"； ② 观察切换后的系谱图表现型变化，记录与原案例的异同； ③ 点击\"添加后代\"按钮，为现有个体添加子代，手动设置不同基因型，观察子代表现型规律； ④ 点击\"概率计算\"按钮，输入亲本基因型，获取后代各基因型组合的概率分布； ⑤ 归纳总结该遗传方式的系谱图特征（如\"男患者多于女患者\"）。",
+      "char_count": 174,
+      "word_count": 26
+    },
+    {
+      "chunk_id": "p155_c0",
+      "paragraph_index": 155,
+      "chunk_index": 0,
+      "text": "活动三：组间交流与归纳（10分钟） 各组汇报探究结果，学生整理不同遗传方式的判定规律对比表（表3）。",
+      "char_count": 50,
+      "word_count": 6
+    },
+    {
+      "chunk_id": "p156_c0",
+      "paragraph_index": 156,
+      "chunk_index": 0,
+      "text": "表3 五种遗传方式系谱图特征对照表",
+      "char_count": 17,
+      "word_count": 2
+    },
+    {
+      "chunk_id": "p157_c0",
+      "paragraph_index": 157,
+      "chunk_index": 0,
+      "text": "第3课时是单元教学的高阶应用环节——遗传咨询实践。",
+      "char_count": 25,
+      "word_count": 2
+    },
+    {
+      "chunk_id": "p158_c0",
+      "paragraph_index": 158,
+      "chunk_index": 0,
+      "text": "活动一：案例导入（5分钟） 教师展示案例：一对表型正常的夫妇，已生育过一个患白化病的孩子，他们非常担心下一胎的患病风险。",
+      "char_count": 60,
+      "word_count": 7
+    },
+    {
+      "chunk_id": "p159_c0",
+      "paragraph_index": 159,
+      "chunk_index": 0,
+      "text": "活动二：系谱图构建与风险分析（20分钟） 学生利用INQUIRY模式构建该夫妇的系谱图。具体操作：",
+      "char_count": 49,
+      "word_count": 5
+    },
+    {
+      "chunk_id": "p160_c0",
+      "paragraph_index": 160,
+      "chunk_index": 0,
+      "text": "① 添加父母双方，点击个体设置基因型（均为携带者\"Aa\"）； ② 点击\"遗传咨询\"按钮进入咨询界面； ③ 在\"婚配方案\"输入框中输入\"父母双方基因型均为Aa\"； ④ 点击\"计算概率\"按钮，程序生成后代的基因型分布柱状图，显示AA：Aa：aa = 1：2：1，患病概率为25%。",
+      "char_count": 138,
+      "word_count": 26
+    },
+    {
+      "chunk_id": "p161_c0",
+      "paragraph_index": 161,
+      "chunk_index": 0,
+      "text": "活动三：方案对比与建议撰写（15分钟） 学生利用程序的方案对比功能，模拟不同婚配策略：",
+      "char_count": 43,
+      "word_count": 5
+    },
+    {
+      "chunk_id": "p162_c0",
+      "paragraph_index": 162,
+      "chunk_index": 0,
+      "text": "方案一：正常夫妇 × 携带者（Aa）",
+      "char_count": 18,
+      "word_count": 4
+    },
+    {
+      "chunk_id": "p163_c0",
+      "paragraph_index": 163,
+      "chunk_index": 0,
+      "text": "方案二：正常夫妇 × 正常夫妇（AA）",
+      "char_count": 19,
+      "word_count": 4
+    },
+    {
+      "chunk_id": "p164_c0",
+      "paragraph_index": 164,
+      "chunk_index": 0,
+      "text": "程序生成两种方案的后代患病概率可视化对比图。学生据此撰写遗传咨询建议书，理解遗传学知识在健康决策中的应用价值。",
+      "char_count": 55,
+      "word_count": 3
+    },
+    {
+      "chunk_id": "p165_c0",
+      "paragraph_index": 165,
+      "chunk_index": 0,
+      "text": "本轮教学实践依托程序的双模式设计和多样化功能，将抽象的遗传规律转化为可操作、可观察的学习对象。VERIFY模式培养了学生的假说-演绎思维能力，INQUIRY模式则激发了学生的自主探究热情。电泳图模拟功能帮助学生理解遗传现象的分子基础，遗传咨询情境则增强了知识与生活的联系，实现了科学思维与健康决策能力的同步提升。",
+      "char_count": 156,
+      "word_count": 8
+    },
+    {
+      "chunk_id": "p166_c0",
+      "paragraph_index": 166,
+      "chunk_index": 0,
+      "text": "3 结论与反思",
+      "char_count": 7,
+      "word_count": 2
+    },
+    {
+      "chunk_id": "p167_c0",
+      "paragraph_index": 167,
+      "chunk_index": 0,
+      "text": "3.1 结论",
+      "char_count": 6,
+      "word_count": 3
+    },
+    {
+      "chunk_id": "p168_c0",
+      "paragraph_index": 168,
+      "chunk_index": 0,
+      "text": "借助Google AI Studio，本研究成功开发了一款AI辅助的遗传系谱图虚拟实验程序。实践表明，该程序能够有效支持高中遗传系谱图教学，为一线教师利用AI开发教学资源提供了可复用的技术路径。",
+      "char_count": 97,
+      "word_count": 7
+    },
+    {
+      "chunk_id": "p169_c0",
+      "paragraph_index": 169,
+      "chunk_index": 0,
+      "text": "在程序功能设计方面，本程序实现了5种标准遗传模式的系谱图绘制与模拟功能，包括常染色体显性、常染色体隐性、X连锁显性、X连锁隐性以及Y连锁遗传模式。程序内置多指症、白化病、抗维生素D佝偻病、血友病、外耳道多毛症等5种遗传病预设模板，以及脊髓小脑性共济失调、先天小睑裂综合征、杜氏肌营养不良等教学情境案例。程序配备了交互式控制面板、历史记录及图片导出功能，有效降低了遗传学习的认知负荷，能够支持学生开展自主探究活动。在开发模式方面，采用Google AI Studio辅助开发显著降低了编程开发的技术门槛和时间成本，使非计算机专业教师亦能参与教学资源的开发。",
+      "char_count": 277,
+      "word_count": 23
+    },
+    {
+      "chunk_id": "p170_c0",
+      "paragraph_index": 170,
+      "chunk_index": 0,
+      "text": "教学应用效果：",
+      "char_count": 7,
+      "word_count": 1
+    },
+    {
+      "chunk_id": "p171_c0",
+      "paragraph_index": 171,
+      "chunk_index": 0,
+      "text": "本研究在两轮教学实践中取得了积极反馈。第一轮伴性遗传教学（2课时，45名学生）采用VERIFY验证模式，课后测评显示：学生对X连锁遗传规律的理解正确率从课前的62%提升至89%；在开放式问题\"请分析血友病家系的遗传特点\"中，87%的学生能够准确写出\"交叉遗传\"和\"男患者多于女患者\"等关键特征，较传统讲授式教学的对照班（正确率约54%）有显著提升。第二轮人类遗传病教学（3课时，52名学生）采用INQUIRY探究模式，学生在遗传咨询模拟活动中表现出较高的参与度：92%的学生能够独立完成3代人家系图的构建，78%的学生能够正确判断给定系谱图对应的遗传方式。在学习满意度调查中，86%的学生认为\"使用虚拟实验程序帮助我更直观地理解了遗传规律\"，79%的学生认为\"遗传咨询活动增强了我对遗传学知识实用价值的认识\"。",
+      "char_count": 355,
+      "word_count": 36
+    },
+    {
+      "chunk_id": "p172_c0",
+      "paragraph_index": 172,
+      "chunk_index": 0,
+      "text": "上述教学实践表明，该程序能够有效提升学生的探究参与度和遗传概念理解水平，特别是在培养学生的假说-演绎思维能力方面表现突出。",
+      "char_count": 61,
+      "word_count": 3
+    },
+    {
+      "chunk_id": "p173_c0",
+      "paragraph_index": 173,
+      "chunk_index": 0,
+      "text": "3.2 反思",
+      "char_count": 6,
+      "word_count": 3
+    },
+    {
+      "chunk_id": "p174_c0",
+      "paragraph_index": 174,
+      "chunk_index": 0,
+      "text": "在教学实施建议方面，课前教师应提前熟悉程序功能，做好教学设计；课中应先演示后操作，引导学生循序渐进地探究；课后可布置开放性作业，如让学生分析真实家系数据或设计遗传咨询方案。",
+      "char_count": 86,
+      "word_count": 7
+    },
+    {
+      "chunk_id": "p175_c0",
+      "paragraph_index": 175,
+      "chunk_index": 0,
+      "text": "本研究仍存在一定局限性：教学试点样本量有限，教学效果的普适性有待验证；程序尚未开发移动端版本，限制了学生在课外场景的使用；教学评估方式相对单一，定量与定性相结合的深度评估有待完善。",
+      "char_count": 90,
+      "word_count": 7
+    },
+    {
+      "chunk_id": "p176_c0",
+      "paragraph_index": 176,
+      "chunk_index": 0,
+      "text": "未来可从以下方向拓展：一是增加更多遗传模式的模拟，如线粒体遗传、基因组印记等复杂遗传现象；二是开发移动端版本，提升程序的便携性和可及性；三是集成AI问答功能，为学生提供个性化的学习支持；四是增加协作功能，支持学生小组在线协作探究。",
+      "char_count": 115,
+      "word_count": 10
+    },
+    {
+      "chunk_id": "p177_c0",
+      "paragraph_index": 177,
+      "chunk_index": 0,
+      "text": "参考文献",
+      "char_count": 4,
+      "word_count": 1
+    },
+    {
+      "chunk_id": "p178_c0",
+      "paragraph_index": 178,
+      "chunk_index": 0,
+      "text": "[1] 中华人民共和国教育部。普通高中生物学课程标准（2017年版2020年修订）[M]. 北京：人民教育出版社，2020.",
+      "char_count": 62,
+      "word_count": 8
+    },
+    {
+      "chunk_id": "p179_c0",
+      "paragraph_index": 179,
+      "chunk_index": 0,
+      "text": "[2] 沈学省。\"三新\"背景下人类遗传病教学的变革趋势[J]. 生物学教学，2024，49（5）：12-16.",
+      "char_count": 55,
+      "word_count": 10
+    },
+    {
+      "chunk_id": "p180_c0",
+      "paragraph_index": 180,
+      "chunk_index": 0,
+      "text": "[3] 陈明华。基于ACT-R理论的高中生物学教学策略——以\"伴性遗传\"为例[J]. 生物学教学，2024，49（3）：8-12.",
+      "char_count": 65,
+      "word_count": 12
+    },
+    {
+      "chunk_id": "p181_c0",
+      "paragraph_index": 181,
+      "chunk_index": 0,
+      "text": "[4] 陈莉。GenAI赋能的情境实验教学范式探索[J]. 生物学教学，2024，49（7）：22-26.",
+      "char_count": 53,
+      "word_count": 9
+    },
+    {
+      "chunk_id": "p182_c0",
+      "paragraph_index": 182,
+      "chunk_index": 0,
+      "text": "[5] 闵伶。贯穿式情境教学培育生物学学科核心素养——以\"人类遗传病\"为例[J]. 生物学教学，2024，49（4）：15-19.",
+      "char_count": 65,
+      "word_count": 12
+    },
+    {
+      "chunk_id": "p183_c0",
+      "paragraph_index": 183,
+      "chunk_index": 0,
+      "text": "作者信息占位（请填写以下信息）：",
+      "char_count": 16,
+      "word_count": 2
+    },
+    {
+      "chunk_id": "p184_c0",
+      "paragraph_index": 184,
+      "chunk_index": 0,
+      "text": "作者简介：姓名（出生年- ），单位，职称/学位，研究方向，手机，Email",
+      "char_count": 37,
+      "word_count": 9
+    },
+    {
+      "chunk_id": "p185_c0",
+      "paragraph_index": 185,
+      "chunk_index": 0,
+      "text": "通讯地址：省 市 单位（邮编）",
+      "char_count": 15,
+      "word_count": 5
+    },
+    {
+      "chunk_id": "p186_c0",
+      "paragraph_index": 186,
+      "chunk_index": 0,
+      "text": "更新时间: 2026-04-03 论文内容核查与修正完成",
+      "char_count": 28,
+      "word_count": 3
+    }
+  ]
+}

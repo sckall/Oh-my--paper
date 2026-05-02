@@ -1,0 +1,63 @@
+stage_id: B14
+stage_name: RESULT_ANALYSIS
+group: B
+order: 14
+is_gate: false
+
+objectives:
+  - Analyze experimental results statistically
+  - Compare with baselines quantitatively
+  - Identify significant findings
+
+inputs:
+  - .pipeline/memory/experiment_ledger.md
+  - .pipeline/docs/experiment_plan.md
+
+outputs:
+  - .pipeline/docs/result_summary.md
+
+analysis_sections:
+  metrics_summary:
+    - "表格形式展示所有指标"
+    - "包含均值±标准差"
+    - "标注最佳结果"
+
+  comparative_findings:
+    - "Proposed vs 每个 Baseline"
+    - "Improvement percentage"
+    - "Statistical significance (if applicable)"
+
+  ablation_results:
+    - "每个组件的移除效果"
+    - "Component importance ranking"
+
+  limitations:
+    - "Unexpected results"
+    - "Potential confounds"
+    - "Generalizability concerns"
+
+statistical_checks:
+  - "是否报告了方差/置信区间？"
+  - "是否有足够的试验次数？"
+  - "异常值如何处理？"
+
+result_summary_format: |
+  ## Results Summary
+
+  **Hypothesis**: H{n}
+
+  **Main Results**:
+  | Metric | Proposed | Baseline 1 | Baseline 2 | Improvement |
+  |--------|----------|------------|------------|-------------|
+  | metric1 | val | val | val | +X% |
+
+  **Ablation Study**:
+  | Component Removed | Effect |
+  |-------------------|--------|
+  | comp1 | -X% |
+
+  **Key Findings**:
+  - [finding 1]
+  - [finding 2]
+
+next_stage: B15

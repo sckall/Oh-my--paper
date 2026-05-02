@@ -1,0 +1,51 @@
+stage_id: A7
+stage_name: MULTI_AGENT_DEBATE
+group: A
+order: 7
+is_gate: false
+
+objectives:
+  - Validate hypotheses through structured debate
+  - Identify weaknesses and refine hypotheses
+  - Build evidence chain for selected direction
+
+inputs:
+  - .pipeline/docs/hypothesis_board.md
+
+outputs:
+  - Updated hypothesis_board.md with debate results
+  - Selected hypothesis marked
+
+debate_structure:
+  round_1:
+    - role: proponent
+      task: "Argue FOR each hypothesis with evidence"
+    - role: opponent
+      task: "Challenge each hypothesis, identify flaws"
+
+  round_2:
+    - role: synthesizer
+      task: "Weigh evidence, select strongest hypothesis"
+
+debate_output_format: |
+  ## Debate Summary
+
+  **Selected Hypothesis**: H{n}
+
+  **Supporting Arguments**:
+  - [argument 1]
+  - [argument 2]
+
+  **Challenged Points**:
+  - [challenge 1] → [response]
+  - [challenge 2] → [response]
+
+  **Final Decision**: [PROCEED/REFINE/PIVOT]
+
+scoring_criteria:
+  novelty: 1-5
+  feasibility: 1-5
+  impact: 1-5
+  evidence_strength: 1-5
+
+next_stage: A8

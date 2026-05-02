@@ -1,0 +1,36 @@
+id: computers-and-education-2024-001
+title: 'AI-generated feedback vs. teacher feedback: A comparative study of student
+  satisfaction and learning outcomes'
+authors:
+- name: Lee, H.
+  affiliation: Seoul National University
+  email: hlee@snu.ac.kr
+- name: Chen, W.
+  affiliation: National Taiwan University
+  email: wchen@ntu.edu.tw
+year: 2024
+volume: 210
+issue: null
+pages: '105012'
+doi: 10.1016/j.compedu.2024.105012
+keywords:
+- AI feedback
+- teacher feedback
+- student satisfaction
+- learning outcomes
+section_structure:
+- Abstract
+- Introduction
+- Literature Review
+- Methodology
+- Results
+- Discussion
+- Conclusions
+empirical: true
+citation_count: 12
+url: https://doi.org/10.1016/j.compedu.2024.105012
+pdf_path: null
+markdown_path: papers/computers-and-education-2024-001.md
+abstract: This study compares the effectiveness of AI-generated feedback and teacher
+  feedback in EFL writing contexts. Using a quasi-experimental design with 120 participants...
+created_at: '2026-05-02T09:15:00+08:00'

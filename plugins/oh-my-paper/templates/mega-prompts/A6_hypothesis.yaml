@@ -1,0 +1,54 @@
+stage_id: A6
+stage_name: HYPOTHESIS_GEN
+group: A
+order: 6
+is_gate: false
+
+objectives:
+  - Generate falsifiable hypotheses from synthesis
+  - Use multi-agent debate to validate hypotheses
+  - Ensure each hypothesis has clear failure conditions
+
+inputs:
+  - .pipeline/docs/gap_matrix.md
+  - .pipeline/memory/literature_bank.md
+
+outputs:
+  - .pipeline/docs/hypothesis_board.md
+
+hypothesis_format: |
+  ## Hypothesis {n}
+
+  **Content**: [Hypothesis statement]
+
+  **Rationale**: [Why this hypothesis is important]
+
+  **Measurable Prediction**: [What evidence would support this]
+
+  **Failure Condition**: [What would disprove this]
+
+hypothesis_requirements:
+  min_hypotheses: 2
+  must_be_falsifiable: true
+  must_have_failure_condition: true
+
+generation_process:
+  - Review gap_matrix.md for research gaps
+  - Review literature_bank.md for supporting evidence
+  - Generate 3-5 candidate hypotheses
+  - For each hypothesis, define:
+    - Clear, testable statement
+    - Supporting evidence from literature
+    - Measurable prediction
+    - Failure condition
+
+multi_agent_debate:
+  - Conductor vs Reviewer perspective
+  - Challenge each hypothesis
+  - Select 2-3 strongest hypotheses
+
+constraints:
+  sushi_not_curry: "Focus on 1-2 core hypotheses, not everything"
+  novelty_constraint: "Must address identified research gap"
+
+next_stage: A7

@@ -1,0 +1,80 @@
+stage_id: B9
+stage_name: EXPERIMENT_DESIGN
+group: B
+order: 9
+is_gate: false
+
+objectives:
+  - Design comprehensive experiment plan
+  - Define objectives, datasets, baselines, methods, ablations, metrics
+  - Estimate compute budget
+
+inputs:
+  - .pipeline/docs/hypothesis_board.md
+  - .pipeline/mega/hardware_status.md
+
+outputs:
+  - .pipeline/docs/experiment_plan.md
+
+experiment_plan_yaml:
+  objectives:
+    - "验证假设 H{n}"
+    - "对比基线方法"
+    - "报告关键指标"
+
+  datasets:
+    - name: "[dataset 1]"
+      size: "[size]"
+      split: "train/val/test"
+    - name: "[dataset 2]"
+      size: "[size]"
+      split: "train/val/test"
+
+  baselines:
+    - name: "[baseline 1]"
+      paper: "[citation]"
+      implementation: "[URL or source]"
+    - name: "[baseline 2]"
+      paper: "[citation]"
+      implementation: "[URL or source]"
+    - name: "[baseline 3]"
+      paper: "[citation]"
+      implementation: "[URL or source]"
+
+  proposed_methods:
+    - name: "[method name]"
+      description: "[description]"
+      hyperparameters:
+        learning_rate: "[value]"
+        batch_size: "[value]"
+        epochs: "[value]"
+
+  ablations:
+    - component: "[component 1]"
+      removal_effect: "[expected effect]"
+    - component: "[component 2]"
+      removal_effect: "[expected effect]"
+
+  metrics:
+    - name: "[metric 1]"
+      direction: "higher_is_better"
+    - name: "[metric 2]"
+      direction: "lower_is_better"
+
+  risks:
+    - risk: "[risk 1]"
+      mitigation: "[mitigation]"
+    - risk: "[risk 2]"
+      mitigation: "[mitigation]"
+
+  compute_budget:
+    gpu_hours: "[estimated]"
+    cpu_hours: "[estimated]"
+    storage_gb: "[estimated]"
+
+constraints:
+  baselines_min: 3
+  ablations_required: true
+  strong_baselines: "Baselines must receive same tuning effort as proposed method"
+
+next_stage: B10

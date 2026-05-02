@@ -1,0 +1,16 @@
+# 决策日志（每个 stage gate 决策）
+# 格式：stage, decision (PROCEED/REFINE/PIVOT), reason, confidence, timestamp
+decisions: []
+
+# 字段说明：
+#   - id:          决策唯一标识（如 DEC-001）
+#   - stage:      所处阶段（如 "hypothesis-generation", "experiment-design", "writing"）
+#   - decision:   决策结果
+#                 PROCEED: 达标或证据充分，继续推进
+#                 REFINE:  接近达标或证据可修复，调整后继续
+#                 PIVOT:   完全不达标或假设被证伪，需重新开始
+#   - reason:     决策理由
+#   - confidence: 信心度（0.0 ~ 1.0）
+#   - evidence:   支撑证据（引用 experiment-log, paper-issues 等）
+#   - timestamp:  决策时间（ISO 8601 格式）
+#   - next_step:  后续行动描述

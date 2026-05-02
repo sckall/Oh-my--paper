@@ -1,0 +1,15 @@
+{
+  "name": "omp-paper-versioning",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.mjs",
+  "scripts": {
+    "archive": "node index.mjs archive",
+    "diff": "node index.mjs diff",
+    "rollback": "node index.mjs rollback",
+    "history": "node index.mjs history",
+    "stats": "node index.mjs stats",
+    "graph": "node index.mjs graph",
+    "snapshot": "node index.mjs snapshot"
+  }
+}

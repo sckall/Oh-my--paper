@@ -1,0 +1,62 @@
+stage_id: B15
+stage_name: RESEARCH_DECISION
+group: B
+order: 15
+is_gate: false
+
+objectives:
+  - Make go/no-go decision on research direction
+  - PROCEED if results support hypothesis
+  - REFINE if more experiments needed
+  - PIVOT if direction is infeasible
+
+inputs:
+  - .pipeline/docs/result_summary.md
+  - .pipeline/docs/experiment_plan.md
+  - .pipeline/mega/PROGRESS.md
+
+decision_types:
+  PROCEED:
+    condition: "Results strongly support hypothesis, ablation confirms component effectiveness"
+    action: "Continue to paper writing"
+    version_change: none
+    next_stage: C16
+
+  REFINE:
+    condition: "Results promising but insufficient, need more experiments"
+    action: "Return to iterative refinement or run additional experiments"
+    version_change: "+0.1"
+    next_stage: B13
+
+  PIVOT:
+    condition: "Results do not support hypothesis, direction infeasible"
+    action: "Return to hypothesis generation with new insights"
+    version_change: "+1.0"
+    next_stage: A6
+
+decision_checklist:
+  - "主要指标是否提升？"
+  - "消融实验是否证实组件有效？"
+  - "结果是否具有统计显著性？"
+  - "是否有意外发现需要讨论？"
+
+decision_output_format: |
+  ## Research Decision
+
+  **Decision**: {PROCEED/REFINE/PIVOT}
+
+  **Results Summary**:
+  - [metric 1]: [value] vs baseline [value] ([+/-]%)
+  - [metric 2]: [value] vs baseline [value] ([+/-]%)
+
+  **Justification**:
+  - [reason 1]
+  - [reason 2]
+
+  **Next Action**: [action]
+
+  **Version Change**: {version_change}
+
+  **Timestamp**: {datetime}
+
+next_stage: "C16 (if PROCEED)"

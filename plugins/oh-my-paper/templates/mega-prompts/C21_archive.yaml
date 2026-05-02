@@ -1,0 +1,61 @@
+stage_id: C21
+stage_name: KNOWLEDGE_ARCHIVE
+group: C
+order: 21
+is_gate: false
+
+objectives:
+  - Archive research artifacts
+  - Document lessons learned
+  - Prepare reproducibility package
+
+inputs:
+  - .pipeline/ (all memory files)
+  - experiments/ (all code)
+  - paper/sections/*.tex
+
+outputs:
+  - .pipeline/mega/knowledge_archive.md
+
+archive_sections:
+  research_summary:
+    - "Research question"
+    - "Hypothesis"
+    - "Methodology"
+    - "Key findings"
+
+  reproducibility_package:
+    - "Code: experiments/"
+    - "Data: data/"
+    - "Models: checkpoints/"
+    - "Dependencies: requirements.txt"
+
+  lessons_learned:
+    - "What worked"
+    - "What didn't work"
+    - "Future directions"
+
+  decisions_log:
+    - "All REFINE/PIVOT decisions"
+    - "Reasons for each"
+
+archive_format: |
+  # Knowledge Archive
+
+  ## Research Summary
+  [summary]
+
+  ## Reproducibility
+  - Code: [location]
+  - Data: [location]
+  - Models: [location]
+
+  ## Key Decisions
+  | Date | Decision | Reason |
+  |------|----------|--------|
+  | ... | ... | ... |
+
+  ## Lessons Learned
+  [lessons]
+
+next_stage: C22

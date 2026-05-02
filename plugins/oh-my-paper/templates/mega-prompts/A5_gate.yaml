@@ -1,0 +1,48 @@
+stage_id: A5
+stage_name: LITERATURE_GATE
+group: A
+order: 5
+is_gate: true
+gate_type: LITERATURE_SCREEN
+
+objectives:
+  - Screen literature for relevance and quality
+  - Verify minimum thresholds are met
+  - Ensure coverage of key research areas
+
+gate_criteria:
+  min_total_papers: 15
+  min_relevant_papers: 10
+  coverage_areas:
+    - methodology
+    - baselines
+    - related_work
+
+checklist:
+  - item: "文献总数 ≥ 15 篇"
+    check: "grep -c 'Status: accepted' .pipeline/memory/literature_bank.md"
+  - item: "相关文献 ≥ 10 篇"
+    check: "grep -c 'Relevance: high\\|Relevance: medium' .pipeline/memory/literature_bank.md"
+  - item: "覆盖 3 个领域（方法论、基线、相关工作）"
+    check: "cat .pipeline/docs/gap_matrix.md"
+
+pass_conditions:
+  - "文献总数 ≥ 15"
+  - "相关文献 ≥ 10"
+  - "覆盖方法论、基线、相关工作 3 个领域"
+
+ask_user_on_gate: true
+
+gate_pass_options:
+  - label: "通过"
+    description: "文献基础充足，继续假设生成"
+    next_stage: A6
+  - label: "补充搜索"
+    description: "返回文献搜索，补充不足的领域"
+    next_stage: A4
+  - label: "调整范围"
+    description: "调整研究问题范围，重新搜索"
+    next_stage: A1
+
+refine_on_fail: A4
+pivot_on_fail: A1

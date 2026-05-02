@@ -1,0 +1,60 @@
+stage_id: C23
+stage_name: CITATION_VERIFY
+group: C
+order: 23
+is_gate: false
+
+objectives:
+  - Verify all citations exist in .bib
+  - Check citation relevance
+  - Ensure no "zombie citations"
+
+inputs:
+  - paper/sections/*.tex
+  - references.bib
+
+outputs:
+  - citation_audit_report.md
+  - Updated references.bib
+
+citation_checks:
+  existence:
+    - "每个 \cite{key} 在 .bib 中有定义"
+    - "没有重复定义"
+
+  relevance:
+    - "每篇引用都与论文内容相关"
+    - "不接受领域无关的论文（哪怕是顶会）"
+
+  freshness:
+    - "优先 {年份} 后的论文"
+    - "包含领域奠基性工作（早期）"
+
+  format:
+    - "所有字段完整（author, title, year, venue）"
+    - "DOI 或 URL 存在"
+
+zombie_citation_definition: |
+  "引用了但论文中未讨论"
+  "引用了但与论文内容无关"
+  "声称顶会论文但实际不是"
+
+audit_output_format: |
+  # Citation Audit Report
+
+  **Total Citations**: {count}
+
+  **Issues Found**:
+  | Citation | Issue |
+  |----------|-------|
+  | key1 | Missing in bib |
+  | key2 | Irrelevant |
+  | key3 | Incomplete |
+
+  **Recommendations**:
+  - [recommendation 1]
+  - [recommendation 2]
+
+  **Final Citation Count**: {final_count}
+
+next_stage: "DONE"

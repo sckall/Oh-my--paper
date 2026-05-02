@@ -1,0 +1,58 @@
+stage_id: A8
+stage_name: RESEARCH_DECISION
+group: A
+order: 8
+is_gate: false
+
+objectives:
+  - Make PROCEED/REFINE/PIVOT decision based on debate results
+  - Record decision and justification
+  - Update version if REFINE or PIVOT
+
+inputs:
+  - .pipeline/docs/hypothesis_board.md
+  - .pipeline/mega/PROGRESS.md
+
+decision_types:
+  PROCEED:
+    condition: "Hypothesis is strong, evidence sufficient"
+    action: "Continue to experiment design"
+    version_change: none
+    next_stage: B9
+
+  REFINE:
+    condition: "Hypothesis needs adjustment"
+    action: "Return to hypothesis generation with feedback"
+    version_change: "+0.1"
+    next_stage: A6
+
+  PIVOT:
+    condition: "Research direction infeasible"
+    action: "Return to literature search or topic definition"
+    version_change: "+1.0"
+    next_stage: "A1 or A4"
+
+decision_output_format: |
+  ## Research Decision
+
+  **Decision**: {PROCEED/REFINE/PIVOT}
+
+  **Justification**:
+  - [reason 1]
+  - [reason 2]
+
+  **Evidence**:
+  - [evidence supporting decision]
+
+  **Next Action**: {action}
+
+  **Version Change**: {version_change}
+
+  **Timestamp**: {datetime}
+
+version_rules:
+  initial: "v1.0"
+  REFINE: "increment patch (v1.0 → v1.1)"
+  PIVOT: "increment major (v1.x → v2.0)"
+
+next_stage: "B9 (if PROCEED)"

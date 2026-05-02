@@ -1,0 +1,49 @@
+stage_id: B10
+stage_name: EXPERIMENT_GATE
+group: B
+order: 10
+is_gate: true
+gate_type: EXPERIMENT_DESIGN
+
+objectives:
+  - Validate experiment design completeness
+  - Verify resource feasibility
+  - Confirm Pilot has been run
+
+gate_criteria:
+  design_complete: true
+  baselines_min: 3
+  pilot_completed: true
+  ablation_planned: true
+
+checklist:
+  - item: "实验设计文档完整（目标、数据集、基线、方法、消融、指标、风险、预算）"
+    check: "cat .pipeline/docs/experiment_plan.md"
+  - item: "基线模型 ≥ 3 个"
+    check: "grep -c 'baselines:' .pipeline/docs/experiment_plan.md"
+  - item: "消融实验规划完整"
+    check: "grep -c 'ablations:' .pipeline/docs/experiment_plan.md"
+  - item: "Pilot 运行完成"
+    check: "cat .pipeline/mega/logs/pilot_result.md"
+
+pass_conditions:
+  - "设计文档完整"
+  - "基线 ≥ 3"
+  - "消融规划存在"
+  - "Pilot 已运行"
+
+ask_user_on_gate: true
+
+gate_pass_options:
+  - label: "通过"
+    description: "实验设计批准，进入代码实现"
+    next_stage: B11
+  - label: "修改设计"
+    description: "返回实验设计，修改不足之处"
+    next_stage: B9
+  - label: "重新假设"
+    description: "返回假设生成，重新思考方向"
+    next_stage: A6
+
+refine_on_fail: B9
+pivot_on_fail: A6

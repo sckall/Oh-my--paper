@@ -1,0 +1,23 @@
+# 论文问题追踪系统
+# 状态机：open → actionable → wont-do / completed → cleaned / reopened
+issues: []
+
+# 状态说明：
+# - open: 被 critique 发现，未分类
+# - actionable: triage 判定需要修复
+# - wont-do: triage 判定跳过（附原因）
+# - completed: 已修复
+# - reopened: 之前 completed 但又被发现仍存在
+
+# 字段说明：
+#   - id:          问题唯一标识（如 OMP-001）
+#   - title:       问题简述
+#   - description: 详细描述
+#   - severity:    critical / major / minor / trivial
+#   - status:      当前状态（见上方状态机）
+#   - source:      发现来源（如 "reviewer", "self-check", "reader"）
+#   - hypothesis_id: 相关假设编号（可选）
+#   - assignee:    负责人（可选）
+#   - resolved_note: 修复说明或 wont-do 原因
+#   - created_at:  发现时间
+#   - updated_at:  最后更新时间

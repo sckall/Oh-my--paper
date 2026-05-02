@@ -1,0 +1,12 @@
+journal:
+  id: "computer-science-china"
+  name: "计算机学报"
+  name_en: "Chinese Journal of Computers"
+  issn: "0254-4164"
+  publisher: "中国计算机学会"
+  impact_factor: null  # 国内期刊通常不使用 IF
+  year_range: [2020, 2024]
+  paper_count: 0
+  last_updated: "2026-05-02"
+  url: "http://cjc.ict.ac.cn/"
+  description: "国内计算机领域顶级期刊，涵盖计算机科学理论和应用技术"
