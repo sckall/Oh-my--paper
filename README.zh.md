@@ -215,7 +215,7 @@ git clone https://github.com/LigphiDonk/Oh-my--paper.git /tmp/oh-my-paper
 | **写作** | `inno-paper-writing` · `ml-paper-writing` · `scientific-writing` · `inno-figure-gen` · `inno-reference-audit` · `research-paper-handoff` |
 | **规划与评审** | `inno-pipeline-planner` · `research-pipeline-planner` · `inno-paper-reviewer` · `inno-prepare-resources` · `inno-rclone-to-overleaf` |
 | **演示** | `making-academic-presentations` · `inno-grant-proposal` |
-| **Agent 派发** | `claude-code-dispatch` · `codex-dispatch` |
+| **Agent 派发** | `claude-code-dispatch` |
 | **领域专项** | `academic-researcher` · `bioinformatics-init-analysis` · `research-news` |
 
 </details>
@@ -258,30 +258,47 @@ Oh My Paper 注册三个后台运行的 hook：
 
 ## 项目结构
 
-`/omp:setup` 创建以下结构：
+`/omp:setup` 创建核心目录结构：
 
 ```
 my-research/
-├── paper/                  # LaTeX 工作区
-│   ├── main.tex
-│   ├── sections/
-│   └── refs/
-├── experiment/             # 实验代码和脚本
-├── survey/                 # 文献调研产出
-├── ideation/               # 创新点、评估、计划
-├── promotion/              # 幻灯片、Demo、推广材料
-├── skills/                 # 项目本地技能
-├── .pipeline/
+├── .pipeline/              # 核心目录（/omp:setup 创建）
+│   ├── memory/             # Agent 记忆文件
+│   │   ├── project_truth.md
+│   │   ├── orchestrator_state.md
+│   │   ├── execution_context.md
+│   │   ├── experiment_ledger.md
+│   │   ├── result_summary.md
+│   │   ├── review_log.md
+│   │   ├── literature_bank.md
+│   │   ├── agent_handoff.md
+│   │   └── decision_log.md
 │   ├── tasks/
-│   │   └── tasks.json      # 跨阶段任务树
+│   │   └── tasks.json      # 共享任务树
 │   ├── docs/
 │   │   └── research_brief.json
-│   └── memory/             # Agent 记忆文件
-├── .claude/
-│   └── settings.json       # SessionStart hook 注册
+│   ├── .hook-events/       # Hook 事件日志
+│   └── [mega/]            # 选择 Mega 模式时额外创建
+│       ├── PROGRESS.md
+│       ├── RESTRICTIONS.md
+│       ├── plans/
+│       └── logs/
+├── .claude/                # Claude Code 配置
+│   ├── settings.json       # SessionStart hook 注册
+│   └── skills/             # 项目本地技能（从插件复制）
 ├── CLAUDE.md
 └── AGENTS.md
 ```
+
+各工作目录由对应命令按需创建：
+
+| 目录 | 创建命令 | 用途 |
+|------|---------|------|
+| `paper/` | `/omp:write` | LaTeX 工作区（`main.tex`、`sections/`、`refs/`） |
+| `experiment/` | `/omp:experiment` | 实验代码和脚本 |
+| `survey/` | `/omp:survey` | 文献调研产出（`literature_bank.md` 等） |
+| `ideation/` | `/omp:ideate` | 创新点记录与评估 |
+| `promotion/` | 发表后 | 幻灯片、Demo、推广材料 |
 
 ---
 

@@ -5,11 +5,7 @@
 <h1 align="center">Oh My Paper</h1>
 
 <p align="center">
-  <strong>A research harness for Claude Code — turn your terminal into an autonomous research lab.</strong>
-</p>
-
-<p align="center">
-  <a href="./README.zh.md">中文文档</a>
+  <strong>Claude Code 科研 harness — 把你的终端变成自主科研实验室。</strong>
 </p>
 
 <p align="center">
@@ -22,355 +18,373 @@
 
 ---
 
-## TL;DR
+## 快速开始
 
 ```bash
-# In Claude Code:
+# 在 Claude Code 里：
 /plugin marketplace add LigphiDonk/Oh-my--paper
 /plugin install omp@oh-my-paper
 ```
 
-Restart Claude Code. Run `/omp:setup` inside your research project, then drive the full pipeline with `/omp:survey`, `/omp:experiment`, and `/omp:write`. No GUI, no window-switching — everything in the terminal.
+重启 Claude Code，在你的科研项目里运行 `/omp:setup`，然后用 `/omp:survey`、`/omp:experiment`、`/omp:write` 驱动整个科研流程。不需要 GUI，不需要切窗口，所有事情都在终端里完成。
 
 ---
 
-## Table of Contents
+## 目录
 
-- [Why This Exists](#why-this-exists)
-- [Install](#install)
-- [Slash Commands](#slash-commands)
-- [The Agent Team](#the-agent-team)
-- [34 Research Skills](#34-research-skills)
+- [为什么做这个](#为什么做这个)
+- [安装](#安装)
+- [命令列表](#命令列表)
+- [Agent 团队](#agent-团队)
+- [34 个研究技能](#34-个研究技能)
 - [Hooks](#hooks)
-- [Research Pipeline](#research-pipeline)
-- [Project Scaffold](#project-scaffold)
-- [How Memory Works](#how-memory-works)
-- [Codex Delegation](#codex-delegation)
-- [Remote Experiments](#remote-experiments)
-- [For LLM Agents](#for-llm-agents)
-- [Philosophy](#philosophy)
-- [Contributing](#contributing)
-- [Uninstall](#uninstall)
+- [科研流水线](#科研流水线)
+- [项目结构](#项目结构)
+- [记忆系统](#记忆系统)
+- [Codex 任务委派](#codex-任务委派)
+- [远程实验](#远程实验)
+- [给 AI Agent 看](#给-ai-agent-看)
+- [设计理念](#设计理念)
+- [贡献](#贡献)
+- [卸载](#卸载)
 
 ---
 
-## Why This Exists
+## 为什么做这个
 
-Claude Code is already a great coding agent. But **research isn't just coding** — it's literature survey, idea evaluation, experiment design, paper writing, reference checking, and a dozen other things that require domain-specific workflows.
+Claude Code 是很强的编程 agent，但**科研不只是写代码** —— 还有文献调研、创新点评估、实验设计、论文撰写、引用核查，这些都需要特定领域的工作流。
 
-Oh My Paper makes Claude Code **research-aware** by adding:
+Oh My Paper 让 Claude Code **理解科研**，提供：
 
-- **A structured 5-stage pipeline** — Survey → Ideation → Experiment → Publication → Promotion
-- **5 specialized agent roles** — each with isolated memory and clear responsibilities
-- **34 built-in research skills** — from paper search to figure generation
-- **Background hooks** — auto-inject project context at session start, prompt role selection, track task completion
-- **Codex delegation** — hand off parallel tasks to Codex in a separate terminal
+- **结构化 5 阶段流水线** — 调研 → 创意 → 实验 → 发表 → 推广
+- **5 个专职 agent 角色** — 各自有独立记忆和明确职责
+- **34 个内置研究技能** — 从论文搜索到图表生成
+- **后台 hooks** — 每次开会话自动注入项目上下文、触发角色选择
+- **Codex 任务委派** — 把并行任务交给另一个终端里的 Codex 跑
 
-Install it and forget about it. Your sessions get smarter. Your research gets organized.
+装好就不用管了。会话越来越智能，科研进展有人帮你记。
 
 ---
 
-## Install
+## 安装
 
-### Step 1: Add the marketplace
+### 第一步：添加 marketplace
 
 ```bash
 /plugin marketplace add LigphiDonk/Oh-my--paper
 ```
 
-### Step 2: Install the plugin
+### 第二步：安装插件
 
 ```bash
 /plugin install omp@oh-my-paper
 ```
 
-### Step 3: Restart Claude Code
+### 第三步：重启 Claude Code
 
-Required for hooks to activate.
+hooks 需要重启才能生效。
 
-### Step 4: Initialize your project
+### 第四步：初始化项目
 
 ```bash
 /omp:setup
 ```
 
-This scaffolds the `.pipeline/` directory and registers the `SessionStart` hook for your project.
+这一步会创建 `.pipeline/` 目录，并把 SessionStart hook 注册到项目的 `.claude/settings.json`。
 
-### Update
+### 更新插件
 
-Keep the plugin up to date with one command:
+一键更新到最新版本：
 
 ```bash
 /omp:update
 ```
 
-Options:
-- `--check-only` - Only check for updates without installing
-- `--auto` - Auto-update without confirmation
+可选参数：
+- `--check-only` — 仅检查更新，不执行安装
+- `--auto` — 自动更新，不询问确认
 
-The plugin also checks for updates automatically once per day when you start a session (if auto-check is enabled).
+插件还会在每次会话开始时自动检查更新（默认每日一次）。
 
-If a new version is available:
-1. The update command downloads the latest code from GitHub
-2. Copies it to the plugin cache directory
-3. Prompts you to run `/reload-plugins` (and restart if hooks changed)
+如果发现新版本：
+1. 更新命令从 GitHub 下载最新代码
+2. 复制到插件缓存目录
+3. 提示你运行 `/reload-plugins`（如果 hooks 有变更，需要重启 Claude Code）
 
-> **Manual update (fallback)**:
-> If automatic update fails, you can manually update:
+> **手动更新（备选方案）**：
+> 如果自动更新失败，可以使用以下命令手动更新：
 > ```bash
 > /plugin uninstall omp
 > /plugin install omp@oh-my-paper
 > /reload-plugins
 > ```
 
-### Install from Local Directory
+### 从本地目录安装
 
 ```bash
 git clone https://github.com/LigphiDonk/Oh-my--paper.git /tmp/oh-my-paper
-# In Claude Code:
+# 在 Claude Code 里：
 /plugin marketplace add /tmp/oh-my-paper
 /plugin install omp@oh-my-paper
 ```
 
 ---
 
-## Slash Commands
+## 命令列表
 
-All commands are prefixed with `/omp:`.
+所有命令以 `/omp:` 开头。
 
-| Command | What It Does |
-|---------|-------------|
-| `/omp:setup` | Scaffold a new research project — creates `.pipeline/`, memory files, and registers the SessionStart hook |
-| `/omp:survey` | AI-assisted literature survey — search papers, build `literature_bank.md` |
-| `/omp:ideate` | Generate and evaluate research ideas based on survey findings |
-| `/omp:experiment` | Design experiments, write evaluation code, run on remote compute nodes |
-| `/omp:mega` | 25-stage research pipeline with auto-pilot mode — full workflow from ideation to publication |
-| `/omp:write` | Draft paper sections, generate figures and captions, manage LaTeX files |
-| `/omp:review` | Peer-review your paper or experiment results before submission |
-| `/omp:debate` | Multi-agent debate (Proponent/Opponent/Synthesizer) to validate research hypotheses |
-| `/omp:progress` | Visualize research progress with ASCII progress bars (Legacy + Mega modes) |
-| `/omp:plan` | Review global progress, confirm next steps, update research plan |
-| `/omp:export` | Export final paper to PDF with proper formatting for submission |
-| `/omp:update` | One-click plugin update — check for and install the latest version from GitHub |
-| `/omp:recover` | Recover project state from a snapshot (auto-saved before key operations) |
-| `/omp:tutorial` | Interactive tutorial — walk through the full OMP workflow with a simulated project |
+| 命令 | 作用 |
+|------|------|
+| `/omp:setup` | 初始化研究项目——创建 `.pipeline/`、记忆文件，注册 SessionStart hook |
+| `/omp:survey` | AI 辅助文献调研——搜索论文，整理 `literature_bank.md` |
+| `/omp:ideate` | 基于调研结果生成并评估创新点 |
+| `/omp:experiment` | 设计实验、编写评估代码、在远程节点上运行 |
+| `/omp:mega` | 25 阶段科研流水线，支持自动驾驶模式——从创意到发表全流程 |
+| `/omp:write` | 撰写论文章节、生成图表和标题、管理 LaTeX 文件 |
+| `/omp:review` | 同行评审——提交前对论文或实验结果做质量把关 |
+| `/omp:debate` | 多智能体辩论（正方/反方/综合者）——验证研究假设 |
+| `/omp:progress` | 可视化研究进度——ASCII 进度条（支持 Legacy + Mega 双模式） |
+| `/omp:plan` | 查看全局进展，确认下一步方向，更新研究计划 |
+| `/omp:export` | 导出最终论文 PDF，适配投稿格式 |
+| `/omp:update` | 一键更新插件——检查并安装 GitHub 上的最新版本 |
+| `/omp:recover` | 从快照恢复项目状态（关键操作前自动打快照） |
+| `/omp:tutorial` | 交互式教程——用模拟项目引导新用户体验完整流程 |
 
-### Quick Start
+### 典型用法
 
 ```bash
-/omp:setup          # scaffold the project
-/omp:survey         # start literature survey
-/omp:ideate         # generate ideas from survey
-/omp:experiment     # design & run experiments
-/omp:write          # draft the paper
-/omp:review         # final quality gate
+/omp:setup          # 初始化项目
+/omp:survey         # 开始文献调研
+/omp:ideate         # 生成创新点
+/omp:experiment     # 设计并运行实验
+/omp:write          # 撰写论文
+/omp:review         # 最终质量把关
 ```
 
 ---
 
-## The Agent Team
+## Agent 团队
 
-When you open Claude Code in an Oh My Paper project, the `SessionStart` hook fires and Claude immediately asks which role you want to take on. Each role has **isolated memory** — it only reads and writes the files it needs.
+在 Oh My Paper 项目里打开 Claude Code，`SessionStart` hook 会自动触发，Claude 立即弹出角色选择。每个角色有**独立的记忆范围**——只读写它需要的文件。
 
-| Role | Responsibility | Memory Scope |
-|------|---------------|-------------|
-| **Conductor** | Global planning, review outputs, dispatch tasks, auto-update `project_truth` after each subtask | `project_truth` · `orchestrator_state` · `tasks.json` · `review_log` · `agent_handoff` · `decision_log` |
-| **Literature Scout** | Search papers, organize literature bank | `project_truth` · `execution_context` · `literature_bank` · `decision_log` |
-| **Experiment Driver** | Design experiments, write code, run evaluations | `execution_context` · `experiment_ledger` · `research_brief.json` · `project_truth` |
-| **Paper Writer** | Draft sections, generate figures, audit references | `execution_context` · `result_summary` · `literature_bank` · `agent_handoff` |
-| **Reviewer** | Peer review, quality gate, consistency check | `execution_context` · `project_truth` · `result_summary` |
+| 角色 | 职责 | 记忆范围 |
+|------|------|---------|
+| **Conductor（统筹者）** | 全局规划、评审产出、派发任务、每个子任务完成后自动更新 `project_truth` | `project_truth` · `orchestrator_state` · `tasks.json` · `review_log` · `agent_handoff` · `decision_log` |
+| **Literature Scout（文献侦察）** | 搜索论文、整理文献库 | `project_truth` · `execution_context` · `literature_bank` · `decision_log` |
+| **Experiment Driver（实验执行）** | 设计实验、编写代码、运行评估 | `execution_context` · `experiment_ledger` · `research_brief.json` · `project_truth` |
+| **Paper Writer（论文写手）** | 撰写章节、生成图表、审查引用 | `execution_context` · `result_summary` · `literature_bank` · `agent_handoff` |
+| **Reviewer（评审者）** | 同行评审、质量把关、一致性检查 | `execution_context` · `project_truth` · `result_summary` |
 
-### How It Works
+### 工作流
 
 ```
-Session opens
-    → SessionStart hook fires
-        → Claude asks: which role today?
-            → Agent loads role-specific memory files
-                → Works as that persona
-                    → On subtask complete: auto-updates tasks.json + project_truth
-                        → Next session picks up right where you left off
+开启会话
+    → SessionStart hook 触发
+        → Claude 弹出角色选择
+            → Agent 加载对应记忆文件
+                → 以该角色身份工作
+                    → 子任务完成：自动更新 tasks.json + project_truth
+                        → 下次会话从上次断点继续
 ```
 
-**Key design decisions:**
+**关键设计：**
 
-- **Memory isolation** — the Paper Writer can't see the Conductor's orchestrator state; the Literature Scout can't see experiment results. This prevents context pollution.
-- **Shared state** — `tasks.json` and `project_truth.md` are the common ground, updated by all roles after each subtask.
-- **No manual sync** — the Conductor auto-updates `tasks.json` (marks tasks `done`) and appends a progress entry to `project_truth.md` whenever a subtask completes, without waiting for you to ask.
+- **记忆隔离** — 论文写手看不到统筹者的编排状态；文献侦察看不到实验结果。防止上下文污染，让每个 agent 保持专注。
+- **共享状态** — `tasks.json` 和 `project_truth.md` 是所有角色的公共地带，每个子任务结束后更新。
+- **无需手动同步** — Conductor 在每个子任务完成后自动把 `tasks.json` 里的任务标为 `done`，并往 `project_truth.md` 追加进展记录，不需要你提醒。
 
 ---
 
-## 34 Research Skills
+## 34 个研究技能
 
-Skills are structured instruction sets that Claude loads on demand. Each skill is a markdown file covering a specific research task.
+技能是 Claude 按需加载的结构化指令集，每个技能是一个 markdown 文件，覆盖特定的科研任务。
 
 <details>
-<summary><strong>Click to expand the full skill list</strong></summary>
+<summary><strong>展开完整技能列表</strong></summary>
 
-| Category | Skills |
-|----------|--------|
-| **Literature** | `paper-finder` · `paper-analyzer` · `paper-image-extractor` · `research-literature-trace` · `biorxiv-database` · `dataset-discovery` |
-| **Survey & Ideation** | `inno-deep-research` · `gemini-deep-research` · `inno-code-survey` · `inno-idea-generation` · `inno-idea-eval` · `research-idea-convergence` |
-| **Experiment** | `inno-experiment-dev` · `inno-experiment-analysis` · `research-experiment-driver` · `remote-experiment` |
-| **Writing** | `inno-paper-writing` · `ml-paper-writing` · `scientific-writing` · `inno-figure-gen` · `inno-reference-audit` · `research-paper-handoff` |
-| **Planning & Review** | `inno-pipeline-planner` · `research-pipeline-planner` · `inno-paper-reviewer` · `inno-prepare-resources` · `inno-rclone-to-overleaf` |
-| **Presentation** | `making-academic-presentations` · `inno-grant-proposal` |
-| **Agent Dispatch** | `claude-code-dispatch` · `codex-dispatch` |
-| **Domain-Specific** | `academic-researcher` · `bioinformatics-init-analysis` · `research-news` |
+| 类别 | 技能 |
+|------|------|
+| **文献** | `paper-finder` · `paper-analyzer` · `paper-image-extractor` · `research-literature-trace` · `biorxiv-database` · `dataset-discovery` |
+| **调研与创意** | `inno-deep-research` · `gemini-deep-research` · `inno-code-survey` · `inno-idea-generation` · `inno-idea-eval` · `research-idea-convergence` |
+| **实验** | `inno-experiment-dev` · `inno-experiment-analysis` · `research-experiment-driver` · `remote-experiment` |
+| **写作** | `inno-paper-writing` · `ml-paper-writing` · `scientific-writing` · `inno-figure-gen` · `inno-reference-audit` · `research-paper-handoff` |
+| **规划与评审** | `inno-pipeline-planner` · `research-pipeline-planner` · `inno-paper-reviewer` · `inno-prepare-resources` · `inno-rclone-to-overleaf` |
+| **演示** | `making-academic-presentations` · `inno-grant-proposal` |
+| **Agent 派发** | `claude-code-dispatch` |
+| **领域专项** | `academic-researcher` · `bioinformatics-init-analysis` · `research-news` |
 
 </details>
 
-Skills are auto-recommended based on your current pipeline stage. Add project-local skills in the `skills/` directory.
+技能根据当前流水线阶段自动推荐。也可以在 `skills/` 目录下添加项目本地技能。
 
 ---
 
 ## Hooks
 
-Oh My Paper registers three hooks that run in the background:
+Oh My Paper 注册三个后台运行的 hook：
 
-| Hook | Trigger | What It Does |
-|------|---------|-------------|
-| **SessionStart** | Every time you open Claude Code in this project | Outputs project context to Claude — current stage, active task, last handoff — then prompts you to pick a role via `AskUserQuestion` |
-| **Stop** | When a task completes | Tracks task completion, updates `tasks.json` |
-| **PostToolUse (Write)** | After any file write | Detects pipeline stage transitions |
+| Hook | 触发时机 | 作用 |
+|------|---------|------|
+| **SessionStart** | 每次在此项目打开 Claude Code | 向 Claude 输出项目上下文（当前阶段、执行中任务、上次交接），然后通过 `AskUserQuestion` 提示选择角色 |
+| **Stop** | 任务完成时 | 追踪任务完成，更新 `tasks.json` |
+| **PostToolUse (Write)** | 任何文件写入后 | 检测流水线阶段跳转 |
 
-**Important:** Hooks only activate after running `/omp:setup` in your project. Setup registers the `SessionStart` hook in `.claude/settings.json` and creates the `.pipeline/` directory that the hook checks.
+**重要：** hook 只有在项目里跑过 `/omp:setup` 后才会生效。setup 会把 SessionStart hook 注册到 `.claude/settings.json`，并创建 hook 检测所需的 `.pipeline/` 目录。
 
 ---
 
-## Research Pipeline
+## 科研流水线
 
-A structured 5-stage workflow from idea to publication:
+从想法到发表的结构化 5 阶段工作流：
 
 ```
 ┌──────────┐    ┌──────────┐    ┌────────────┐    ┌─────────────┐    ┌───────────┐
-│  Survey  │ →  │ Ideation │ →  │ Experiment │ →  │ Publication │ →  │ Promotion │
+│  调研    │ →  │  创意    │ →  │    实验    │ →  │    发表     │ →  │   推广    │
+│ Survey   │    │ Ideation │    │ Experiment │    │ Publication │    │ Promotion │
 └──────────┘    └──────────┘    └────────────┘    └─────────────┘    └───────────┘
 ```
 
-Each stage comes with:
-- **Auto-generated task trees** — what to do next
-- **Recommended skills** — which skills to load
-- **Context-aware prompts** — agents read `tasks.json` and `research_brief.json` and know what to do
+每个阶段都有：
+- **自动生成的任务树** — 告诉你下一步做什么
+- **推荐技能** — 该阶段应该加载哪些技能
+- **上下文感知提示** — agent 读取 `tasks.json` 和 `research_brief.json`，知道该做什么
 
 ---
 
-## Project Scaffold
+## 项目结构
 
-`/omp:setup` creates this structure:
+`/omp:setup` 创建核心目录结构：
 
 ```
 my-research/
-├── paper/                  # LaTeX workspace
-│   ├── main.tex
-│   ├── sections/
-│   └── refs/
-├── experiment/             # Experiment code & scripts
-├── survey/                 # Literature survey artifacts
-├── ideation/               # Ideas, evaluations, plans
-├── promotion/              # Slides, demos, outreach
-├── skills/                 # Project-local skills
-├── .pipeline/
+├── .pipeline/              # 核心目录（/omp:setup 创建）
+│   ├── memory/             # Agent 记忆文件
+│   │   ├── project_truth.md
+│   │   ├── orchestrator_state.md
+│   │   ├── execution_context.md
+│   │   ├── experiment_ledger.md
+│   │   ├── result_summary.md
+│   │   ├── review_log.md
+│   │   ├── literature_bank.md
+│   │   ├── agent_handoff.md
+│   │   └── decision_log.md
 │   ├── tasks/
-│   │   └── tasks.json      # Task tree across all stages
+│   │   └── tasks.json      # 共享任务树
 │   ├── docs/
 │   │   └── research_brief.json
-│   └── memory/             # Agent memory files
-├── .claude/
-│   └── settings.json       # SessionStart hook registration
+│   ├── .hook-events/       # Hook 事件日志
+│   └── [mega/]            # 选择 Mega 模式时额外创建
+│       ├── PROGRESS.md
+│       ├── RESTRICTIONS.md
+│       ├── plans/
+│       └── logs/
+├── .claude/                # Claude Code 配置
+│   ├── settings.json       # SessionStart hook 注册
+│   └── skills/             # 项目本地技能（从插件复制）
 ├── CLAUDE.md
 └── AGENTS.md
 ```
 
+各工作目录由对应命令按需创建：
+
+| 目录 | 创建命令 | 用途 |
+|------|---------|------|
+| `paper/` | `/omp:write` | LaTeX 工作区（`main.tex`、`sections/`、`refs/`） |
+| `experiment/` | `/omp:experiment` | 实验代码和脚本 |
+| `survey/` | `/omp:survey` | 文献调研产出（`literature_bank.md` 等） |
+| `ideation/` | `/omp:ideate` | 创新点记录与评估 |
+| `promotion/` | 发表后 | 幻灯片、Demo、推广材料 |
+
 ---
 
-## How Memory Works
+## 记忆系统
 
-Each agent role reads and writes specific memory files. The Conductor is responsible for keeping shared state in sync.
+每个角色读写特定的记忆文件。Conductor 负责维护共享状态同步。
 
 ```
 .pipeline/memory/
-├── project_truth.md        # Ground truth + progress log (appended after each subtask)
-├── orchestrator_state.md   # Conductor's planning state
-├── execution_context.md    # Current task context for executors
-├── experiment_ledger.md    # Experiment history & results
-├── result_summary.md       # Latest results for writing & review
-├── review_log.md           # Review feedback history
-├── literature_bank.md      # Organized paper notes
-├── agent_handoff.md        # Cross-agent handoff messages
-└── decision_log.md         # Rejected directions & reasoning
+├── project_truth.md        # 项目基准 + 进展日志（每个子任务完成后追加）
+├── orchestrator_state.md   # Conductor 的编排状态
+├── execution_context.md    # 当前执行任务上下文（执行者看）
+├── experiment_ledger.md    # 实验历史和结果
+├── result_summary.md       # 最新结果（写作和评审用）
+├── review_log.md           # 评审反馈历史
+├── literature_bank.md      # 整理好的文献笔记
+├── agent_handoff.md        # 角色间交接消息
+└── decision_log.md         # 已否决方向及理由
 
 .pipeline/tasks/
-└── tasks.json              # Shared task tree (all roles read/write this)
+└── tasks.json              # 共享任务树（所有角色都读写）
 ```
 
-Memory survives across sessions. The `SessionStart` hook reads these files and injects the relevant context — you pick up right where you left off.
+记忆文件跨会话保留。`SessionStart` hook 读取这些文件并注入相关上下文——你从上次的断点继续。
 
-**Auto-sync rule:** The Conductor updates `tasks.json` and `project_truth.md` automatically after every subtask completes (delegate / experiment / survey / write / review). You never need to ask it to sync.
+**自动同步规则：** Conductor 在每个子任务完成后（delegate / experiment / survey / write / review 任一）自动更新 `tasks.json`（标记任务为 done）并往 `project_truth.md` 追加进展记录，不需要你提醒。
 
 ---
 
-## Remote Experiments
+## 远程实验
 
-The `remote-experiment` skill + `/omp:experiment` support a full auto-experiment loop:
+`remote-experiment` 技能 + `/omp:experiment` 支持完整的自动实验循环：
 
 ```
-Design plan → Implement code → rsync to server → Run on GPU → Parse metrics → Repeat
+设计方案 → 实现代码 → rsync 到服务器 → GPU 节点运行 → 解析指标 → 循环
 ```
 
-- SSH/rsync-based remote compute via `compute-helper` CLI
-- Configurable success thresholds, max iterations, and failure limits
-- Results flow back into `experiment_ledger.md` for the Paper Writer
+- 通过 `compute-helper` CLI 实现 SSH/rsync 远程计算
+- 可配置成功阈值、最大迭代次数、失败上限
+- 结果自动回写 `experiment_ledger.md`，供论文写手使用
 
 ---
 
-## For LLM Agents
+## 给 AI Agent 看
 
-If you're an AI agent installing this plugin:
+如果你是 AI agent 在安装此插件：
 
 ```bash
-# Step 1: Add marketplace
+# 第一步：添加 marketplace
 /plugin marketplace add LigphiDonk/Oh-my--paper
 
-# Step 2: Install plugin
+# 第二步：安装插件
 /plugin install omp@oh-my-paper
 
-# Step 3: Verify installation
+# 第三步：验证安装
 /plugin
-# Should show: omp @ oh-my-paper, Status: Enabled
+# 应该显示：omp @ oh-my-paper, Status: Enabled
 
-# Step 4: User must restart Claude Code (you cannot do this)
-# Tell user: "Please restart Claude Code to activate hooks."
+# 第四步：用户必须重启 Claude Code（你无法代劳）
+# 告知用户："请重启 Claude Code 以激活 hooks。"
 
-# Step 5: Initialize project
+# 第五步：初始化项目
 /omp:setup
 ```
 
 ---
 
-## Philosophy
+## 设计理念
 
-> **Enhance, don't replace.** Claude Code is already smart — we add research structure, not overrides.
+> **增强，而非替代。** Claude Code 本身已经很强——我们加的是科研结构，不是覆盖它的判断。
 
-- **Your context is for reasoning** — hooks inject only what's needed; memory files keep the rest on disk
-- **Domain-specific, not generic** — every skill, agent, and command is designed for academic research
-- **Invisible when not needed** — hooks run in the background; no noise if you're just coding
-- **Composable** — use one command, use all of them, or just let the hooks do their thing
-- **Memory over repetition** — agents remember project context so you don't re-explain every session
+- **上下文留给推理用** — hooks 只注入必要信息；其余内容留在磁盘上的记忆文件里
+- **领域专用，不求通用** — 每个技能、agent 和命令都是为学术科研设计的
+- **不需要时无感存在** — hooks 在后台运行；你只是在写代码时不会有任何干扰
+- **可组合** — 用一个命令、用全部命令，或者就让 hooks 自己跑
+- **记忆胜于重复** — agent 记住项目上下文，你不用每次重新解释
 
 ---
 
-## Contributing
+## 贡献
 
-PRs welcome. If you add a new skill, put it in `skills/` with proper YAML frontmatter and update `research-catalog.json`.
+欢迎 PR。新增技能请放在 `skills/` 目录，带好 YAML frontmatter，并更新 `research-catalog.json`。
 
-Any change to cached content requires version bumps in **both**:
+任何涉及缓存内容的改动，需要同时更新以下两个文件的版本号：
 - `plugins/oh-my-paper/.claude-plugin/plugin.json`
 - `.claude-plugin/marketplace.json`
 
 ---
 
-## Uninstall
+## 卸载
 
 ```bash
 /plugin uninstall omp@oh-my-paper
@@ -378,18 +392,18 @@ Any change to cached content requires version bumps in **both**:
 
 ---
 
-## License
+## 许可证
 
-MIT. See [LICENSE](./LICENSE).
+MIT。详见 [LICENSE](./LICENSE)。
 
 ---
 
-## Acknowledgments
+## 致谢
 
-Special thanks to the **[Linux.do](https://linux.do)** community for your support and feedback.
+特别感谢 **[Linux.do](https://linux.do)** 社区的支持与反馈。
 
 ---
 
 <p align="center">
-  <strong>Oh My Paper</strong> — Where Research Meets the Terminal.
+  <strong>Oh My Paper</strong> — 让科研在终端里自己跑起来。
 </p>
