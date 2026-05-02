@@ -8,6 +8,15 @@ import path from "node:path";
 const PROJECT = process.cwd();
 
 async function main() {
+  // 任务完成前打快照
+  try {
+    const { execSync } = await import("node:child_process");
+    const scriptPath = path.join(PROJECT, "plugins", "oh-my-paper", "scripts", "take-snapshot.mjs");
+    if (existsSync(scriptPath)) {
+      execSync(`node "${scriptPath}" before-task-complete`, { stdio: "pipe" });
+    }
+  } catch {}
+
   const stdin = await readStdin();
   if (!stdin.trim()) return;
 

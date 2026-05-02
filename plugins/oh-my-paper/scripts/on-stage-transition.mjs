@@ -9,6 +9,15 @@ import path from "node:path";
 const PROJECT = process.cwd();
 
 async function main() {
+  // 阶段切换前打快照
+  try {
+    const { execSync } = await import("node:child_process");
+    const scriptPath = path.join(PROJECT, "plugins", "oh-my-paper", "scripts", "take-snapshot.mjs");
+    if (existsSync(scriptPath)) {
+      execSync(`node "${scriptPath}" before-stage-transition`, { stdio: "pipe" });
+    }
+  } catch {}
+
   const toolInput = JSON.parse(process.env.CLAUDE_TOOL_INPUT || "{}");
   const filePath = toolInput.file_path || toolInput.path || "";
   if (!filePath.includes("tasks.json")) return;

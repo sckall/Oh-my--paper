@@ -77,6 +77,19 @@ function main() {
     } catch {}
   }
 
+  // 多项目模式：读取 .omp.yml 显示当前项目名
+  const ompYmlPath = path.join(PROJECT, ".omp.yml");
+  if (existsSync(ompYmlPath)) {
+    try {
+      const yml = readFileSync(ompYmlPath, "utf8");
+      const activeMatch = yml.match(/active_project:\s*(\S+)/);
+      if (activeMatch) {
+        lines.push(`**多项目模式** — 当前项目: \`${activeMatch[1]}\``);
+        lines.push("");
+      }
+    } catch {}
+  }
+
   const contextPath = path.join(pipelineDir, "memory", "execution_context.md");
   if (existsSync(contextPath)) {
     const content = readFileSync(contextPath, "utf8").trim();
