@@ -94,6 +94,66 @@ echo "⚠️ verify-citations.py 未运行（缺少依赖），请手动用 WebS
 
 ---
 
+## 🔬 数据与结果真实性强制规则（最高优先级）
+
+> **数据造假零容忍**：捏造实验数据、图表数值、统计结果，一律视为学术欺诈。本条规则优先级与引用规则同等。
+
+### 实验数据规则
+
+**所有实验数值必须来自：**
+- `.pipeline/memory/experiment_ledger.md`（真实实验记录）
+- `.pipeline/docs/result_summary.md`（真实结果汇总）
+- 用户直接提供的原始数据
+
+**严禁：**
+- ❌ 编造任何数字、百分比、p-value、F-value、effect size
+- ❌ 将模拟数据冒充真实实验结果
+- ❌ "美化" 或 "微调" 真实数据使其更显著
+- ❌ 删除"不理想"的数据点而不声明
+
+### 每节写完后数据核验
+
+```bash
+# 实验部分：核对数值来源
+grep -n "p=" paper/sections/experiments.tex 2>/dev/null || echo "NO_PVALUES"
+grep -n "accuracy\|F1\|precision\|recall" paper/sections/experiments.tex 2>/dev/null
+
+# 对照 experiment_ledger.md
+cat .pipeline/memory/experiment_ledger.md 2>/dev/null | tail -20
+```
+
+用 `AskUserQuestion` 展示关键数值，让用户确认是否来自真实实验：
+
+> **数据核验**
+>
+> 以下数值将在论文中出现，请确认来源：
+> - accuracy=0.87 → 来自 experiment_ledger.md？
+> - p<0.01 → 真实统计检验结果？
+>
+> 选项：
+> - `数据真实，继续`
+> - `有疑问，暂停核对`
+> - `数据是我编的，删除`
+
+### 科学性表述规则
+
+**慎用绝对化表述：**
+| ❌ 严禁 | ✅ 推荐 |
+|---------|---------|
+| "proves that..." | "suggests that..." |
+| "demonstrates that..." | "indicates that..." |
+| "confirms that..." | "is consistent with..." |
+| "significantly better" (无统计检验) | "achieves X% accuracy" (带置信区间) |
+
+**局限性必须讨论：**
+在 Discussion/Conclusion 中，必须包含：
+- 样本量限制
+- 实验环境限制
+- 外部效度（generalizability）限制
+- 未来改进方向
+
+---
+
 ## 第一步：确认写作范围 + 论文约束检查
 
 ```bash
