@@ -16,7 +16,7 @@
   <img src="https://img.shields.io/badge/claude--code-plugin-blueviolet?style=flat-square" />
   <img src="https://img.shields.io/badge/agents-5-ff69b4?style=flat-square" />
   <img src="https://img.shields.io/badge/skills-34-green?style=flat-square" />
-  <img src="https://img.shields.io/badge/commands-8-blue?style=flat-square" />
+  <img src="https://img.shields.io/badge/commands-14-blue?style=flat-square" />
   <img src="https://img.shields.io/badge/license-MIT-orange?style=flat-square" />
 </p>
 
@@ -146,9 +146,14 @@ git clone https://github.com/LigphiDonk/Oh-my--paper.git /tmp/oh-my-paper
 | `/omp:experiment` | 设计实验、编写评估代码、在远程节点上运行 |
 | `/omp:write` | 撰写论文章节、生成图表和标题、管理 LaTeX 文件 |
 | `/omp:review` | 同行评审——提交前对论文或实验结果做质量把关 |
-| `/omp:update` | 一键更新插件——检查并安装 GitHub 上的最新版本 |
-| `/omp:delegate` | 生成 Codex prompt 委派代码/实验任务；等待结果后自动更新项目状态 |
+| `/omp:progress` | 可视化研究进度——ASCII 进度条（支持 Legacy + Mega 双模式） |
 | `/omp:plan` | 查看全局进展，确认下一步方向，更新研究计划 |
+| `/omp:update` | 一键更新插件——检查并安装 GitHub 上的最新版本 |
+| `/omp:recover` | 从快照恢复项目状态（关键操作前自动打快照） |
+| `/omp:switch` | 在多项目间切换（需要 `.omp.yml` 配置） |
+| `/omp:new-project` | 创建新的子项目，包含独立的 `.pipeline/` 目录 |
+| `/omp:tutorial` | 交互式教程——用模拟项目引导新用户体验完整流程 |
+| `/omp:delegate` | 生成 Codex prompt 委派代码/实验任务；等待结果后自动更新项目状态 |
 
 ### 典型用法
 

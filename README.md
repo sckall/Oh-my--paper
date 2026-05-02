@@ -16,7 +16,7 @@
   <img src="https://img.shields.io/badge/claude--code-plugin-blueviolet?style=flat-square" />
   <img src="https://img.shields.io/badge/agents-5-ff69b4?style=flat-square" />
   <img src="https://img.shields.io/badge/skills-34-green?style=flat-square" />
-  <img src="https://img.shields.io/badge/commands-8-blue?style=flat-square" />
+  <img src="https://img.shields.io/badge/commands-14-blue?style=flat-square" />
   <img src="https://img.shields.io/badge/license-MIT-orange?style=flat-square" />
 </p>
 
@@ -146,9 +146,14 @@ All commands are prefixed with `/omp:`.
 | `/omp:experiment` | Design experiments, write evaluation code, run on remote compute nodes |
 | `/omp:write` | Draft paper sections, generate figures and captions, manage LaTeX files |
 | `/omp:review` | Peer-review your paper or experiment results before submission |
-| `/omp:update` | One-click plugin update — check for and install the latest version from GitHub |
-| `/omp:delegate` | Generate a Codex prompt for a coding/experiment task; wait for result and update project state |
+| `/omp:progress` | Visualize research progress with ASCII progress bars (Legacy + Mega modes) |
 | `/omp:plan` | Review global progress, confirm next steps, update research plan |
+| `/omp:update` | One-click plugin update — check for and install the latest version from GitHub |
+| `/omp:recover` | Recover project state from a snapshot (auto-saved before key operations) |
+| `/omp:switch` | Switch between multiple research projects (requires `.omp.yml`) |
+| `/omp:new-project` | Create a new sub-project with an isolated `.pipeline/` directory |
+| `/omp:tutorial` | Interactive tutorial — walk through the full OMP workflow with a simulated project |
+| `/omp:delegate` | Generate a Codex prompt for a coding/experiment task; wait for result and update project state |
 
 ### Quick Start
 
