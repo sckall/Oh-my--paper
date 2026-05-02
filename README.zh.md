@@ -406,6 +406,8 @@ MIT。详见 [LICENSE](./LICENSE)。
 
 特别感谢 **[Linux.do](https://linux.do)** 社区的支持与反馈。
 
+本项目的全流程开发由 **Claude Code** 深度参与，是 AI 辅助开源开发的实践案例。
+
 ---
 
 <p align="center">
