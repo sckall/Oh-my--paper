@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="./icons/icon.png" alt="Oh My Paper" width="120" height="120" />
+  <img src="./icons/icon.png" alt="omp_paper_company" width="120" height="120" />
 </p>
 
-<h1 align="center">Oh My Paper</h1>
+<h1 align="center">omp_paper_company</h1>
 
 <p align="center">
   <strong>Claude Code 科研 harness — 把你的终端变成自主科研实验室。</strong>
@@ -54,7 +54,7 @@
 
 Claude Code 是很强的编程 agent，但**科研不只是写代码** —— 还有文献调研、创新点评估、实验设计、论文撰写、引用核查，这些都需要特定领域的工作流。
 
-Oh My Paper 让 Claude Code **理解科研**，提供：
+omp_paper_company 让 Claude Code **理解科研**，提供：
 
 - **结构化 5 阶段流水线** — 调研 → 创意 → 实验 → 发表 → 推广
 - **5 个专职 agent 角色** — 各自有独立记忆和明确职责
@@ -166,7 +166,7 @@ git clone https://github.com/LigphiDonk/Oh-my--paper.git /tmp/oh-my-paper
 
 ## Agent 团队
 
-在 Oh My Paper 项目里打开 Claude Code，`SessionStart` hook 会自动触发，Claude 立即弹出角色选择。每个角色有**独立的记忆范围**——只读写它需要的文件。
+在 omp_paper_company 项目里打开 Claude Code，`SessionStart` hook 会自动触发，Claude 立即弹出角色选择。每个角色有**独立的记忆范围**——只读写它需要的文件。
 
 | 角色 | 职责 | 记忆范围 |
 |------|------|---------|
@@ -222,7 +222,7 @@ git clone https://github.com/LigphiDonk/Oh-my--paper.git /tmp/oh-my-paper
 
 ## Hooks
 
-Oh My Paper 注册三个后台运行的 hook：
+omp_paper_company 注册三个后台运行的 hook：
 
 | Hook | 触发时机 | 作用 |
 |------|---------|------|
@@ -405,5 +405,5 @@ MIT。详见 [LICENSE](./LICENSE)。
 ---
 
 <p align="center">
-  <strong>Oh My Paper</strong> — 让科研在终端里自己跑起来。
+  <strong>omp_paper_company</strong> — 让科研在终端里自己跑起来。
 </p>
