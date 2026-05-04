@@ -29,6 +29,12 @@ python3 plugins/journal-research-cn/skills/nppa-validator/scripts/nppa_validate.
 
 本 skill 不做验证码识别、不模拟登录、不使用非公开接口。
 
+==网络请求规则==：必须使用 Runtime 段中的 Python 脚本访问 NPPA 页面，**禁止使用 WebFetch 工具直接请求 nppa.gov.cn**（中文政府域名会被 WebFetch 安全验证拦截）。若脚本不可用，改用 curl：
+
+```bash
+curl -s -A 'Mozilla/5.0' 'https://www.nppa.gov.cn/bsfw/jggs/cbwzy/'
+```
+
 ## 输出 Schema
 
 ```json

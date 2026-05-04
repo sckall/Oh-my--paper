@@ -68,16 +68,22 @@ https://jane.biosemantics.org/suggestions.php?findJournals=&text={url-encoded ti
 
 `text` 参数支持 URL 编码后的题目 + 摘要（5-200 字典型）。多段连接用空格。
 
-### 抓取路径
+### Runtime（推荐方式 — Python 脚本）
 
-Tier 2 firecrawl：
+==禁止使用 WebFetch 工具访问 jane.biosemantics.org——可能被 Claude Code 域名安全验证拦截。必须使用下方 Python 脚本。==
 
 ```bash
-firecrawl scrape \
-  'https://jane.biosemantics.org/suggestions.php?findJournals=&text=YOUR_QUERY' \
-  --formats markdown,html \
-  --only-main-content true
+# 基础搜索
+python3 plugins/oh-my-paper/skills/ai-journal-match/scripts/jane_match.py "multimodal medical image segmentation"
+
+# 指定结果数量
+python3 plugins/oh-my-paper/skills/ai-journal-match/scripts/jane_match.py "LLM RAG" --count 20
+
+# 保存到文件
+python3 plugins/oh-my-paper/skills/ai-journal-match/scripts/jane_match.py "deep learning" -o matches.json
 ```
+
+脚本使用 `urllib.request`（Python 标准库，零依赖）。
 
 curl 兜底：
 

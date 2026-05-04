@@ -71,6 +71,26 @@ behavior:
 
 完整 cookbook（curl + iconv + GBK URL-encode 三段管道）见 `references/gbk-decode-playbook.md`。
 
+## Runtime（推荐方式 — Python 脚本）
+
+==禁止使用 WebFetch 工具访问 muchong.com——中文域名会被 Claude Code 安全验证拦截。必须使用下方 Python 脚本。==
+
+```bash
+# 通过 ISSN 查询（推荐）
+python3 plugins/oh-my-paper/skills/muchong-cn-journal-review/scripts/muchong_review.py "1000-4018"
+
+# 通过期刊名查询
+python3 plugins/oh-my-paper/skills/muchong-cn-journal-review/scripts/muchong_review.py "生物学教学"
+
+# 保存到文件
+python3 plugins/oh-my-paper/skills/muchong-cn-journal-review/scripts/muchong_review.py "1000-4018" -o review.json
+
+# 输出原始 HTML（调试用）
+python3 plugins/oh-my-paper/skills/muchong-cn-journal-review/scripts/muchong_review.py "1000-4018" --raw
+```
+
+脚本使用 `urllib.request`（Python 标准库，零依赖），自动处理 GBK 解码。
+
 ## 三个 Evidence Block
 
 ### 1. 基本资料
