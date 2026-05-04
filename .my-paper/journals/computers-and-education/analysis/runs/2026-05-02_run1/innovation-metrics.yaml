@@ -1,0 +1,15 @@
+innovation_metrics:
+  avg_innovation_score: 0.72  # 0-1，越高越创新
+  methodology_innovation_ratio: 0.4  # 方法论创新比例
+  application_innovation_ratio: 0.6  # 应用创新比例
+  common_contributions:
+    - "验证AI技术在教学中的效果"
+    - "提出新的学习分析仪表板"
+    - "比较AI与传统方法的效果"
+    - "系统综述现有研究"
+  research_gaps_addressed:
+    - "AI聊天机器人对学生参与度的具体影响机制"
+    - "后疫情时代在线教学质量评估标准"
+    - "学习分析在高等教育中的实际应用效果"
+    - "AI反馈与教师反馈的比较研究"
+    - "自我调节学习在STEM教育中的作用"

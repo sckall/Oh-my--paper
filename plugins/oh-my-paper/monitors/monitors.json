@@ -1,0 +1,13 @@
+[
+  {
+    "name": "pipeline-status",
+    "command": "${CLAUDE_PLUGIN_ROOT}/scripts/pipeline-watch.sh",
+    "description": "Research pipeline status: current stage, task completion, and blockers"
+  },
+  {
+    "name": "plugin-updates",
+    "command": "${CLAUDE_PLUGIN_ROOT}/scripts/check-update.sh",
+    "description": "Check for OMP plugin updates",
+    "when": "on-skill-invoke:omp:setup"
+  }
+]

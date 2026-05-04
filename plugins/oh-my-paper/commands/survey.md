@@ -42,38 +42,7 @@ cat .pipeline/memory/literature_bank.md  # 查看已有多少文献
 - 完成后生成 `.pipeline/docs/gap_matrix.md` 分析研究空白
 - 更新 `.pipeline/memory/agent_handoff.md`
 
-## 第四步（新）：文献门控 A5（仅 Mega 模式）
-
-如果 research_brief.json 中 mode 为 "Mega"，执行门控检查：
-
-```bash
-# 统计文献总数
-grep -c "Status: accepted" .pipeline/memory/literature_bank.md 2>/dev/null || echo "0"
-# 统计相关文献
-grep -c "Relevance: high\|Relevance: medium" .pipeline/memory/literature_bank.md 2>/dev/null || echo "0"
-# 检查领域覆盖
-cat .pipeline/docs/gap_matrix.md 2>/dev/null || echo "NOT_FOUND"
-```
-
-用 `AskUserQuestion` 展示：
-
-> **门控 A5：文献筛选**
->
-> **检查项**：
-> - [ ] 文献总数 ≥ 15 篇（当前：{count}）
-> - [ ] 相关文献 ≥ 10 篇（当前：{relevant_count}）
-> - [ ] 覆盖 3 个领域（方法论、基线、相关工作）
->
-> **通过条件**：满足上述 3 项
-
-选项：
-- `通过` — 文献基础充足，继续假设生成
-- `补充搜索` — 返回继续搜索，补充不足的领域
-- `调整范围` — 调整研究问题范围
-
-如果用户选择"通过"，更新 `.pipeline/mega/PROGRESS.md` 中 A5 为 "passed"。
-
-## 第六步：展示结果摘要
+## 第四步：展示结果摘要
 
 结果回来后告诉用户：
 

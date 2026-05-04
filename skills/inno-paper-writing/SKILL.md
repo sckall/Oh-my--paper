@@ -14,7 +14,7 @@ capabilities: ["visualization-reporting"]
 domains: ["general"]
 keywords: ["inno-paper-writing", "paper writing", "visualization-reporting", "inno", "paper", "writing", "creates", "formal", "academic", "research", "papers", "following"]
 source: builtin
-status: verified
+status: experimental
 upstream:
   repo: dr-claw
   path: skills/inno-paper-writing

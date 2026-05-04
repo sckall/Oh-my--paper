@@ -11,6 +11,8 @@ if (!input) {
 
 const packageJsonPath = path.join(root, "package.json");
 const packageLockPath = path.join(root, "package-lock.json");
+const pluginJsonPath = path.join(root, "plugins", "oh-my-paper", ".claude-plugin", "plugin.json");
+const marketplaceJsonPath = path.join(root, ".claude-plugin", "marketplace.json");
 const cargoTomlPath = path.join(root, "src-tauri", "Cargo.toml");
 const tauriConfigPath = path.join(root, "src-tauri", "tauri.conf.json");
 
@@ -30,15 +32,36 @@ if (fs.existsSync(packageLockPath)) {
   writeJson(packageLockPath, packageLock);
 }
 
-const cargoToml = fs.readFileSync(cargoTomlPath, "utf8");
-fs.writeFileSync(
-  cargoTomlPath,
-  cargoToml.replace(/^version = ".*"$/m, `version = "${nextVersion}"`),
-);
+// Plugin 版本同步更新
+if (fs.existsSync(pluginJsonPath)) {
+  const pluginJson = readJson(pluginJsonPath);
+  pluginJson.version = nextVersion;
+  writeJson(pluginJsonPath, pluginJson);
+}
 
-const tauriConfig = readJson(tauriConfigPath);
-tauriConfig.version = nextVersion;
-writeJson(tauriConfigPath, tauriConfig);
+if (fs.existsSync(marketplaceJsonPath)) {
+  const marketplaceJson = readJson(marketplaceJsonPath);
+  marketplaceJson.metadata.version = nextVersion;
+  for (const plugin of marketplaceJson.plugins || []) {
+    plugin.version = nextVersion;
+  }
+  writeJson(marketplaceJsonPath, marketplaceJson);
+}
+
+// Tauri 配置更新（仅在文件存在时）
+if (fs.existsSync(cargoTomlPath)) {
+  const cargoToml = fs.readFileSync(cargoTomlPath, "utf8");
+  fs.writeFileSync(
+    cargoTomlPath,
+    cargoToml.replace(/^version = ".*"$/m, `version = "${nextVersion}"`),
+  );
+}
+
+if (fs.existsSync(tauriConfigPath)) {
+  const tauriConfig = readJson(tauriConfigPath);
+  tauriConfig.version = nextVersion;
+  writeJson(tauriConfigPath, tauriConfig);
+}
 
 console.log(nextVersion);
 

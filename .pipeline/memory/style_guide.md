@@ -1,0 +1,1 @@
+../../.my-paper/journals/computers-and-education/analysis/latest/style_guide.md

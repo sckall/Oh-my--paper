@@ -1,0 +1,287 @@
+# 好句子库：Computers & Education
+
+从高分论文中提取的功能性句子，按写作功能分类。
+
+---
+
+## 1. 指出研究空白（Identifying Research Gaps）
+
+### 1.1 通用句型
+```yaml
+- template: "While [研究领域] has attracted considerable attention, [具体空白] remains understudied."
+  example: "While AI in education has attracted considerable attention, its impact on student engagement in K-12 contexts remains understudied."
+  translation: "虽然[研究领域]吸引了大量关注，但[具体空白]仍未得到充分研究。"
+
+- template: "Previous studies have focused on [A], but little is known about [B]."
+  example: "Previous studies have focused on AI chatbots in higher education, but little is known about their effectiveness in primary schools."
+  translation: "先前研究主要关注[A]，但对[B]知之甚少。"
+
+- template: "Despite growing interest in [主题], empirical evidence on [具体问题] is scarce."
+  example: "Despite growing interest in learning analytics, empirical evidence on its impact on student retention is scarce."
+  translation: "尽管对[主题]的兴趣日益增长，但关于[具体问题]的实证证据仍然稀缺。"
+
+- template: "To date, no study has examined [研究问题] in the context of [具体情境]."
+  example: "To date, no study has examined the long-term effects of AI feedback in the context of EFL writing."
+  translation: "迄今为止，尚未有研究在[具体情境]背景下考察[研究问题]。"
+
+- template: "There is a lack of consensus on [问题]."
+  example: "There is a lack of consensus on the optimal frequency of AI-generated feedback."
+  translation: "关于[问题]缺乏共识。"
+```
+
+### 1.2 结合文献的空白指出
+```yaml
+- template: "Although [作者, 年份] found that [发现], their study was limited by [局限性]."
+  example: "Although Smith (2021) found that AI chatbots improve engagement, their study was limited by a small sample size (n=30)."
+  translation: "虽然[作者, 年份]发现[发现]，但他们的研究受到[局限性]的限制。"
+
+- template: "[作者, 年份] argued that [观点], but this claim has not been empirically tested."
+  example: "Chen et al. (2022) argued that AI feedback enhances self-regulated learning, but this claim has not been empirically tested."
+  translation: "[作者, 年份]认为[观点]，但这一说法尚未得到实证检验。"
+
+- template: "Several studies have shown [A], but results regarding [B] are inconclusive."
+  example: "Several studies have shown that AI chatbots improve behavioral engagement, but results regarding emotional engagement are inconclusive."
+  translation: "多项研究表明[A]，但关于[B]的结果尚无定论。"
+```
+
+---
+
+## 2. 报告结果（Reporting Results）
+
+### 2.1 描述性统计
+```yaml
+- template: "As shown in Table [N], the mean score for [变量] was [M] (SD = [SD])."
+  example: "As shown in Table 1, the mean score for student engagement was 3.85 (SD = 0.72)."
+  translation: "如表[N]所示，[变量]的平均得分为[M]（标准差=[SD]）。"
+
+- template: "[变量] ranged from [最小值] to [最大值]."
+  example: "Student engagement scores ranged from 1.5 to 5.0."
+  translation: "[变量]的范围从[最小值]到[最大值]。"
+
+- template: "The majority of participants were [特征] ([百分比]%, n = [人数])."
+  example: "The majority of participants were female (70%, n = 105)."
+  translation: "大多数参与者是[特征]（[百分比]%，n = [人数]）。"
+```
+
+### 2.2 推断性统计（t-test）
+```yaml
+- template: "An independent-samples t-test revealed a significant difference in [变量], t([df]) = [值], p = [精确值], d = [效应量]."
+  example: "An independent-samples t-test revealed a significant difference in engagement scores, t(148) = 2.45, p = .016, d = 0.65."
+  translation: "独立样本t检验显示[变量]存在显著差异，t([df]) = [值], p = [精确值], d = [效应量]。"
+
+- template: "No significant difference was found in [变量], t([df]) = [值], p = [值]."
+  example: "No significant difference was found in satisfaction scores, t(148) = 1.23, p = .221."
+  translation: "[变量]未发现显著差异，t([df]) = [值], p = [值]。"
+```
+
+### 2.3 推断性统计（ANOVA）
+```yaml
+- template: "A one-way ANOVA revealed a significant main effect of [因子], F([df1], [df2]) = [值], p = [精确值], η² = [效应量]."
+  example: "A one-way ANOVA revealed a significant main effect of group, F(2, 147) = 4.56, p = .012, η² = 0.06."
+  translation: "单因素方差分析显示[因子]的主效应显著，F([df1], [df2]) = [值], p = [精确值], η² = [效应量]。"
+```
+
+### 2.4 回归分析
+```yaml
+- template: "[变量] significantly predicted [结果], β = [值], t([df]) = [值], p = [精确值]."
+  example: "AI chatbot usage significantly predicted student engagement, β = 0.42, t(147) = 3.21, p = .002."
+  translation: "[变量]显著预测[结果]，β = [值], t([df]) = [值], p = [精确值]。"
+
+- template: "The model explained [百分比]% of the variance in [结果], R² = [值], F([df1], [df2]) = [值], p = [精确值]."
+  example: "The model explained 23% of the variance in engagement, R² = 0.23, F(3, 146) = 14.52, p < .001."
+  translation: "该模型解释了[结果]中[百分比]%的方差，R² = [值], F([df1], [df2]) = [值], p = [精确值]。"
+```
+
+### 2.5  qualitative发现
+```yaml
+- template: "Three main themes emerged from the data: (1) [主题1], (2) [主题2], and (3) [主题3]."
+  example: "Three main themes emerged from the interview data: (1) Immediate feedback, (2) 24/7 availability, and (3) Lack of human empathy."
+  translation: "从数据中涌现出三个主要主题：（1）[主题1]，（2）[主题2]，和（3）[主题3]。"
+
+- template: "Participants reported that [引用原文]."
+  example: "Participants reported that 'the AI chatbot helped me understand the material better' (Student #12)."
+  translation: "参与者报告说[引用原文]。"
+```
+
+---
+
+## 3. 讨论局限性（Discussing Limitations）
+
+### 3.1 抽样局限
+```yaml
+- template: "This study was conducted in a single institution, which may limit the generalizability of the findings."
+  example: "This study was conducted in a single university in China, which may limit the generalizability of the findings to other cultural contexts."
+  translation: "本研究在单一机构中进行，这可能限制研究结果的普适性。"
+
+- template: "The sample was [特征], thus the findings may not generalize to [其他群体]."
+  example: "The sample was predominantly female (70%), thus the findings may not generalize to male-dominated contexts."
+  translation: "样本是[特征]，因此研究结果可能无法推广到[其他群体]。"
+```
+
+### 3.2 测量局限
+```yaml
+- template: "The use of self-reported measures may introduce [偏差类型] bias."
+  example: "The use of self-reported engagement measures may introduce social desirability bias."
+  translation: "使用自我报告测量可能引入[偏差类型]偏差。"
+
+- template: "Although [测量工具] has been validated in previous studies, it may not fully capture [具体方面]."
+  example: "Although the Utrecht Work Engagement Scale has been validated in previous studies, it may not fully capture the multidimensional nature of student engagement."
+  translation: "虽然[测量工具]在先前研究中已得到验证，但它可能无法完全捕捉[具体方面]。"
+```
+
+### 3.3 设计局限
+```yaml
+- template: "The cross-sectional design prevents causal inferences about [变量关系]."
+  example: "The cross-sectional design prevents causal inferences about the relationship between AI usage and engagement."
+  translation: "横截面设计妨碍了对[变量关系]的因果推断。"
+
+- template: "The lack of a [控制组/长期追踪] limits our understanding of [具体问题]."
+  example: "The lack of a control group limits our understanding of whether the observed changes were due to the AI chatbot or other factors."
+  translation: "缺乏[控制组/长期追踪]限制了对[具体问题]的理解。"
+```
+
+### 3.4 共同方法偏差
+```yaml
+- template: "Common method bias may be a concern, as all data were collected from [同一来源]."
+  example: "Common method bias may be a concern, as all data were collected from self-reported questionnaires."
+  translation: "共同方法偏差可能是一个问题，因为所有数据都来自[同一来源]。"
+```
+
+---
+
+## 4. 陈述贡献（Stating Contributions）
+
+### 4.1 理论贡献
+```yaml
+- template: "This study contributes to the literature by [具体贡献]."
+  example: "This study contributes to the literature by extending the Technology Acceptance Model (TAM) to the context of AI chatbots in education."
+  translation: "本研究通过[具体贡献]为文献做出贡献。"
+
+- template: "Unlike previous studies that focused on [A], this study examines [B], thereby [贡献]."
+  example: "Unlike previous studies that focused on higher education, this study examines K-12 contexts, thereby providing insights into the role of age in AI adoption."
+  translation: "与之前关注[A]的研究不同，本研究考察了[B]，从而[贡献]。"
+```
+
+### 4.2 方法论贡献
+```yaml
+- template: "This is the first study to [方法创新]."
+  example: "This is the first study to use learning analytics data to validate self-reported engagement measures."
+  translation: "这是第一个[方法创新]的研究。"
+
+- template: "By employing a [方法], this study overcomes the limitations of previous [旧方法]."
+  example: "By employing a mixed-methods design, this study overcomes the limitations of previous purely quantitative studies."
+  translation: "通过采用[方法]，本研究克服了先前[旧方法]的局限性。"
+```
+
+### 4.3 实践意义
+```yaml
+- template: "The findings offer practical implications for [受众]."
+  example: "The findings offer practical implications for instructional designers seeking to integrate AI tools in online courses."
+  translation: "研究结果为[受众]提供了实践意义。"
+
+- template: "Specifically, [受众] should consider [具体建议]."
+  example: "Specifically, educators should consider using AI chatbots to provide immediate feedback on homework assignments."
+  translation: "具体而言，[受众]应该考虑[具体建议]。"
+```
+
+---
+
+## 5. 过渡与连接（Transitions & Connections）
+
+### 5.1 段落间过渡
+```yaml
+- template: "Building on this finding, [下一主题]..."
+  example: "Building on this finding, the next section examines the role of self-regulated learning in AI-assisted environments."
+  translation: "基于这一发现，[下一主题]..."
+
+- template: "While the above discussion focuses on [A], it is also important to consider [B]."
+  example: "While the above discussion focuses on behavioral engagement, it is also important to consider emotional engagement."
+  translation: "虽然上述讨论关注[A]，但考虑[B]也很重要。"
+
+- template: "This finding aligns with [理论/先前研究], suggesting that [解释]."
+  example: "This finding aligns with Fredricks et al.'s (2004) three-dimensional model, suggesting that engagement is a multifaceted construct."
+  translation: "这一发现与[理论/先前研究]一致，表明[解释]。"
+```
+
+### 5.2 句子间过渡
+```yaml
+- template: "[观点A]. However, [观点B]."
+  example: "AI chatbots can enhance engagement. However, they cannot replace human empathy."
+  translation: "[观点A]。然而，[观点B]。"
+
+- template: "[观点]. For example, [具体例子]."
+  example: "Immediate feedback promotes engagement. For example, students who received AI feedback within 5 minutes showed higher engagement scores."
+  translation: "[观点]。例如，[具体例子]。"
+
+- template: "[观点]. Consequently, [结果]."
+  example: "The experimental group received immediate feedback. Consequently, their engagement scores improved significantly."
+  translation: "[观点]。因此，[结果]。"
+```
+
+---
+
+## 6. 引用文献（Citing Literature）
+
+### 6.1 支持论点
+```yaml
+- template: "[研究发现] (e.g., [作者, 年份]; [作者, 年份])."
+  example: "AI chatbots have been shown to enhance engagement (e.g., Smith, 2021; Johnson et al., 2022)."
+  translation: "[研究发现]（例如，[作者, 年份]；[作者, 年份]）。"
+
+- template: "Previous studies have consistently shown that [发现] ([作者, 年份]; [作者, 年份])."
+  example: "Previous studies have consistently shown that immediate feedback improves learning outcomes (Hwang, 2020; Chen, 2021)."
+  translation: "先前研究一致表明[发现]（[作者, 年份]；[作者, 年份]）。"
+```
+
+### 6.2 对比文献
+```yaml
+- template: "While [作者, 年份] found [X], [作者, 年份] reported [Y]."
+  example: "While Smith (2021) found that AI chatbots improve engagement, Lee (2022) reported mixed results."
+  translation: "虽然[作者, 年份]发现[X]，但[作者, 年份]报告了[Y]。"
+
+- template: "These findings contradict [理论/先前研究], which suggested that [观点]."
+  example: "These findings contradict the Technology Acceptance Model, which suggested that ease of use is the primary predictor of adoption."
+  translation: "这些发现与[理论/先前研究]相矛盾，后者认为[观点]。"
+```
+
+---
+
+## 7. 写作检查清单（按功能）
+
+### 当你在写...
+- **引言的研究空白**: 使用第1类句子（指出研究空白）
+- **结果部分**: 使用第2类句子（报告结果），并报告精确p值和效应量
+- **讨论的局限性**: 使用第3类句子（讨论局限性），客观陈述
+- **讨论的贡献**: 使用第4类句子（陈述贡献），具体且不过度夸大
+- **段落/句子间**: 使用第5类句子（过渡与连接）
+- **引用文献**: 使用第6类句子（引用文献），遵循APA 7th格式
+
+---
+
+## 8. 如何使用本句子库
+
+### 步骤1: 确定写作功能
+问自己："我现在要写什么？" 
+- 指出研究空白？→ 用第1类
+- 报告结果？→ 用第2类
+- 讨论局限性？→ 用第3类
+- ...
+
+### 步骤2: 选择合适的句型
+- 根据你的数据特点选择（如：t-test结果 → 用2.2类）
+- 根据语气选择（如：保守陈述 → 用"may"、"suggest"）
+
+### 步骤3: 替换为自己的内容
+- 保留句型结构（`[变量]`, `[值]`等）
+- 替换为你的具体研究内容
+- 检查语法和流畅性
+
+### 步骤4: 检查引用格式
+- 确保引用格式符合APA 7th
+- 确保引用的文献确实支持你的陈述
+
+---
+
+**句子库生成时间**: 2026-05-02
+**基于**: Computers & Education高分论文（被引次数>30）的句型分析
+**建议**: 在写作时打开本文件参考，逐步积累自己的句子库。

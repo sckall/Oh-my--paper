@@ -1,0 +1,4 @@
+interface:
+  display_name: "LetPub SCI Journal Review"
+  short_description: "已有候选期刊名/ISSN 时，从 LetPub 抓一站全画像（IF/分区/审稿/APC/评论/预警）"
+  default_prompt: "用 LetPub 抓取期刊全画像。输入：候选期刊名或 ISSN（单条或 list）。输出：分层 JSON（authoritative / cas / community / risk）+ trust_level 标注。GUI 内默认 Tier 1 (Preview)，runtime 批量用 Tier 2 firecrawl。"

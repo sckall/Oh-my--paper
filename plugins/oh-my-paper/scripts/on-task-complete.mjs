@@ -1,21 +1,28 @@
+#!/usr/bin/env node
 /**
  * on-task-complete.mjs
  * Stop hook — 解析 omp_executor_report 块，追加到 review_log.md
  */
 import fs from "node:fs/promises";
+import { existsSync } from "node:fs";
 import path from "node:path";
+import { execSync } from "node:child_process";
+import { fileURLToPath } from "node:url";
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const PLUGIN_ROOT = process.env.CLAUDE_PLUGIN_ROOT || path.resolve(__dirname, "..");
 const PROJECT = process.cwd();
 
 async function main() {
   // 任务完成前打快照
   try {
-    const { execSync } = await import("node:child_process");
-    const scriptPath = path.join(PROJECT, "plugins", "oh-my-paper", "scripts", "take-snapshot.mjs");
+    const scriptPath = path.join(PLUGIN_ROOT, "scripts", "take-snapshot.mjs");
     if (existsSync(scriptPath)) {
       execSync(`node "${scriptPath}" before-task-complete`, { stdio: "pipe" });
     }
-  } catch {}
+  } catch {
+    // 快照创建失败不影响主流程
+  }
 
   const stdin = await readStdin();
   if (!stdin.trim()) return;
@@ -62,4 +69,7 @@ async function readStdin() {
   return Buffer.concat(chunks).toString("utf8");
 }
 
-main().catch(() => process.exit(0));
+main().catch((e) => {
+  process.stdout.write(`⚠️ OMP on-task-complete hook 失败: ${e.message}\n`);
+  process.exit(0);
+});

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Journal Authority Check (二级权威核验)"
+  short_description: "P0 第二层验证辅助：SJR + DOAJ + CiteScore 公开数据交叉核验，与 letpub 平行"
+  default_prompt: "做二级权威源核验。输入：ISSN list。输出：dict[issn→{sjr, doaj, citescore}] (trust=authority-secondary)。Adapter：SJR + DOAJ v0.1 实装公开数据，CiteScore 部分实装，MJL 不做（依赖 letpub 转载 SCIE 收录信息）。不爬 JCR 公共 UI。"

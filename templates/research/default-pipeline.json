@@ -1,5 +1,5 @@
 {
-  "templateId": "viewerleaf-default-research-v1",
+  "templateId": "oh-my-paper-default-research-v1",
   "version": 1,
   "stages": {
     "survey": {
@@ -21,7 +21,7 @@
           "priority": "high",
           "inputsNeeded": ["topic boundary", "target venue"],
           "artifactPaths": [
-            ".viewerleaf/research/Survey/reports/domain-map.md",
+            ".oh-my-paper/research/Survey/reports/domain-map.md",
             ".pipeline/docs/domain_map.md"
           ]
         },
@@ -32,7 +32,7 @@
           "priority": "high",
           "inputsNeeded": ["seed query list"],
           "artifactPaths": [
-            ".viewerleaf/research/Survey/reports/screening-notes.md",
+            ".oh-my-paper/research/Survey/reports/screening-notes.md",
             ".pipeline/docs/paper_bank.json"
           ]
         },
@@ -43,7 +43,7 @@
           "priority": "high",
           "inputsNeeded": ["screened paper list"],
           "artifactPaths": [
-            ".viewerleaf/research/Survey/reports/gap-summary.md",
+            ".oh-my-paper/research/Survey/reports/gap-summary.md",
             ".pipeline/docs/gap_matrix.md"
           ]
         }
@@ -75,7 +75,7 @@
           "priority": "high",
           "inputsNeeded": ["gap summary"],
           "artifactPaths": [
-            ".viewerleaf/research/Ideation/ideas/candidate-ideas.md",
+            ".oh-my-paper/research/Ideation/ideas/candidate-ideas.md",
             ".pipeline/docs/idea_board.json"
           ]
         },
@@ -86,7 +86,7 @@
           "priority": "high",
           "inputsNeeded": ["candidate ideas"],
           "artifactPaths": [
-            ".viewerleaf/research/Ideation/ideas/novelty-check.md",
+            ".oh-my-paper/research/Ideation/ideas/novelty-check.md",
             ".pipeline/docs/idea_eval.md"
           ]
         },
@@ -97,7 +97,7 @@
           "priority": "high",
           "inputsNeeded": ["novelty review"],
           "artifactPaths": [
-            ".viewerleaf/research/Ideation/ideas/selected-idea.md",
+            ".oh-my-paper/research/Ideation/ideas/selected-idea.md",
             ".pipeline/docs/selected_idea.md"
           ]
         }
@@ -129,7 +129,7 @@
           "priority": "high",
           "inputsNeeded": ["selected idea"],
           "artifactPaths": [
-            ".viewerleaf/research/Experiment/analysis/experiment-plan.md",
+            ".oh-my-paper/research/Experiment/analysis/experiment-plan.md",
             ".pipeline/docs/experiment_plan.md"
           ]
         },
@@ -140,7 +140,7 @@
           "priority": "medium",
           "inputsNeeded": ["experiment plan"],
           "artifactPaths": [
-            ".viewerleaf/research/Experiment/analysis/checkpoints.md"
+            ".oh-my-paper/research/Experiment/analysis/checkpoints.md"
           ]
         },
         {
@@ -150,7 +150,7 @@
           "priority": "high",
           "inputsNeeded": ["run logs", "analysis notes"],
           "artifactPaths": [
-            ".viewerleaf/research/Experiment/analysis/result-summary.md",
+            ".oh-my-paper/research/Experiment/analysis/result-summary.md",
             ".pipeline/docs/result_summary.md"
           ]
         }
@@ -228,7 +228,7 @@
           "priority": "medium",
           "inputsNeeded": ["paper draft"],
           "artifactPaths": [
-            ".viewerleaf/research/Promotion/slides",
+            ".oh-my-paper/research/Promotion/slides",
             ".pipeline/docs/promo_plan.md"
           ]
         },
@@ -239,7 +239,7 @@
           "priority": "low",
           "inputsNeeded": ["slides", "paper summary"],
           "artifactPaths": [
-            ".viewerleaf/research/Promotion/homepage"
+            ".oh-my-paper/research/Promotion/homepage"
           ]
         }
       ],

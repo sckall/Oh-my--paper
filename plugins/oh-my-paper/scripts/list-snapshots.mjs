@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 /**
  * list-snapshots.mjs
  * 列出所有可用快照
@@ -10,14 +11,21 @@ import path from "node:path";
 const PROJECT = process.cwd();
 const SNAPSHOT_DIR = path.join(PROJECT, ".pipeline", "memory", "snapshots");
 
+function emit(data) {
+  process.stdout.write(data + "\n");
+}
+function warn(data) {
+  process.stderr.write("⚠ " + data + "\n");
+}
+
 async function main() {
   const jsonOutput = process.argv.includes("--json");
 
   if (!existsSync(SNAPSHOT_DIR)) {
     if (jsonOutput) {
-      console.log(JSON.stringify({ snapshots: [] }));
+      emit(JSON.stringify({ snapshots: [] }));
     } else {
-      process.stdout.write("No snapshots found. Snapshots are created automatically before key operations.\n");
+      emit("No snapshots found. Snapshots are created automatically before key operations.");
     }
     process.exit(0);
   }
@@ -29,9 +37,9 @@ async function main() {
 
   if (files.length === 0) {
     if (jsonOutput) {
-      console.log(JSON.stringify({ snapshots: [] }));
+      emit(JSON.stringify({ snapshots: [] }));
     } else {
-      process.stdout.write("No snapshots found.\n");
+      emit("No snapshots found.");
     }
     process.exit(0);
   }
@@ -47,11 +55,12 @@ async function main() {
           stage: data.stage,
           tasks_summary: data.tasks_summary,
         };
-      } catch {
+      } catch (e) {
+        warn(`unreadable snapshot: ${f} — ${e.message}`);
         return { file: f, error: "unreadable" };
       }
     });
-    console.log(JSON.stringify({ snapshots }, null, 2));
+    emit(JSON.stringify({ snapshots }, null, 2));
   } else {
     const lines = [
       "═════════════════════════════════════════════════════════",
@@ -66,16 +75,16 @@ async function main() {
         const stage = data.stage || "?";
         const tasks = data.tasks_summary;
         const taskStr = tasks ? `tasks: ${tasks.done}/${tasks.total} done` : "";
-        lines.push(`  ${f}`);
-        lines.push(`    Time: ${ts} | Stage: ${stage} | ${taskStr}`);
-        lines.push("");
-      } catch {
-        lines.push(`  ${f}  (unreadable)`);
-        lines.push("");
+        emit(`  ${f}`);
+        emit(`    Time: ${ts} | Stage: ${stage} | ${taskStr}`);
+        emit("");
+      } catch (e) {
+        warn(`unreadable snapshot: ${f} — ${e.message}`);
+        emit(`  ${f}  (unreadable)`);
+        emit("");
       }
     }
-    lines.push("═════════════════════════════════════════════════════════");
-    process.stdout.write(lines.join("\n") + "\n");
+    emit("═════════════════════════════════════════════════════════");
   }
 }
 

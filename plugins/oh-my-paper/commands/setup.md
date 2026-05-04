@@ -45,54 +45,11 @@ which codex 2>/dev/null && codex --version 2>/dev/null || echo "Codex not found"
 - `experiment（实验）`
 - `publication（论文写作）`
 
-## 第三步（新）：选择工作模式
-
-用 `AskUserQuestion` 询问：
-
-> **选择工作模式**：
-
-选项：
-- `Legacy 模式` — 使用当前 5 阶段系统（survey→ideation→experiment→publication→promotion），无门控检查
-
-- `Mega 模式` — 启用 25 阶段系统，包含：
-  - 3 个门控检查点（文献筛选、实验设计、论文质量）
-  - 决策循环（PROCEED/REFINE/PIVOT）
-  - 版本化管理
-  - 资源守卫和约束检查（后续启用）
-
-> Mega 模式特性：
-> - 3 个门控点（文献筛选、实验设计、论文质量）
-> - 决策循环（REFINE/PIVOT）
-> - 版本化管理
-> - 资源守卫和约束检查
-
-如果选择 Mega 模式，在 `.pipeline/mega/` 下额外创建：
-- `PROGRESS.md`（从模板复制）
-- `RESTRICTIONS.md`（从模板复制）
-- `plans/` 目录
-- `logs/` 目录
-
-## 第四步：创建目录结构
+## 第三步：创建目录结构
 
 ```bash
 mkdir -p .pipeline/memory .pipeline/tasks .pipeline/docs .pipeline/.hook-events .claude/skills
 cp -rn "${CLAUDE_PLUGIN_ROOT}/skills/." .claude/skills/
-```
-
-如果用户选择了 Mega 模式，额外创建：
-
-```bash
-# Mega 模式目录
-mkdir -p .pipeline/mega/plans .pipeline/mega/logs
-
-# 复制 Mega 模板文件（如果模板目录存在）
-if [ -d "${CLAUDE_PLUGIN_ROOT}/templates" ]; then
-  cp "${CLAUDE_PLUGIN_ROOT}/templates/PROGRESS.md" .pipeline/mega/
-  cp "${CLAUDE_PLUGIN_ROOT}/templates/RESTRICTIONS.md" .pipeline/mega/
-fi
-
-# 在 research_brief.json 中记录模式
-echo "选中的 Mega 模式标志"
 ```
 
 注册 SessionStart hook（让每次开启 Claude Code 时自动弹出角色选择）：
@@ -115,7 +72,7 @@ if (!s.hooks.SessionStart.some(h => (h.command||'').includes('on-session-start')
 "
 ```
 
-## 第五步：写入初始文件
+## 第四步：写入初始文件
 
 创建以下文件（已存在则跳过）：
 
@@ -125,8 +82,7 @@ if (!s.hooks.SessionStart.some(h => (h.command||'').includes('on-session-start')
   "topic": "[用户填写的主题]",
   "goal": "",
   "currentStage": "[用户选择的阶段]",
-  "successThreshold": "需要在此填写成功标准",
-  "mode": "[Legacy 或 Mega]"
+  "successThreshold": "需要在此填写成功标准"
 }
 ```
 
@@ -148,18 +104,16 @@ if (!s.hooks.SessionStart.some(h => (h.command||'').includes('on-session-start')
 {"version": 1, "tasks": []}
 ```
 
-## 第六步：完成确认
+## 第五步：完成确认
 
 > ✅ 研究项目初始化完成！
 >
 > **项目**：[主题]
 > **起始阶段**：[阶段]
-> **工作模式**：[Legacy / Mega]
 >
 > 接下来：
 > - 运行 `/omp:plan` 查看整体状态
 > - 运行 `/omp:survey` 开始文献调研（如果从 survey 阶段）
-> - 如果是 Mega 模式，运行 `/omp:mega` 查看 25 阶段进度
 
 选项：
 - `开始！运行 /omp:plan`

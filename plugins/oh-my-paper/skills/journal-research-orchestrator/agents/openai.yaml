@@ -1,0 +1,4 @@
+interface:
+  display_name: "Journal Research Orchestrator (P0 求职总教练)"
+  short_description: "英文/SCI 路线 P0 期刊调研编排：调度 ai-match + letpub + authority + predatory 出决策矩阵"
+  default_prompt: "做 P0 期刊调研。输入：研究方向 / 候选 ISSN list / 单期刊问询。输出：决策矩阵（2 主投 + 2 备选 + 1 不建议）+ 数据来源声明 + CAS 双轨说明。本 skill 只调度 sub-skill，不直接抓数据。"

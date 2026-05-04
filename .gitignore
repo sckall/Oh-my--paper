@@ -12,7 +12,6 @@ node_modules
 
 # Build output
 dist
-dist-ssr
 *.local
 
 # Editor directories and files
@@ -25,11 +24,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-
-# Rust / Tauri build artifacts
-src-tauri/target/
-src-tauri/resources/worker-template/
-src-tauri/resources/sidecar/
 
 # LaTeX auxiliary files
 *.aux
@@ -45,10 +39,6 @@ src-tauri/resources/sidecar/
 main.pdf
 main.log
 
-# Sidecar node_modules and build output
-sidecar/node_modules
-sidecar/dist
-
 # OMC files
 .omc
 .claude
@@ -57,7 +47,8 @@ sidecar/dist
 .viewerleaf/opencode-home/
 .viewerleaf/opencode-session-map.json
 
-# Cloudflare worker files
-workers/.wrangler
-workers/.dev.vars*
-!workers/.dev.vars.example
+# Personal learning notes (auto-generated docs, paper examples)
+.learn/
+
+# WorkBuddy agent memory
+.workbuddy/

@@ -1,0 +1,4 @@
+interface:
+  display_name: "小木虫中文期刊点评（脉脉）"
+  short_description: "P0 第二层验证：中文期刊投稿口碑（虫友点评、审稿速度、版面费）→ review_intel.cn_excerpts"
+  default_prompt: "orchestrator 第二层并发调用：从 ISSN 反查小木虫详情页，抓三个 evidence block，输出 community-cn trust level 评论摘要。"

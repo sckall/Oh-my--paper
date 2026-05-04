@@ -1,0 +1,50 @@
+#!/bin/bash
+# omp-journal-scan — 扫描期刊库，列出所有期刊分类及其统计
+# 用法: omp-journal-scan [journal_root]
+#
+# 输出格式 (每行一个期刊):
+#   ID|名称|论文数|IF|更新日期
+#   空输出 = 期刊库不存在
+
+JOURNAL_ROOT="${1:-.my-paper/journals}"
+
+if [ ! -d "$JOURNAL_ROOT" ]; then
+  exit 0
+fi
+
+for d in "$JOURNAL_ROOT"/*/; do
+  [ -d "$d" ] || continue
+  id=$(basename "$d")
+  meta="$d/metadata.yaml"
+  
+  name="$id"
+  count="0"
+  ifc="N/A"
+  updated="未知"
+  
+  if [ -f "$meta" ]; then
+    # LLM-friendly: 直接用 yaml 解析或 fallback 到 grep
+    if command -v python3 &>/dev/null; then
+      python3 -c "
+import yaml, sys
+try:
+    d = yaml.safe_load(open('$meta'))
+    j = d.get('journal', {})
+    s = d.get('stats', {})
+    name = j.get('name', '$id')
+    ifc = j.get('impact_factor', 'N/A')
+    pc = s.get('paper_count', 0)
+    lu = s.get('last_updated', '未知')
+    print(f'{id}|{name}|{pc}|{ifc}|{lu}')
+except:
+    print(f'{id}|$id|0|N/A|未知')
+" 2>/dev/null || echo "$id|$name|0|N/A|未知"
+    else
+      # 无 PyYAML 时的 fallback
+      name=$(grep "^  name:" "$meta" 2>/dev/null | head -1 | sed 's/.*: *//')
+      echo "$id|${name:-$id}|$count|$ifc|$updated"
+    fi
+  else
+    echo "$id|$id|0|N/A|未初始化"
+  fi
+done

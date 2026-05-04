@@ -1,0 +1,4 @@
+interface:
+  display_name: "Predatory Risk Check (315 黑榜)"
+  short_description: "P0 第三层风险筛查：5 类信号合成（DOAJ + TCS + Beall + APC 异常 + letpub 预警）→ verdict"
+  default_prompt: "做掠夺刊 / 水刊风险筛查。输入：CandidateJournal (已被 letpub + authority-check 填好)。输出：verdict (safe/warning/predatory_suspected) + risk_flags + risk_score。90% 工作是数据合成（消费上游），TCS / Beall archive 用 Tier 2 firecrawl。"

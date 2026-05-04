@@ -43,12 +43,13 @@ jobs:
           fi
           echo "Tag '${{ inputs.tag }}' found: $(git rev-parse ${{ inputs.tag }})"
 
-      - name: Trigger release workflow
+      - name: Create GitHub release
         if: inputs.tag != ''
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh workflow run release.yml \
+          gh release create "${{ inputs.tag }}" \
             --repo "${{ github.repository }}" \
-            --field tag="${{ inputs.tag }}"
-          echo "Release workflow dispatched for ${{ inputs.tag }}"
+            --title "Release ${{ inputs.tag }}" \
+            --generate-notes
+          echo "Release ${{ inputs.tag }} created"

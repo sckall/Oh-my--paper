@@ -65,25 +65,3 @@ cat .pipeline/memory/literature_bank.md | head -30
 选项列出各 idea 名称，加一个「我来描述自己的想法」。
 
 用户选定后，更新 `project_truth.md`，将其余方向记录到 `decision_log.md`。
-
-## 第六步：自动建议进入辩论验证（优化衔接）
-
-用 `AskUserQuestion` 展示：
-
-> **Idea 已确认！**
->
-> 选定的创新方向：[idea 名称]
->
-> 下一步：进入 A7 多 Agent 辩论，验证假设的 robust性。
->
-> 选项：
-> - `直接进入辩论` — 启动 /omp:debate 验证假设
-> - `先做文献调研` — 补充文献后再辩论
-> - `先设计实验` — 跳过辩论，直接进入实验
-
-如果用户选择"直接进入辩论"：
-```
-/omp:debate
-```
-
-这样就实现了 **ideate → debate → experiment** 的自动衔接。

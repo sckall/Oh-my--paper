@@ -11,13 +11,12 @@ import { execSync } from 'child_process';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const root = path.resolve(__dirname, '..', '..');
-const pluginRoot = path.resolve(__dirname, '..');
+const PLUGIN_ROOT = process.env.CLAUDE_PLUGIN_ROOT || path.resolve(__dirname, '..');
 
 console.log('🔍 正在检查更新...');
 
 // 读取当前版本
-const pluginJsonPath = path.join(pluginRoot, '.claude-plugin', 'plugin.json');
+const pluginJsonPath = path.join(PLUGIN_ROOT, '.claude-plugin', 'plugin.json');
 let currentVersion = '0.0.0';
 try {
   const pluginJson = JSON.parse(fs.readFileSync(pluginJsonPath, 'utf8'));
@@ -28,7 +27,7 @@ try {
 }
 
 // 获取最新版本
-const https = await import('https');
+const https = await import("node:https");
 const githubUrl = 'https://raw.githubusercontent.com/LigphiDonk/Oh-my--paper/main/plugins/oh-my-paper/.claude-plugin/plugin.json';
 
 function fetchGitHub(url) {
@@ -96,7 +95,7 @@ console.log('📋 正在安装更新...');
 
 // 确定插件缓存路径
 const home = process.env.HOME || process.env.USERPROFILE || '';
-const cachePath = path.join(home, '.claude', 'plugins', 'cache', 'oh-my-paper', 'omp', '1.0.0');
+const cachePath = path.join(home, '.claude', 'plugins', 'cache', 'oh-my-paper', 'omp', latestVersion);
 
 // 如果缓存目录存在，复制到缓存
 if (fs.existsSync(cachePath)) {
@@ -138,16 +137,17 @@ try {
   // 忽略清理错误
 }
 
-// 更新版本号（如果在开发环境中）
+  // 更新版本号（如果在开发环境中）
 try {
-  const localPluginJson = path.join(root, 'plugins', 'oh-my-paper', '.claude-plugin', 'plugin.json');
+  const localPluginJson = path.join(PLUGIN_ROOT, '.claude-plugin', 'plugin.json');
   if (fs.existsSync(localPluginJson)) {
     const localJson = JSON.parse(fs.readFileSync(localPluginJson, 'utf8'));
     localJson.version = latestVersion;
     fs.writeFileSync(localPluginJson, JSON.stringify(localJson, null, 2));
   }
   
-  const localMarketplaceJson = path.join(root, '.claude-plugin', 'marketplace.json');
+  const devRoot = path.resolve(PLUGIN_ROOT, '..', '..');
+  const localMarketplaceJson = path.join(devRoot, '.claude-plugin', 'marketplace.json');
   if (fs.existsSync(localMarketplaceJson)) {
     const marketJson = JSON.parse(fs.readFileSync(localMarketplaceJson, 'utf8'));
     if (marketJson.metadata) marketJson.metadata.version = latestVersion;

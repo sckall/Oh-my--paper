@@ -1,0 +1,13 @@
+topic_distribution:
+  - topic: "AI在教育中的应用"
+    keywords: ["AI", "chatbot", "AI feedback", "learning analytics"]
+    percentage: 40.0
+  - topic: "在线与混合学习"
+    keywords: ["online teaching", "post-pandemic", "online learning"]
+    percentage: 30.0
+  - topic: "学习分析与评估"
+    keywords: ["learning analytics", "student engagement", "learning outcomes"]
+    percentage: 20.0
+  - topic: "STEM教育"
+    keywords: ["STEM education", "self-regulated learning"]
+    percentage: 10.0

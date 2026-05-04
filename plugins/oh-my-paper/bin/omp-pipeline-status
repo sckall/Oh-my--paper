@@ -1,0 +1,51 @@
+#!/bin/bash
+# omp-pipeline-status — 快速查看流水线状态
+# 用法: omp-pipeline-status [project_root]
+# 输出单行状态，适合 LLM 直接读取
+
+PROJECT="${1:-.}"
+
+BRIEF="$PROJECT/.pipeline/docs/research_brief.json"
+TASKS="$PROJECT/.pipeline/tasks/tasks.json"
+SETTINGS="$PROJECT/.pipeline/memory/settings.md"
+
+# 检查是否有流水线
+if [ ! -f "$BRIEF" ] && [ ! -f "$TASKS" ]; then
+  echo "NOT_INITIALIZED|研究流水线未初始化"
+  exit 0
+fi
+
+# 解析 research_brief
+STAGE="unknown"
+TOPIC=""
+if [ -f "$BRIEF" ]; then
+  STAGE=$(python3 -c "import json; print(json.load(open('$BRIEF')).get('currentStage','unknown'))" 2>/dev/null || echo "unknown")
+  TOPIC=$(python3 -c "import json; print(json.load(open('$BRIEF')).get('topic',''))" 2>/dev/null || echo "")
+fi
+
+# 解析 task 统计
+TOTAL=0
+DONE=0
+IN_PROG=0
+if [ -f "$TASKS" ]; then
+  TOTAL=$(python3 -c "
+import json
+d=json.load(open('$TASKS'))
+tasks=d.get('tasks',[])
+print(len(tasks))
+" 2>/dev/null || echo "0")
+  DONE=$(python3 -c "
+import json
+d=json.load(open('$TASKS'))
+tasks=d.get('tasks',[])
+print(sum(1 for t in tasks if t.get('status')=='done'))
+" 2>/dev/null || echo "0")
+  IN_PROG=$(python3 -c "
+import json
+d=json.load(open('$TASKS'))
+tasks=d.get('tasks',[])
+print(sum(1 for t in tasks if t.get('status')=='in_progress'))
+" 2>/dev/null || echo "0")
+fi
+
+echo "PIPELINE|${TOPIC:0:40}|${STAGE}|${DONE}/${TOTAL}|${IN_PROG} in progress"

@@ -148,9 +148,9 @@ cat .pipeline/memory/settings.md 2>/dev/null || echo "DEFAULT_SETTINGS"
 | 阶段 | 名称 | 自动执行 | 产出 |
 |------|------|---------|------|
 | C16 | 论文大纲 | ✅ | outline.md |
-| C17 | 论文初稿 | ✅ | paper/sections/*.tex |
+| C17 | 论文初稿 | ✅ | paper/sections/*.md |
 | C18 | 同行评审 | 🤖 | review_log.md |
-| C19 | 论文修订 | ✅ | paper/sections/*.tex |
+| C19 | 论文修订 | ✅ | paper/sections/*.md |
 | C20 | 质量门控 | ⏸️ | - |
 | C21 | 知识归档 | ✅ | archive/ |
 | C22 | **导出发布** | ✅ | main.pdf |
@@ -162,6 +162,47 @@ cat .pipeline/memory/settings.md 2>/dev/null || echo "DEFAULT_SETTINGS"
 |------|------|---------|------|
 | D24 | **第三方评审** | 🤖 | 3rd_party_report.md |
 | I25 | **Rebuttal** | ⏸️ | rebuttal_response.md |
+
+### C17 详细工作流：per-section 写作 + GATE CHECK
+
+> **重要**：C17 是论文写作的核心阶段。每个节写作完成后必须执行 GATE CHECK，不达标不得推进。
+
+#### 写作阶段（调用 Writer BLOCK）
+
+| 节名 | Writer BLOCK | 字数要求 | GATE CHECK |
+|------|-------------|---------|------------|
+| background | `background-writer.md` | ≥800 | 引用存在于 references.bib |
+| methods | `methods-writer.md` | ≥800 | 功能描述与 result_summary 一致 |
+| results | `results-writer.md` | ≥1500 | 迭代记录与 result_summary 一致 |
+| practice | `practice-writer.md` | ≥800 | 无捏造教学数据 |
+| conclusion | `conclusion-writer.md` | ≥1000 | 贡献具体化 |
+
+#### per-section GATE CHECK 流程
+
+每个节写作完成后，自动执行：
+
+```bash
+# 1. gate-check.mjs：字数统计 + 内容门控
+node "${CLAUDE_PLUGIN_ROOT}/scripts/gate-check.mjs" --section={section_name}
+
+# 2. evidence-validator.mjs：证据一致性验证
+node "${CLAUDE_PLUGIN_ROOT}/scripts/evidence-validator.mjs" --section={section_name}
+```
+
+#### 判定规则
+
+| gate_result | criticalCount | 决策 |
+|-------------|---------------|------|
+| PROCEED | 0 | ✅ 推进下一节 |
+| REFINE | 0 | ❌ 该节 Writer 自我修订，重新 GATE |
+| CRITICAL | ≥1 | 🚨 立即暂停，报告用户 |
+
+#### 迭代真实性检查（C17 必须）
+
+C17 阶段必须验证：
+- [ ] results 章节的迭代轮次 ≤ result_summary.md 记录的最大轮次
+- [ ] methods 章节的功能描述在 project_truth.md 中有记录
+- [ ] practice 章节无空洞效果描述（如"效果良好"）且无具体数据
 
 ## 第五步：决策循环
 
@@ -182,6 +223,8 @@ cat .pipeline/memory/settings.md 2>/dev/null || echo "DEFAULT_SETTINGS"
 - [ ] 收敛检查通过
 - [ ] 假设一致性验证
 - [ ] 无 CRITICAL 问题
+- [ ] **C17 per-section GATE CHECK 通过（每节都要验证）**
+- [ ] **evidence-validator.mjs criticalCount = 0**
 
 ## 第六步：上下文管理
 
@@ -198,7 +241,7 @@ cat .pipeline/memory/settings.md 2>/dev/null || echo "DEFAULT_SETTINGS"
 | B11 | experiment_plan, hardware | experiments/ |
 | B12 | experiment_plan | experiment_ledger |
 | B14 | experiment_ledger, result_summary | analysis_report |
-| C17 | hypothesis, literature_bank | paper/sections/ |
+| C17 | hypothesis, literature_bank, result_summary | paper/sections/*.md |
 | C18 | paper | review_log |
 | C22 | paper | main.pdf |
 

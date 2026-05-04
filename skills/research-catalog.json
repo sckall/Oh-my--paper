@@ -1,5 +1,5 @@
 {
-  "schema": "viewerleaf-research-catalog-v1",
+  "schema": "oh-my-paper-research-catalog-v1",
   "generatedAt": "2026-03-20T05:23:15.888Z",
   "upstream": {
     "repo": "dr-claw",
@@ -956,7 +956,7 @@
         "following"
       ],
       "source": "builtin",
-      "status": "verified",
+      "status": "experimental",
       "upstream": {
         "repo": "dr-claw",
         "path": "skills/inno-paper-writing",

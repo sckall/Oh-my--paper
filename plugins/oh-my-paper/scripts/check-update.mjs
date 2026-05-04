@@ -11,10 +11,10 @@ import { fileURLToPath } from 'url';
 import https from 'https';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const root = path.resolve(__dirname, '..', '..');
+const PLUGIN_ROOT = process.env.CLAUDE_PLUGIN_ROOT || path.resolve(__dirname, '..');
 
 // 读取当前版本
-const pluginJsonPath = path.join(root, '.claude-plugin', 'plugin.json');
+const pluginJsonPath = path.join(PLUGIN_ROOT, '.claude-plugin', 'plugin.json');
 let currentVersion = '0.0.0';
 
 try {

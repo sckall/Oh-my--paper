@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI Journal Match (Boss 直聘 AI 选刊)"
+  short_description: "P0 第一层探索：研究方向 → 5-10 候选期刊（adapter 模式，v0.1 接 JANE 生医方向）"
+  default_prompt: "做 AI 选刊推荐。输入：研究方向 / 题目+摘要 / 学科提示。输出：list[CandidateJournal] (identity + fit_score, trust=ai-推断)。学科路由：生医→JANE 实装；化材物→Springer/Elsevier TODO；工电计→IEEE TODO；商科文社→fallback。"

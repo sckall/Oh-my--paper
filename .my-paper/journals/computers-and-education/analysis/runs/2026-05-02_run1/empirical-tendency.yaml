@@ -1,0 +1,11 @@
+empirical_tendency:
+  empirical_ratio: 0.8  # 实证论文比例 (4/5篇)
+  theoretical_ratio: 0.2  # 理论/综述比例 (1/5篇是systematic review)
+  common_datasets: ["undergraduate students", "K-12 students", "EFL learners"]
+  evaluation_metrics: ["student satisfaction", "learning outcomes", "engagement score", "SRL behaviors"]
+  research_methods:
+    - "mixed-methods"  # 1篇
+    - "qualitative"      # 1篇 (interviews)
+    - "systematic review" # 1篇
+    - "quasi-experimental" # 1篇
+    - "correlational"    # 1篇

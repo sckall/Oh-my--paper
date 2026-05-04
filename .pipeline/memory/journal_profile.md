@@ -1,0 +1,1 @@
+../../.my-paper/journals/computers-and-education/analysis/latest/journal_profile.md

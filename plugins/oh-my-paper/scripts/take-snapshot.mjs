@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 /**
  * take-snapshot.mjs
  * 在关键操作前创建项目状态快照（保存完整文件内容）
@@ -19,6 +20,10 @@ const KEY_FILES = [
   "memory/decision_log.md",
   "memory/execution_context.md",
 ];
+
+function warn(msg) {
+  process.stderr.write("⚠ " + msg + "\n");
+}
 
 async function main() {
   const label = process.argv[2] || "auto";
@@ -52,7 +57,9 @@ async function main() {
         currentStage: brief.currentStage || "",
         mode: brief.mode || "Legacy",
       };
-    } catch {}
+    } catch (e) {
+      warn("failed to parse research_brief.json: " + e.message);
+    }
   }
 
   // 读取 tasks.json 并统计
@@ -67,7 +74,9 @@ async function main() {
         in_progress: taskList.filter(t => t.status === "in_progress").length,
         pending: taskList.filter(t => t.status === "pending").length,
       };
-    } catch {}
+    } catch {
+      warn("任务文件 tasks.json 读取失败");
+    }
   }
 
   // 保存关键文件的完整内容
@@ -76,7 +85,9 @@ async function main() {
     if (existsSync(fullPath)) {
       try {
         snapshot.files[relPath] = readFileSync(fullPath, "utf8");
-      } catch {}
+      } catch (e) {
+        warn(`文件读取失败: ${relPath} — ${e.message}`);
+      }
     }
   }
 
@@ -92,7 +103,11 @@ async function main() {
     .sort()
     .reverse();
   for (const f of files.slice(MAX_SNAPSHOTS)) {
-    await fs.unlink(path.join(SNAPSHOT_DIR, f)).catch(() => {});
+    try {
+      await fs.unlink(path.join(SNAPSHOT_DIR, f));
+    } catch {
+      // 清理旧快照失败不影响主流程
+    }
   }
 
   process.stdout.write(`Snapshot created: ${baseName}\n`);

@@ -52,7 +52,7 @@ jobs:
 
       - name: Commit release version
         run: |
-          git add package.json package-lock.json src-tauri/Cargo.toml src-tauri/tauri.conf.json
+          git add package.json
           git commit -m "chore: release v${{ steps.bump.outputs.version }}"
           git tag "v${{ steps.bump.outputs.version }}"
 
@@ -61,12 +61,3 @@ jobs:
 
       - name: Push release tag
         run: git push origin "v${{ steps.bump.outputs.version }}"
-
-      - name: Trigger release workflow
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh workflow run release.yml \
-            --repo "${{ github.repository }}" \
-            --field tag="v${{ steps.bump.outputs.version }}"
-

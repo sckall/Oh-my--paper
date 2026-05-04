@@ -104,7 +104,7 @@ function main() {
   );
 
   const researchCatalog = {
-    schema: "viewerleaf-research-catalog-v1",
+    schema: "oh-my-paper-research-catalog-v1",
     generatedAt,
     upstream: {
       repo: "dr-claw",
@@ -115,7 +115,7 @@ function main() {
   };
 
   const scopeManifest = {
-    schema: "viewerleaf-research-scope-v1",
+    schema: "oh-my-paper-research-scope-v1",
     generatedAt,
     skills: RESEARCH_SKILL_IDS,
   };
@@ -187,7 +187,6 @@ function resolveSourceRoot(explicitSource) {
     explicitSource,
     process.env.DR_CLAW_ROOT,
     path.resolve(repoRoot, "../dr-claw"),
-    "/Users/donkfeng/Desktop/dr-claw",
   ].filter(Boolean);
 
   for (const candidate of candidates) {

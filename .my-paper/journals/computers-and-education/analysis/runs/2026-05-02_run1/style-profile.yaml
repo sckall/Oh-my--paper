@@ -1,0 +1,29 @@
+title_style:
+  avg_length: 52  # 字符数
+  length_range: [35, 85]
+  structure:
+    declarative: 0.4  # 陈述句比例
+    interrogative: 0.2  # 疑问句比例
+    colon_separated: 0.4  # 冒号分隔比例
+  common_patterns:
+    - "Enhancing...: A ..."
+    - "What makes...?"
+    - "...: A systematic review"
+  high_freq_words: ["AI", "learning", "student", "online", "analytics", "education"]
+
+writing_style:
+  common_sections:
+    - "Abstract"
+    - "Introduction"
+    - "Literature Review"
+    - "Methodology"
+    - "Results"
+    - "Discussion"
+    - "Conclusions"
+  section_order: ["Abstract", "Introduction", "Literature Review", "Methodology", "Results", "Discussion", "Conclusions"]
+  language_features:
+    passive_voice_ratio: 0.35
+    avg_sentence_length: 22.5  # 单词数
+    technical_term_density: 0.18  # 专业术语密度
+  citation_style: "APA 7th Edition"
+  avg_citations_per_paper: 32
