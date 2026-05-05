@@ -1,6 +1,6 @@
 {
   "name": "omp",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Oh My Paper — 科研工作流插件：5 个 Agent 角色、93 个研究技能、期刊选刊系统、记忆系统，覆盖从文献调研到论文发表全流程。",
   "author": {
     "name": "LigphiDonk"
